@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <div className="flex items-center justify-center relative">
-        <div className=" bg-[url('/Banner.jpg')] w-[1920px] h-[898px] ">
+        <div className=" bg-[url('/Banner.jpg')] w-[1920px] h-[898px]">
           <Image
             src="/organicBackground.svg"
             alt="Background Images"
@@ -49,62 +49,71 @@ export default function Home() {
         </div>
       </section>
       <section className="mt-36 bg-grayLight">
-        <div className="flex ">
+        <div className="flex items-center justify-center">
           <Image
             src="/bg.png"
             alt="Background Images"
             width={911}
             height={867}
-            className="w-[911px] h-[867px] "
+            className="w-[911px] h-[867px]"
           />
-          <MaxWidthWrapper className="max-w-[702px]">
+          <MaxWidthWrapper className="max-w-[702px] m-0">
             <div className="flex flex-col">
-              <h6 className="font-yellowtail text-4xl text-greenMedium font-normal">
+              <h6 className="font-yellowtail text-4xl text-greenMedium font-normal pb-2">
                 About Us
               </h6>
-              <h2 className="text-5xl leading-tight font-extrabold text-greenDark">
+              <h2 className="text-5xl leading-tight font-extrabold text-greenDark pb-3.5">
                 We Believe in Working Accredited Farmers
               </h2>
-              <p className="font-openSans text-lg font-normal text-grayDark">
+              <p className="font-openSans text-lg font-normal text-grayDark pb-11">
                 Simply dummy text of the printing and typesetting industry.
                 Lorem had ceased to been the industry&apos;s standard dummy text
                 ever since the 1500s, when an unknown printer took a galley.
               </p>
             </div>
-            <div className="flex flex-row gap-5">
-              <div className="bg-white w-[100px] h-[100px] flex items-center justify-center rounded-2xl">
-                <Image
-                  src="./Group.svg"
-                  alt="Group Image"
-                  width={46}
-                  height={46}
-                />
+            <MaxWidthWrapper className="max-w-[564px] m-0">
+              <div className="flex flex-row gap-5 pb-7">
+                <div className="bg-white w-[100px] h-[100px] flex items-center justify-center rounded-2xl">
+                  <Image
+                    src="./Group.svg"
+                    alt="Group Image"
+                    width={46}
+                    height={46}
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <h4 className="font-extrabold text-2xl text-greenDark">
+                    Organic Foods Only
+                  </h4>
+                  <p className="font-openSans text-lg font-normal tracking-wide text-grayDark">
+                    Simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col gap-1">
-                <h4>Organic Foods Only</h4>
-                <p>
-                  Simply dummy text of the printing and typesetting industry.
-                  Lorem Ipsum
-                </p>
+              <div className="flex flex-row gap-5 pb-12">
+                <div className="bg-white w-[100px] h-[100px] flex items-center justify-center rounded-2xl">
+                  <Image
+                    src="./Group2.svg"
+                    alt="Group Image"
+                    width={56}
+                    height={52}
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <h4 className="font-extrabold text-2xl text-greenDark">
+                    Quality Standards
+                  </h4>
+                  <p className="font-openSans text-lg font-normal tracking-wide text-grayDark">
+                    Simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="flex flex-row gap-5">
-              <div className="bg-white w-[100px] h-[100px] flex items-center justify-center rounded-2xl">
-                <Image
-                  src="./Group2.svg"
-                  alt="Group Image"
-                  width={56}
-                  height={52}
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <h4>Quality Standards</h4>
-                <p>
-                  Simply dummy text of the printing and typesetting industry.
-                  Lorem Ipsum
-                </p>
-              </div>
-            </div>
+              <Button arrow variant="secondary">
+                Shop Now
+              </Button>
+            </MaxWidthWrapper>
           </MaxWidthWrapper>
         </div>
       </section>

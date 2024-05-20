@@ -10,7 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const buttonVariants = cva(
-  'rounded-2xl py-[26px] px-[39px] flex flex-row gap-2.5 items-center',
+  'rounded-2xl py-[26px] px-[39px] flex flex-row justify-center gap-2.5 items-center min-w-[220px]',
   {
     variants: {
       variant: {
