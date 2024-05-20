@@ -7,10 +7,23 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    colors: {
+      white: 'var(--color-white)',
+      greenDark: 'var(--color-green-dark)',
+      greenMedium: 'var(--color-green-medium)',
+      greenLight: 'var(--color-green-light)',
+      yellow: 'var(--color-yellow)',
+      grayDark: 'var(--color-gray-dark)',
+      grayMedium: 'var(--color-gray-medium)',
+      grayLight: 'var(--color-gray-light)',
+    },
+
     fontFamily: {
       openSans: 'var(--font-open-sans)',
       roboto: 'var(--font-roboto)',
+      yellowtail: 'var(--font-yellowtail)',
     },
+
     extend: {
       backgroundImage: {
         'gradient-radial':
