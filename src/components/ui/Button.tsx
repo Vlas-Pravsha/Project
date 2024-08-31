@@ -1,54 +1,45 @@
-import { cn } from '@/utils/cn'
-import { cva, type VariantProps } from 'class-variance-authority'
-import Image from 'next/image'
 import React from 'react'
+import { type VariantProps, cva } from 'class-variance-authority'
+import Image from 'next/image'
+import { cn } from '@/lib/utils'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outlined'
-  size?: 'sm' | 'md' | 'lg' | 'xl'
-  arrow?: boolean
+  variant?: 'default' | 'secondary' | 'third'
+  size?: 'sm' | 'md' | 'lg'
 }
 
 const buttonVariants = cva(
-  'rounded-2xl py-[26px] px-[39px] flex flex-row justify-center gap-2.5 items-center min-w-[220px]',
+  'rounded-lg text-sm font-medium transition-colors duration-200',
   {
     variants: {
       variant: {
-        primary: 'bg-yellow text-greenDark',
-        secondary: 'bg-greenDark text-white',
-        outlined: 'bg-white text-greenDark border border-greenDark',
+        default: 'bg-darkBlue text-buttonColorText hover:bg-linkColorBlue',
+        secondary: 'bg-componentBg text-lightTextColor border border-borderColor hover:text-buttonColorText',
+        third: 'bg-darkBlue text-buttonColorText hover:bg-linkColorBlue',
       },
       size: {
-        sm: 'text-sm',
-        md: 'text-base font-medium py-5 px-7',
-        lg: 'text-lg font-semibold py-5 px-9',
-        xl: 'text-xl font-bold',
+        sm: 'py-2 px-4',
+        md: 'py-3 px-6',
+        lg: 'py-4 px-8',
       },
     },
     defaultVariants: {
-      variant: 'primary',
-      size: 'xl',
+      variant: 'default',
+      size: 'md',
     },
-  },
+  }
 )
 
-const Button = ({
+function Button({
   children,
-  type,
-  className,
   variant,
   size,
-  arrow,
+  className,
   ...props
-}: ButtonProps & VariantProps<typeof buttonVariants>) => {
+}: ButtonProps & VariantProps<typeof buttonVariants>) {
   return (
-    <button
-      type={type}
-      className={cn(buttonVariants({ variant, size }), className)}
-      {...props}
-    >
+    <button className={cn(buttonVariants({ variant, size }), className)} {...props}>
       {children}
-      {arrow && <Image src="/Aerrow.svg" alt="Arrow" width={19} height={19} />}
     </button>
   )
 }

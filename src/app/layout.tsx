@@ -1,14 +1,10 @@
 import type { Metadata } from 'next'
-import './globals.css'
-import Header from '@/components/Header'
 import { openSans, roboto, yellowTail } from '@/fonts/fonts'
-import Footer from '@/components/Footer'
-import Subscribe from '@/components/Subscribe'
+import { constructMetadata } from '@/lib/utils'
 
-export const metadata: Metadata = {
-  title: 'Organic',
-  description: 'Make your life easier',
-}
+import './globals.css'
+
+export const metadata: Metadata = constructMetadata()
 
 export default function RootLayout({
   children,
@@ -17,13 +13,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${openSans.variable} ${roboto.variable} ${yellowTail.variable}`}
-      >
-        <Header />
+      <body className={`${openSans.variable} ${roboto.variable} ${yellowTail.variable}`}>
         <main>{children}</main>
-        <Subscribe />
-        <Footer />
       </body>
     </html>
   )

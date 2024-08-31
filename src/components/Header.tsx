@@ -1,72 +1,66 @@
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import MaxWidthWrapper from './MaxWidthWrapper'
-import { Input } from './ui/Input'
+'use client'
 
-const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Pages', path: '/pages' },
-  { name: 'Shop', path: '/shop' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'News', path: '/news' },
-]
+import Image from "next/image";
+import React, { useState } from "react";
+import Link from "next/link";
+import { Moon, Sun, Search, Menu, X } from "lucide-react";
+import { changeTheme } from "@/lib/utils";
+import Profile from "./Profile";
 
-const NavBar = () => (
-  <nav className="flex gap-10 font-bold text-xl text-greenDark">
-    {navLinks.map(({ name, path }) => (
-      <Link key={path} href={path}>
-        {name}
-      </Link>
-    ))}
-  </nav>
-)
 
-const Basket = () => (
-  <div className="p-1.5 border rounded-[33px] border-[#E0E0E0] flex items-center gap-2 w-40">
-    <Image
-      src="/basket.svg"
-      alt="basket"
-      width={56}
-      height={56}
-      className="w-14 h-14"
-    />
-    <div className="font-semibold text-lg text-greenDark">Cart (0)</div>
-  </div>
-)
+const Header = () => {
+  const [navOpen, setNavOpen] = useState(false);
+  const [themeDark, setThemeDark] = useState(false);
 
-const Header = () => (
-  <header className="bg-white flex justify-center">
-    <MaxWidthWrapper className="max-w-[1595px] py-16 flex justify-between">
-      <div className="flex items-center justify-between w-[913px]">
-        <div className="flex items-center gap-2">
-          <Image
-            src="/Logo.svg"
-            alt="logo"
-            width={36}
-            height={53}
-            className="w-9 h-[53px]"
-          />
-          <h1 className="text-[38px] font-bold text-greenDark">Organick</h1>
+  const toggleNav = () => setNavOpen(!navOpen);
+
+  const toggleTheme = () => {
+    changeTheme();
+    setThemeDark(!themeDark)
+};
+
+
+  return (
+    <div className="bg-componentBg fixed top-0 left-0 right-0 z-10 border-b border-borderColor">
+      <div className="flex items-center justify-between p-3 px-6 mx-auto">
+        <div className="flex items-center gap-8">
+            <button onClick={toggleNav} className="p-2 rounded-lg hover:bg-darkGreyBg">
+              <Menu className="w-6 h-6 text-iconsColor" />
+            </button>
+          <Link href="/">
+            <div className="flex items-center gap-2">
+              <Image
+                src="/logo.svg"
+                alt="Icon"
+                className="w-8 h-8"
+                width="30"
+                height="30"
+              />
+              <h2 className="text-2xl font-bold text-lightTextColor">DashBoard</h2>
+            </div>
+          </Link>
+          <div className="flex items-center border border-borderColor bg-darkGreyBg rounded-lg px-2 py-1">
+            <Search className="w-5 h-5 text-iconsColor mr-3" />
+            <input
+              type="text"
+              className="bg-darkGreyBg text-lightTextColor placeholder:text-lightTextColor outline-none w-64"
+              placeholder="Search"
+            />
+          </div>
         </div>
-        <NavBar />
+        <div className="flex items-center gap-4">
+          <button onClick={toggleTheme} className="p-2 rounded-lg hover:bg-darkGreyBg">
+            {themeDark ? (
+              <Moon className="w-6 h-6 text-iconsColor" />
+            ) : (
+              <Sun className="w-6 h-6 text-iconsColor" />
+            )}
+          </button>
+         <Profile/>
+        </div>
       </div>
-      <div className="flex items-center gap-4">
-        <label className="flex items-center gap-4 border border-[#E0E0E0] rounded-[33px]">
-          <Input className="border-0 focus:outline-none" />
-          <Image
-            src="/search.svg"
-            alt="Search"
-            width={56}
-            height={56}
-            className="w-14 h-14 mr-1.5"
-          />
-        </label>
-        <Basket />
-      </div>
-    </MaxWidthWrapper>
-  </header>
-)
+    </div>
+  );
+};
 
-export default Header
+export default Header;

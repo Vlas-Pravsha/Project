@@ -3,18 +3,52 @@
 @tailwind utilities;
 
 :root {
-  --color-white: #fff;
-  --color-green-dark: #274c5b;
-  --color-green-medium: #7eb693;
-  --color-green-light: #eff6f1;
-  --color-yellow: #efd372;
-  --color-gray-dark: #525c60;
-  --color-gray-medium: #d4d4d4;
-  --color-gray-light: #f9f8f8;
+  --ligth-grey-text: rgb(107 114 128);
+  --dark-grey-bg: rgb(55 65 81);
+  --dark-blue-bg: rgb(17 24 39);
+  --component-bg: rgb(31, 41, 55);
+  --hover-bg: rgba(249, 250, 251, 0.1);
+  --black-color: #000;
+  --ligth-text-color: rgb(156 163 175);
+  --link-color-blue: rgba(63, 131, 248, 1);
+  --dark-blue: rgb(37 99 235);
+  --nav-text-color: rgb(229 231 235);
+  --border-color: rgba(229, 231, 235, 0.1);
+  --profile-header-bg: rgb(55 65 81);
+  --profile-text-color: rgb(209 213 219);
+  --node-input-bg: rgb(107 114 128);
+  --button-color-text: rgb(255 255 255);
+  --dashboard-hover-color-bg: rgb(75 85 99);
+  --icons-color: rgb(156 163 175);
+}
+
+body.dark {
+  --black-color: #fff;
+  --nav-text-color: rgba(17, 24, 39, 0.7);
+  --ligth-grey-text: rgba(14, 14, 15, 0.7);
+  --dark-grey-bg: rgb(243 244 246);
+  --dark-blue-bg: rgb(249 250 251);
+  --component-bg: rgb(255 255 255);
+  --hover-bg: rgb(243, 243, 243);
+  --ligth-text-color: rgb(75 85 99);
+  --link-color-blue: rgba(63, 131, 248, 1);
+  --dark-blue: rgb(37 99 235);
+  --border-color: rgba(229, 231, 235, 1);
+  --profile-header-bg: rgb(255 255 255);
+  --profile-text-color: rgb(55 65 81);
+  --node-input-bg: rgba(229, 231, 235, 1);
+  --button-color-text: rgb(255 255 255);
+  --dashboard-hover-color-bg: rgb(238, 239, 240);
+  --icons-color: rgb(107 114 128);
+  color: #000;
+}
+
+body {
+  background-color: var(--component-bg);
+  color: #fff;
 }
 
 * {
   font-family: var(--font-roboto);
-  color: var(--grey-dark);
   background: var(--white);
 }
