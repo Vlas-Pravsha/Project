@@ -1,32 +1,28 @@
 'use client'
 
-import Image from "next/image";
-import React, { useState } from "react";
-import Link from "next/link";
-import { Moon, Sun, Search, Menu, X } from "lucide-react";
-import { changeTheme } from "@/lib/utils";
-import Profile from "./Profile";
+import Image from 'next/image'
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { Menu, Moon, Search, Sun, X } from 'lucide-react'
+import Profile from './Profile'
+import { changeTheme } from '@/lib/utils'
 
+function Header({setOpen}) {
+  const [themeDark, setThemeDark] = useState(false)
 
-const Header = () => {
-  const [navOpen, setNavOpen] = useState(false);
-  const [themeDark, setThemeDark] = useState(false);
-
-  const toggleNav = () => setNavOpen(!navOpen);
 
   const toggleTheme = () => {
-    changeTheme();
+    changeTheme()
     setThemeDark(!themeDark)
-};
-
+  }
 
   return (
     <div className="bg-componentBg fixed top-0 left-0 right-0 z-10 border-b border-borderColor">
       <div className="flex items-center justify-between p-3 px-6 mx-auto">
         <div className="flex items-center gap-8">
-            <button onClick={toggleNav} className="p-2 rounded-lg hover:bg-darkGreyBg">
-              <Menu className="w-6 h-6 text-iconsColor" />
-            </button>
+          <button onClick={()=> setOpen((prev) =>!prev)} className="p-2 rounded-lg hover:bg-darkGreyBg">
+            <Menu className="w-6 h-6 text-iconsColor" />
+          </button>
           <Link href="/">
             <div className="flex items-center gap-2">
               <Image
@@ -50,17 +46,19 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-4">
           <button onClick={toggleTheme} className="p-2 rounded-lg hover:bg-darkGreyBg">
-            {themeDark ? (
-              <Moon className="w-6 h-6 text-iconsColor" />
-            ) : (
-              <Sun className="w-6 h-6 text-iconsColor" />
-            )}
+            {themeDark
+              ? (
+                  <Moon className="w-6 h-6 text-iconsColor" />
+                )
+              : (
+                  <Sun className="w-6 h-6 text-iconsColor" />
+                )}
           </button>
-         <Profile/>
+          <Profile />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
