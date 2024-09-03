@@ -1,17 +1,16 @@
 'use client'
 
-import Header from "@/components/Header";
-import Sidebar from "@/components/NavBar";
-import { useState } from "react";
+import { useState } from 'react'
+import Sidebar from '@/components/NavBar'
+import Header from '@/components/Header'
 
 export default function Home() {
-
-const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
 
   return (
     <section>
       <Header setOpen={setOpen}></Header>
-      <Sidebar open={open}/>
+      <Sidebar open={!open} />
     </section>
   )
 }

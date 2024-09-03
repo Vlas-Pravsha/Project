@@ -1,9 +1,9 @@
-import Button from "@/components/ui/Button";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
+import Button from '@/components/ui/Button'
 
-const NotFoundPage = () => {
+function NotFoundPage() {
   return (
     <div className="fixed inset-0 w-full h-full bg-darkBlueBg flex flex-col justify-center items-center">
       <div className="flex flex-col justify-center items-center h-full px-4">
@@ -26,7 +26,7 @@ const NotFoundPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NotFoundPage;
+export default NotFoundPage

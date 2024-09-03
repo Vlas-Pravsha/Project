@@ -4,12 +4,15 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { Menu, Moon, Search, Sun, X } from 'lucide-react'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from '../../firebase'
 import Profile from './Profile'
+import Button from './ui/Button'
 import { changeTheme } from '@/lib/utils'
 
-function Header({setOpen}) {
+function Header({ setOpen }: { setOpen: any }) {
+  const [user] = useAuthState(auth)
   const [themeDark, setThemeDark] = useState(false)
-
 
   const toggleTheme = () => {
     changeTheme()
@@ -20,7 +23,7 @@ function Header({setOpen}) {
     <div className="bg-componentBg fixed top-0 left-0 right-0 z-10 border-b border-borderColor">
       <div className="flex items-center justify-between p-3 px-6 mx-auto">
         <div className="flex items-center gap-8">
-          <button onClick={()=> setOpen((prev) =>!prev)} className="p-2 rounded-lg hover:bg-darkGreyBg">
+          <button onClick={() => setOpen((prev: boolean) => !prev)} className="p-2 rounded-lg hover:bg-darkGreyBg">
             <Menu className="w-6 h-6 text-iconsColor" />
           </button>
           <Link href="/">
@@ -32,7 +35,7 @@ function Header({setOpen}) {
                 width="30"
                 height="30"
               />
-              <h2 className="text-2xl font-bold text-lightTextColor">DashBoard</h2>
+              <h2 className="text-2xl font-bold text-gray-400">DashBoard</h2>
             </div>
           </Link>
           <div className="flex items-center border border-borderColor bg-darkGreyBg rounded-lg px-2 py-1">
@@ -54,7 +57,15 @@ function Header({setOpen}) {
                   <Sun className="w-6 h-6 text-iconsColor" />
                 )}
           </button>
-          <Profile />
+          {user
+            ? <Profile />
+            : (
+                <Link href="/sign-up">
+                  <Button variant="secondary" size="sm">
+                    Sign Up
+                  </Button>
+                </Link>
+              )}
         </div>
       </div>
     </div>
