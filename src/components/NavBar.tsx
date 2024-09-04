@@ -21,7 +21,7 @@ function Sidebar({ open }: { open: boolean }) {
   ]
 
   return (
-    <div className={`${open ? 'px-6' : 'px-2'} py-6 duration-300 fixed top-[71px] bottom-0 flex-col border-r border-borderColor bg-gray-800 z-10 -mt-1.5`}>
+    <div className={`${open ? 'px-6' : 'px-2'} py-6 duration-300 fixed top-[65px] bottom-0 flex-col bg-gray-800 z-10`}>
       <div className="flex flex-col gap-4 pb-5 border-b border-borderColor">
         {sidebar.map((item, index) => (
           <NavItem key={index} item={item} open={open} />

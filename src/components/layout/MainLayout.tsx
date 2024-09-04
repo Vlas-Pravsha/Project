@@ -5,11 +5,11 @@ import styles from './MainLayout.module.css'
 import Sidebar from '@/components/NavBar'
 import Header from '@/components/Header'
 
-function MainLayout() {
+function MainLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className={styles.container}>
+    <div className={`${open ? styles.shortTab : styles.largeTap} ${styles.container}`}>
       <div className={styles.header}>
         <Header setOpen={setOpen} />
       </div>
@@ -17,7 +17,7 @@ function MainLayout() {
         <Sidebar open={!open} />
       </div>
       <div className={styles.app}>
-        <div>Hello World!</div>
+        {children}
       </div>
     </div>
   )

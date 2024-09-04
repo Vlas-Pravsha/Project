@@ -142,12 +142,12 @@ export default function SignUp() {
             <p className="text-sm text-center text-gray-400 mb-4">OR CONTINUE WITH</p>
             <div className="space-y-2">
               <Button variant="secondary" size="lg" className="w-full bg-transparent border-gray-700 flex items-center justify-center">
-                <Github className="mr-2 h-4 w-4" />
-                GitHub
-              </Button>
-              <Button variant="secondary" size="lg" className="w-full bg-transparent border-gray-700 flex items-center justify-center">
                 <Chrome className="mr-2 h-4 w-4" />
                 Google
+              </Button>
+              <Button variant="secondary" size="lg" className="w-full bg-transparent border-gray-700 flex items-center justify-center">
+                <Github className="mr-2 h-4 w-4" />
+                GitHub
               </Button>
             </div>
           </div>

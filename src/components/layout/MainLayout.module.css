@@ -5,21 +5,33 @@
     grid-template-areas:
       "h h"
       "n c";
-    grid-template-columns: 216px 1fr;
+    grid-template-rows: 64px 1fr;
+    transition-duration: 200ms;
   }
-  
-  .app {
-    min-height: 1360px;
-    background-color: var(--dark-blue-bg);
-    grid-area: c;
+
+  .shortTab{
+    grid-template-columns: 56px 1fr;
+  }
+
+  .largeTap{
+    grid-template-columns: 215px 1fr;
   }
   
   .nav {
     grid-area: n;
+    border-right: 1px solid var(--border-color);
   }
+
   .header {
     grid-area: h;
   }
+  
+  .app {
+    background-color: var(--dark-blue-bg);
+    padding: 20px;
+    grid-area: c;
+  }
+  
   
   @media (max-width: 1024px) {
     .container {

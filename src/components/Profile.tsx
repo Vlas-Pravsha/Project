@@ -54,7 +54,16 @@ function Profile() {
                   </Link>
                 ))}
               </div>
-              <Button variant="secondary" size="sm" className="mt-2" onClick={() => signOut(auth)}>Log Out</Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="mt-2"
+                onClick={() => {
+                  signOut(auth)
+                }}
+              >
+                Log Out
+              </Button>
 
             </div>
           ))}
