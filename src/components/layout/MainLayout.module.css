@@ -1,0 +1,31 @@
+.container {
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+      "h h"
+      "n c";
+    grid-template-columns: 216px 1fr;
+  }
+  
+  .app {
+    min-height: 1360px;
+    background-color: var(--dark-blue-bg);
+    grid-area: c;
+  }
+  
+  .nav {
+    grid-area: n;
+  }
+  .header {
+    grid-area: h;
+  }
+  
+  @media (max-width: 1024px) {
+    .container {
+      grid-template-areas:
+        "h h"
+        "n c";
+      grid-template-columns: 0px 1fr;
+    }
+  }
