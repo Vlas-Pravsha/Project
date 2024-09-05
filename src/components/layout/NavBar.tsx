@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { AppWindow, Github, LayoutDashboard, Settings } from 'lucide-react'
-import NavItem from './NavItem'
+import NavItem from '../NavItem'
 
 function Sidebar({ open }: { open: boolean }) {
   const sidebar = [

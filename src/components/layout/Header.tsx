@@ -5,9 +5,9 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { Menu, Moon, Search, Sun, X } from 'lucide-react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from '../../firebase'
-import Profile from './Profile'
-import Button from './ui/Button'
+import Profile from '../Profile'
+import Button from '../ui/Button'
+import { auth } from '@/../firebase'
 import { changeTheme } from '@/lib/utils'
 
 function Header({ setOpen }: { setOpen: any }) {

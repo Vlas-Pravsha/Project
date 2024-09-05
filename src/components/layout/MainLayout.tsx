@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import styles from './MainLayout.module.css'
-import Sidebar from '@/components/NavBar'
-import Header from '@/components/Header'
+import Header from './Header'
+import Sidebar from './NavBar'
 
 function MainLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
