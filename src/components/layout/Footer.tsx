@@ -1,20 +1,21 @@
 import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { Facebook, Github, Instagram, Linkedin, Twitter } from 'lucide-react'
 
 const footerData = [
-  { id: 1, value: 'Terms and conditions' },
-  { id: 2, value: 'Privacy Policy' },
-  { id: 3, value: 'Licensing' },
-  { id: 4, value: 'Cookie Policy' },
-  { id: 5, value: 'Contact' },
+  { id: uuidv4(), value: 'Terms and conditions' },
+  { id: uuidv4(), value: 'Privacy Policy' },
+  { id: uuidv4(), value: 'Licensing' },
+  { id: uuidv4(), value: 'Cookie Policy' },
+  { id: uuidv4(), value: 'Contact' },
 ]
 
 const footerDataImg = [
-  { id: 1, Img: Github },
-  { id: 2, Img: Twitter },
-  { id: 3, Img: Linkedin },
-  { id: 4, Img: Facebook },
-  { id: 5, Img: Instagram },
+  { id: uuidv4(), Img: Github },
+  { id: uuidv4(), Img: Twitter },
+  { id: uuidv4(), Img: Linkedin },
+  { id: uuidv4(), Img: Facebook },
+  { id: uuidv4(), Img: Instagram },
 ]
 
 function Footer() {

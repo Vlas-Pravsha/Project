@@ -10,6 +10,8 @@ import { ToastContainer, toast } from 'react-toastify'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
+import { signInWithGithub, signInWithGoogle } from '../authUtils'
+import { signup } from '../actions'
 import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 
@@ -39,7 +41,45 @@ export default function SignUp() {
   })
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log()
+    setLoading(true)
+    try {
+      await signup({
+        email: data.email,
+        password: data.password,
+        fullName: `${data.firstName} ${data.lastName}`,
+      })
+      toast.success('Account created successfully!')
+      router.push('/')
+    }
+    catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Failed to create account. Please try again.')
+    }
+    finally {
+      setLoading(false)
+    }
+  }
+
+  const handleGoogleSignIn = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    try {
+      await signInWithGoogle()
+    }
+    catch (error) {
+      console.error(error)
+      toast.error('Failed to sign in with Google. Please try again.')
+    }
+  }
+
+  const handleGithubSignIn = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    try {
+      await signInWithGithub()
+    }
+
+    catch (error) {
+      console.error(error)
+      toast.error('Failed to sign in with GitHub. Please try again.')
+    }
   }
 
   return (
@@ -120,8 +160,22 @@ export default function SignUp() {
           </Button>
 
           <p className="text-sm text-center mt-4">
-            <Link href="/sign-in" className="text-gray-400 hover:underline">have account already</Link>
+            <Link href="/auth/login" className="text-gray-400 hover:underline">have account already</Link>
           </p>
+
+          <div className="mt-6">
+            <p className="text-sm text-center text-gray-400 mb-4">OR CONTINUE WITH</p>
+            <div className="space-y-2">
+              <Button variant="secondary" size="lg" onClick={event => handleGoogleSignIn(event)} className="w-full bg-transparent border-gray-700 flex items-center justify-center">
+                <Chrome className="mr-2 h-4 w-4" />
+                Google
+              </Button>
+              <Button variant="secondary" onClick={event => handleGithubSignIn(event)} size="lg" className="w-full bg-transparent border-gray-700 flex items-center justify-center">
+                <Github className="mr-2 h-4 w-4" />
+                GitHub
+              </Button>
+            </div>
+          </div>
           <p className="text-xs text-center text-gray-400 mt-6">
             By clicking continue, you agree to our
             {' '}

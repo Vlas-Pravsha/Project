@@ -1,20 +1,48 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Menu, Moon, Search, Sun, X } from 'lucide-react'
+import { Loader2, Menu, Moon, Search, Sun } from 'lucide-react'
+import type { User } from '@supabase/supabase-js'
+
 import Profile from '../Profile'
 import Button from '../ui/Button'
+
 import { changeTheme } from '@/lib/utils'
+import { createClient } from '@/utils/supabase/client'
+import { signOut } from '@/app/auth/actions'
 
 function Header({ setOpen }: { setOpen: any }) {
-  const user = null
+  const [user, setUser] = useState<null | User>(null)
   const [themeDark, setThemeDark] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  const supabase = createClient()
+
+  useEffect(() => {
+    async function getUser() {
+      const { data, error } = await supabase.auth.getUser()
+      if (error || !data?.user) {
+        console.error('No active session or user not found')
+        setLoading(false)
+        return
+      }
+      setUser(data.user)
+      setLoading(false)
+    }
+
+    getUser()
+  }, [supabase.auth])
 
   const toggleTheme = () => {
     changeTheme()
     setThemeDark(!themeDark)
+  }
+
+  const handleSignOut = async () => {
+    await signOut()
+    setUser(null)
   }
 
   return (
@@ -48,22 +76,20 @@ function Header({ setOpen }: { setOpen: any }) {
         <div className="flex items-center gap-4">
           <button onClick={toggleTheme} className="p-2 rounded-lg hover:bg-darkGreyBg">
             {themeDark
-              ? (
-                  <Moon className="w-6 h-6 text-iconsColor" />
-                )
-              : (
-                  <Sun className="w-6 h-6 text-iconsColor" />
-                )}
+              ? <Moon className="w-6 h-6 text-iconsColor" />
+              : <Sun className="w-6 h-6 text-iconsColor" />}
           </button>
-          {user
-            ? <Profile />
-            : (
-                <Link href="/sign-up">
-                  <Button variant="secondary" size="sm">
-                    Sign Up
-                  </Button>
-                </Link>
-              )}
+          {loading
+            ? <Loader2 className="w-8 h-8 animate-spin" />
+            : user
+              ? <Profile handleSignOut={handleSignOut} user={user} />
+              : (
+                  <Link href="/auth/sign-up">
+                    <Button variant="secondary" size="sm">
+                      Sign Up
+                    </Button>
+                  </Link>
+                )}
         </div>
       </div>
     </div>

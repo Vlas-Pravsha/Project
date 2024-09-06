@@ -3,19 +3,21 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import type { User } from '@supabase/supabase-js'
+import { v4 as uuidv4 } from 'uuid'
 import Button from './ui/Button'
 
-function Profile() {
+function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: User }) {
   const [isOpen, setIsOpen] = useState(false)
 
   const profileArr = [
     {
-      id: crypto.randomUUID(),
-      title: 'Neil Sims',
-      email: 'neil.sims@flowbite.com',
+      id: uuidv4(),
+      fullName: `${user.identities![0].identity_data!.full_name}`,
+      email: user.email,
       options: [
-        { id: crypto.randomUUID(), text: 'DashBoard', href: '/' },
-        { id: crypto.randomUUID(), text: 'Settings', href: '/setting' },
+        { id: uuidv4(), text: 'DashBoard', href: '/' },
+        { id: uuidv4(), text: 'Settings', href: '/setting' },
       ],
     },
   ]
@@ -38,7 +40,7 @@ function Profile() {
         <div className="absolute bg-profileHeaderBg rounded-lg mt-2 -ml-36 p-4 border border-borderColor">
           {profileArr.map(item => (
             <div key={item.id} className="flex flex-col">
-              <h2 className="text-lg font-semibold">{item.title}</h2>
+              <h2 className="text-lg font-semibold">{item.fullName}</h2>
               <span className="text-sm text-profileTextColor font-semibold mb-2">
                 {item.email}
               </span>
@@ -56,8 +58,7 @@ function Profile() {
                 variant="secondary"
                 size="sm"
                 className="mt-2"
-                onClick={() => {
-                }}
+                onClick={handleSignOut}
               >
                 Log Out
               </Button>
