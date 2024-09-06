@@ -3,8 +3,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { signOut } from 'firebase/auth'
-import { auth } from '../../firebase'
 import Button from './ui/Button'
 
 function Profile() {
@@ -59,7 +57,6 @@ function Profile() {
                 size="sm"
                 className="mt-2"
                 onClick={() => {
-                  signOut(auth)
                 }}
               >
                 Log Out

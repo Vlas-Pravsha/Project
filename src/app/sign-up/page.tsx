@@ -10,9 +10,6 @@ import { ToastContainer, toast } from 'react-toastify'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../../firebase'
-
 import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 
@@ -42,19 +39,7 @@ export default function SignUp() {
   })
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    createUserWithEmailAndPassword(auth, data.email, data.password)
-      .then((userCredential) => {
-        const user = userCredential.user
-        // eslint-disable-next-line no-console
-        console.log(user)
-        router.push('/')
-      })
-      .catch(() => {
-        toast.error('User email already exist')
-      })
-      .finally(() => {
-        setLoading(false)
-      })
+    console.log()
   }
 
   return (

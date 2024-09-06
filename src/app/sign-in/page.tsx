@@ -7,9 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { ToastContainer, toast } from 'react-toastify'
 
-import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-import { auth } from '../../../firebase'
 
 import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
@@ -33,19 +31,7 @@ export default function SignInPage() {
   })
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    signInWithEmailAndPassword(auth, data.email, data.password)
-      .then((userCredential) => {
-        const user = userCredential.user
-        // eslint-disable-next-line no-console
-        console.log(user)
-        router.push('/')
-      })
-      .catch((err: any) => {
-        toast.error(err.message)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
+    console.log(data)
   }
 
   return (
