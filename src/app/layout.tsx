@@ -1,6 +1,6 @@
-import type { Metadata } from 'next'
 import { openSans, roboto, yellowTail } from '@/fonts/fonts'
 import { constructMetadata } from '@/lib/utils'
+import type { Metadata } from 'next'
 
 import './globals.css'
 

@@ -4,5 +4,6 @@ export default antfu({
   react: true,
   rules: {
     'unicorn/consistent-function-scoping': 'off',
+    'node/prefer-global/process': 'off',
   },
 })

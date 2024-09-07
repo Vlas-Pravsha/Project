@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import styles from './MainLayout.module.css'
 import Header from './Header'
+import styles from './MainLayout.module.css'
 import Sidebar from './NavBar'
 
 function MainLayout({ children }: { children: React.ReactNode }) {

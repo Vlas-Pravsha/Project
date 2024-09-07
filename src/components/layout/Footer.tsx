@@ -1,6 +1,6 @@
+import { Facebook, Github, Instagram, Linkedin, Twitter } from 'lucide-react'
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { Facebook, Github, Instagram, Linkedin, Twitter } from 'lucide-react'
 
 const footerData = [
   { id: uuidv4(), value: 'Terms and conditions' },

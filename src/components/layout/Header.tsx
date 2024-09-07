@@ -1,17 +1,17 @@
 'use client'
 
-import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { Loader2, Menu, Moon, Search, Sun } from 'lucide-react'
-import type { User } from '@supabase/supabase-js'
-
-import Profile from '../Profile'
-import Button from '../ui/Button'
-
+import { signOut } from '@/app/auth/actions'
 import { changeTheme } from '@/lib/utils'
 import { createClient } from '@/utils/supabase/client'
-import { signOut } from '@/app/auth/actions'
+import { Loader2, Menu, Moon, Search, Sun } from 'lucide-react'
+import Image from 'next/image'
+
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
+
+import type { User } from '@supabase/supabase-js'
+import Profile from '../Profile'
+import Button from '../ui/Button'
 
 function Header({ setOpen }: { setOpen: any }) {
   const [user, setUser] = useState<null | User>(null)

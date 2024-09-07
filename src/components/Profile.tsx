@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { User } from '@supabase/supabase-js'
+import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import type { User } from '@supabase/supabase-js'
 import Button from './ui/Button'
 
 function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: User }) {

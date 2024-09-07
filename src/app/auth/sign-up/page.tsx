@@ -1,19 +1,19 @@
 'use client'
 
-import { useState } from 'react'
-import type { SubmitHandler } from 'react-hook-form'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
+import Button from '@/components/ui/Button'
+import Input from '@/components/ui/Input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Chrome, Eye, EyeOff, Github } from 'lucide-react'
-import { ToastContainer, toast } from 'react-toastify'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast, ToastContainer } from 'react-toastify'
 
-import { signInWithGithub, signInWithGoogle } from '../authUtils'
+import * as z from 'zod'
+import type { SubmitHandler } from 'react-hook-form'
 import { signup } from '../actions'
-import Input from '@/components/ui/Input'
-import Button from '@/components/ui/Button'
+import { signInWithGithub, signInWithGoogle } from '../authUtils'
 
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -32,7 +32,8 @@ type FormData = z.infer<typeof schema>
 
 export default function SignUp() {
   const [loading, setLoading] = useState<boolean>(false)
-  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false)
+  const [showNewPassword, setShowNewPassword] = useState(false)
 
   const router = useRouter()
 
@@ -119,17 +120,19 @@ export default function SignUp() {
             <div className="space-y-2">
               <div className="relative">
                 <Input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showCurrentPassword ? 'text' : 'password'}
                   placeholder="your very secret password"
                   {...register('password')}
                   className=" border-gray-700 text-black"
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--icons-color)] cursor-pointer"
                 >
-                  {showPassword ? <EyeOff size={20} color="black" /> : <Eye size={20} color="black" />}
+                  {showCurrentPassword
+                    ? <EyeOff size={20} onClick={() => setShowCurrentPassword(false)} />
+                    : <Eye size={20} onClick={() => setShowCurrentPassword(true)} />}
                 </button>
               </div>
               {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
@@ -138,17 +141,19 @@ export default function SignUp() {
 
               <div className="relative">
                 <Input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showNewPassword ? 'text' : 'password'}
                   placeholder="confirm your password dude"
                   {...register('confirmPassword')}
                   className=" border-gray-700 text-black"
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  onClick={() => setShowNewPassword(!showNewPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--icons-color)] cursor-pointer"
                 >
-                  {showPassword ? <EyeOff size={20} color="black" /> : <Eye size={20} color="black" />}
+                  {showNewPassword
+                    ? <EyeOff size={20} onClick={() => setShowNewPassword(false)} />
+                    : <Eye size={20} onClick={() => setShowNewPassword(true)} />}
                 </button>
               </div>
               {errors.confirmPassword && <p className="text-red-500 text-xs">{errors.confirmPassword.message}</p>}

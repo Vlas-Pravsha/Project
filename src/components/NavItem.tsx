@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronDown, ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 import { useState } from 'react'
 
 interface SideBarType {
@@ -19,7 +19,7 @@ function NavItem({ item, open }: { item: SideBarType, open: boolean }) {
     >
       <div className="flex items-center gap-3">
         {item.icon}
-        <span className={`${open ? 'flex' : 'hidden'} text-gray-300 text-md font-medium`}>{item.mainTitle}</span>
+        <Link href={`${item.href}`} className={`${open ? 'flex' : 'hidden'} text-gray-300 text-md font-medium`}>{item.mainTitle}</Link>
       </div>
     </div>
   )

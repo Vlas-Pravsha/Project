@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { AppWindow, Github, LayoutDashboard, Settings } from 'lucide-react'
+import Link from 'next/link'
 import NavItem from '../NavItem'
 
 function Sidebar({ open }: { open: boolean }) {
@@ -12,6 +12,7 @@ function Sidebar({ open }: { open: boolean }) {
     {
       mainTitle: 'CRUD',
       icon: <AppWindow className="w-6 h-6 text-gray-400" />,
+      href: '/',
     },
     {
       mainTitle: 'Settings',
@@ -29,7 +30,7 @@ function Sidebar({ open }: { open: boolean }) {
       </div>
       <div className="mt-5 p-2 flex items-center gap-3 rounded-lg cursor-pointer hover:bg-gray-700">
         <Github className="w-6 h-6 text-gray-400" />
-        <Link href="https://github.com/Vlas-Pravsha" className={`${open ? 'flex' : 'hidden'} text-gray-300 text-sm font-medium`}>
+        <Link href="https://github.com/Vlas-Pravsha/Project" className={`${open ? 'flex' : 'hidden'} text-gray-300 text-sm font-medium`}>
           GitHub Repository
         </Link>
       </div>

@@ -1,4 +1,4 @@
-/* eslint-disable node/prefer-global/process */
+
 import { createServerClient } from '@supabase/ssr'
 import { type NextRequest, NextResponse } from 'next/server'
 

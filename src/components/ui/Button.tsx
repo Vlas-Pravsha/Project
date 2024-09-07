@@ -1,7 +1,6 @@
-import React from 'react'
-import { type VariantProps, cva } from 'class-variance-authority'
-import Image from 'next/image'
 import { cn } from '@/lib/utils'
+import { cva, type VariantProps } from 'class-variance-authority'
+import React from 'react'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'secondary' | 'third'
@@ -27,7 +26,7 @@ const buttonVariants = cva(
       variant: 'default',
       size: 'md',
     },
-  }
+  },
 )
 
 function Button({
