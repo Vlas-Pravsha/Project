@@ -1,4 +1,4 @@
-import Button from '@/components/ui/Button'
+import { Button } from '@/components/ui/'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -21,7 +21,7 @@ function NotFoundPage() {
             problem with us, please tell us.
           </p>
           <Link href="/">
-            <Button variant="default" size="sm">Go back home</Button>
+            <Button variant="primary" size="sm">Go back home</Button>
           </Link>
         </div>
       </div>

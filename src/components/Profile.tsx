@@ -1,23 +1,22 @@
 'use client'
 
+import { Button } from '@/components/ui/'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import type { User } from '@supabase/supabase-js'
-import Button from './ui/Button'
 
 function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: User }) {
   const [isOpen, setIsOpen] = useState(false)
 
   const profileArr = [
     {
-      id: uuidv4(),
+      id: crypto.randomUUID(),
       fullName: `${user.identities![0].identity_data!.full_name}`,
       email: user.email,
       options: [
-        { id: uuidv4(), text: 'DashBoard', href: '/' },
-        { id: uuidv4(), text: 'Settings', href: '/setting' },
+        { id: crypto.randomUUID(), text: 'DashBoard', href: '/' },
+        { id: crypto.randomUUID(), text: 'Settings', href: '/settings' },
       ],
     },
   ]
@@ -37,7 +36,7 @@ function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: Use
         />
       </div>
       {isOpen && (
-        <div className="absolute bg-profileHeaderBg rounded-lg mt-2 -ml-36 p-4 border border-borderColor">
+        <div className="absolute bg-profileHeaderBg rounded-lg mt-2 p-4 right-0 border border-borderColor min-w-48">
           {profileArr.map(item => (
             <div key={item.id} className="flex flex-col">
               <h2 className="text-lg font-semibold">{item.fullName}</h2>

@@ -10,12 +10,12 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const inputVariants = cva(
-  'w-full p-2 rounded-md transition-colors duration-200',
+  'w-full p-2 rounded-md',
   {
     variants: {
       state: {
-        default: 'bg-darkGreyBg border-transparent focus:border-darkBlue',
-        error: 'bg-darkGreyBg border-red-600 text-red-600 placeholder-red-600',
+        default: 'bg-darkGreyBg border-[transparent] border-2 focus:outline-none focus:border-darkBlue',
+        error: 'bg-darkGreyBg border-[#ef4444] border-2 text-[#ef4444] placeholder-[#ef4444] hover:outline-none hover:border-[#ef4444]',
       },
     },
     defaultVariants: {
@@ -40,4 +40,4 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 )
 
 Input.displayName = 'Input'
-export default Input
+export { Input }

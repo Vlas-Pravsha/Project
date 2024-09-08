@@ -1,7 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button'
-import Input from '@/components/ui/Input'
+import { Button, Input, Label } from '@/components/ui'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Chrome, Eye, EyeOff, Github } from 'lucide-react'
 import Link from 'next/link'
@@ -11,8 +10,10 @@ import { useForm } from 'react-hook-form'
 import { toast, ToastContainer } from 'react-toastify'
 
 import * as z from 'zod'
+import type { MouseEvent } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { signup } from '../actions'
+
 import { signInWithGithub, signInWithGoogle } from '../authUtils'
 
 import 'react-toastify/dist/ReactToastify.css'
@@ -60,8 +61,8 @@ export default function SignUp() {
     }
   }
 
-  const handleGoogleSignIn = async (e: React.MouseEvent) => {
-    e.preventDefault()
+  const handleGoogleSignIn = async (event: MouseEvent) => {
+    event.preventDefault()
     try {
       await signInWithGoogle()
     }
@@ -71,8 +72,8 @@ export default function SignUp() {
     }
   }
 
-  const handleGithubSignIn = async (e: React.MouseEvent) => {
-    e.preventDefault()
+  const handleGithubSignIn = async (event: MouseEvent) => {
+    event.preventDefault()
     try {
       await signInWithGithub()
     }
@@ -83,6 +84,16 @@ export default function SignUp() {
     }
   }
 
+  const toggleCurrentPassword = (event: MouseEvent) => {
+    event.preventDefault()
+    setShowCurrentPassword(!showCurrentPassword)
+  }
+
+  const toggleNewPassword = (event: MouseEvent) => {
+    event.preventDefault()
+    setShowNewPassword(!showNewPassword)
+  }
+
   return (
     <div className="flex items-center justify-between min-h-screen bg-white text-black">
       <div className="custom-gradient w-full flex justify-center min-h-screen  items-center flex-col gap-12">
@@ -91,72 +102,55 @@ export default function SignUp() {
           <p className="text-sm text-gray-400 mb-6 text-center">Enter your email below to create your account</p>
           <div className="space-y-4">
             <div className="space-y-2">
-              <Input
-                type="text"
-                placeholder="email@example.com"
-                {...register('email')}
-                className=" border-gray-700 text-black"
-              />
-              {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
+              <Label errorText={errors.email?.message} hasError={errors.email}>
+                <Input type="text" placeholder="email@example.com" {...register('email')} hasError={errors.email} />
+              </Label>
             </div>
             <div className="space-y-2">
-              <Input
-                type="text"
-                placeholder="your first perfect name"
-                {...register('firstName')}
-                className=" border-gray-700 text-black"
-              />
-              {errors.firstName && <p className="text-red-500 text-xs">{errors.firstName.message}</p>}
+              <Label errorText={errors.firstName?.message} hasError={errors.firstName}>
+                <Input type="text" placeholder="your first perfect name" {...register('firstName')} hasError={errors.firstName} />
+              </Label>
             </div>
             <div className="space-y-2">
-              <Input
-                type="text"
-                placeholder="your second amazing name"
-                {...register('lastName')}
-                className=" border-gray-700 text-black"
-              />
-              {errors.lastName && <p className="text-red-500 text-xs">{errors.lastName.message}</p>}
+              <Label errorText={errors.lastName?.message} hasError={errors.lastName}>
+                <Input type="text" placeholder="your second amazing name" {...register('lastName')} hasError={errors.lastName} />
+              </Label>
             </div>
             <div className="space-y-2">
-              <div className="relative">
-                <Input
-                  type={showCurrentPassword ? 'text' : 'password'}
-                  placeholder="your very secret password"
-                  {...register('password')}
-                  className=" border-gray-700 text-black"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--icons-color)] cursor-pointer"
-                >
-                  {showCurrentPassword
-                    ? <EyeOff size={20} onClick={() => setShowCurrentPassword(false)} />
-                    : <Eye size={20} onClick={() => setShowCurrentPassword(true)} />}
-                </button>
-              </div>
-              {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
+              <Label errorText={errors.password?.message} hasError={errors.password}>
+                <div className="relative">
+                  <Input
+                    type={showCurrentPassword ? 'text' : 'password'}
+                    placeholder="your very secret password"
+                    {...register('password')}
+                    hasError={errors.password}
+                  />
+                  <button
+                    onClick={event => toggleCurrentPassword(event)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
+                  >
+                    {showCurrentPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                  </button>
+                </div>
+              </Label>
             </div>
             <div className="space-y-2">
-
-              <div className="relative">
-                <Input
-                  type={showNewPassword ? 'text' : 'password'}
-                  placeholder="confirm your password dude"
-                  {...register('confirmPassword')}
-                  className=" border-gray-700 text-black"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowNewPassword(!showNewPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--icons-color)] cursor-pointer"
-                >
-                  {showNewPassword
-                    ? <EyeOff size={20} onClick={() => setShowNewPassword(false)} />
-                    : <Eye size={20} onClick={() => setShowNewPassword(true)} />}
-                </button>
-              </div>
-              {errors.confirmPassword && <p className="text-red-500 text-xs">{errors.confirmPassword.message}</p>}
+              <Label errorText={errors.confirmPassword?.message} hasError={errors.confirmPassword}>
+                <div className="relative">
+                  <Input
+                    type={showNewPassword ? 'text' : 'password'}
+                    placeholder="confirm your password"
+                    {...register('confirmPassword')}
+                    hasError={errors.confirmPassword}
+                  />
+                  <button
+                    onClick={event => toggleNewPassword(event)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
+                  >
+                    {showNewPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                  </button>
+                </div>
+              </Label>
             </div>
           </div>
 

@@ -1,39 +1,20 @@
 'use client'
 
 import { signOut } from '@/app/auth/actions'
+import { Button } from '@/components/ui/'
+import { useUser } from '@/hooks/'
 import { changeTheme } from '@/lib/utils'
-import { createClient } from '@/utils/supabase/client'
 import { Loader2, Menu, Moon, Search, Sun } from 'lucide-react'
+
 import Image from 'next/image'
-
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
 
-import type { User } from '@supabase/supabase-js'
+import React, { useState } from 'react'
 import Profile from '../Profile'
-import Button from '../ui/Button'
 
-function Header({ setOpen }: { setOpen: any }) {
-  const [user, setUser] = useState<null | User>(null)
+function Header({ setOpenSideBar }: { setOpenSideBar: any }) {
   const [themeDark, setThemeDark] = useState(false)
-  const [loading, setLoading] = useState(true)
-
-  const supabase = createClient()
-
-  useEffect(() => {
-    async function getUser() {
-      const { data, error } = await supabase.auth.getUser()
-      if (error || !data?.user) {
-        console.error('No active session or user not found')
-        setLoading(false)
-        return
-      }
-      setUser(data.user)
-      setLoading(false)
-    }
-
-    getUser()
-  }, [supabase.auth])
+  const { user, setUser, loading } = useUser()
 
   const toggleTheme = () => {
     changeTheme()
@@ -49,7 +30,7 @@ function Header({ setOpen }: { setOpen: any }) {
     <div className="bg-componentBg fixed top-0 left-0 right-0 z-10 border-b border-borderColor">
       <div className="flex items-center justify-between p-3 px-6 mx-auto">
         <div className="flex items-center gap-8">
-          <button onClick={() => setOpen((prev: boolean) => !prev)} className="p-2 rounded-lg hover:bg-darkGreyBg">
+          <button onClick={() => setOpenSideBar((prev: boolean) => !prev)} className="p-2 rounded-lg hover:bg-darkGreyBg">
             <Menu className="w-6 h-6 text-iconsColor" />
           </button>
           <Link href="/">
