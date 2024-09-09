@@ -22,10 +22,10 @@ function Footer() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="w-full flex justify-between items-center bg-componentBg border border-borderColor rounded-lg p-8 dark:bg-white dark:border-gray-200">
+      <div className="w-full flex justify-between items-center bg-gray800 border border-gray100Opacity rounded-lg p-8 ">
         <div className="flex items-center flex-wrap gap-6 md:gap-4">
           {footerData.map(item => (
-            <div key={item.id} className="text-sm font-light text-gray-400 hover:cursor-pointer dark:text-gray-600">
+            <div key={item.id} className="text-sm font-light text-gray-400 hover:cursor-pointe">
               {item.value}
             </div>
           ))}
@@ -33,7 +33,7 @@ function Footer() {
         <div className="flex gap-6 md:gap-4">
           {footerDataImg.map(item => (
             <div key={item.id}>
-              <item.Img className="w-5 h-5 text-gray-400 hover:cursor-pointer dark:text-gray-500" />
+              <item.Img className="w-5 h-5 text-gray-400 hover:cursor-pointer" />
             </div>
           ))}
         </div>

@@ -3,52 +3,54 @@
 @tailwind utilities;
 
 :root {
-  --ligth-grey-text: rgb(107 114 128);
-  --dark-grey-bg: rgb(55 65 81);
-  --dark-blue-bg: rgb(17 24 39);
-  --component-bg: rgb(31, 41, 55);
-  --hover-bg: rgba(249, 250, 251, 0.1);
-  --black-color: #000;
-  --ligth-text-color: rgb(156 163 175);
-  --link-color-blue: rgba(63, 131, 248, 1);
-  --dark-blue: rgb(37 99 235);
-  --nav-text-color: rgb(229 231 235);
-  --border-color: rgba(229, 231, 235, 0.1);
-  --profile-header-bg: rgb(55 65 81);
-  --profile-text-color: rgb(209 213 219);
-  --node-input-bg: rgb(107 114 128);
-  --button-color-text: rgb(255 255 255);
-  --dashboard-hover-color-bg: rgb(75 85 99);
-  --icons-color: rgb(156 163 175);
+  --gray-50-opacity: rgba(249, 250, 251, 0.1); 
+  --gray-100: rgb(229 231 235);
+  --gray-100-opacity: rgba(229, 231, 235, 0.1);
+  --gray-200: rgb(209 213 219);
+  --gray-400-bg: rgb(107 114 128); 
+  --gray-400: rgb(107 114 128); 
+  --gray-500: rgb(156 163 175); 
+  --gray-500-icon: rgb(156 163 175); 
+  --gray-600-hover-bg: rgb(75 85 99);
+  --gray-700: rgb(55 65 81); 
+  --gray-700-bg: rgb(55 65 81);
+  --gray-800: rgb(31, 41, 55);
+  --blue-600: rgb(37 99 235); 
+  --blue-500: rgba(63, 131, 248, 1); 
+  --blue-900: rgb(17 24 39); 
+  --red-500: #ef4444;
+  --black: rgb(0, 0, 0);
+  --white: rgb(255, 255, 255);
+  --default-color: rgb(255, 255, 255);
 }
 
 body.dark {
-  --black-color: #fff;
-  --nav-text-color: rgba(17, 24, 39, 0.7);
-  --ligth-grey-text: rgba(14, 14, 15, 0.7);
-  --dark-grey-bg: rgb(243 244 246);
-  --dark-blue-bg: rgb(249 250 251);
-  --component-bg: rgb(255 255 255);
-  --hover-bg: rgb(243, 243, 243);
-  --ligth-text-color: rgb(75 85 99);
-  --link-color-blue: rgba(63, 131, 248, 1);
-  --dark-blue: rgb(37 99 235);
-  --border-color: rgba(229, 231, 235, 1);
-  --profile-header-bg: rgb(255 255 255);
-  --profile-text-color: rgb(55 65 81);
-  --node-input-bg: rgba(229, 231, 235, 1);
-  --button-color-text: rgb(255 255 255);
-  --dashboard-hover-color-bg: rgb(238, 239, 240);
-  --icons-color: rgb(107 114 128);
-  color: #000;
+  --gray-50-opacity: rgb(243, 243, 243); 
+  --gray-100-opacity: rgba(229, 231, 235, 1);
+  --gray-200: rgb(55 65 81);
+  --gray-400: rgba(14, 14, 15, 0.7); 
+  --gray-400-bg: rgba(229, 231, 235, 1); 
+  --gray-500: rgb(75 85 99); 
+  --gray-500-icon: rgb(107 114 128); 
+  --gray-600-hover-bg: rgb(238, 239, 240);
+  --gray-700: rgb(243 244 246); 
+  --gray-700-bg: rgb(255 255 255);
+  --gray-800: rgb(255 255 255);
+  --blue-500: rgba(63, 131, 248, 1); 
+  --blue-600: rgb(37 99 235); 
+  --blue-900: rgb(249 250 251); 
+  --red-500: rgb(239, 68, 68);
+  --black: rgb(0, 0, 0);
+  --white: rgb(255, 255, 255);
+  --default-color: rgb(0, 0, 0);
 }
 
 body {
-  background-color: var(--component-bg);
-  color: #fff;
+  background-color: var(--gray-800);
 }
 
 * {
   font-family: var(--font-roboto);
-  background: var(--white);
+  color: var(--default-color); 
+
 }

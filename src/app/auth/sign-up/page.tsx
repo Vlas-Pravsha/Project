@@ -95,9 +95,9 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex items-center justify-between min-h-screen bg-white text-black">
+    <div className="flex items-center justify-between min-h-screen">
       <div className="custom-gradient w-full flex justify-center min-h-screen  items-center flex-col gap-12">
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg p-10 bg-white rounded-lg shadow-2xl">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg p-10 rounded-lg shadow-2xl">
           <h2 className="text-2xl font-bold mb-2 text-center">Create an account</h2>
           <p className="text-sm text-gray-400 mb-6 text-center">Enter your email below to create your account</p>
           <div className="space-y-4">

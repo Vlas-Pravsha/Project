@@ -15,7 +15,7 @@ function NavItem({ item, openSideBar }: { item: SideBarType, openSideBar: boolea
   return (
     <Link
       href={`${item.href}`}
-      className="flex items-center justify-between p-2 hover:bg-gray-700 rounded-lg cursor-pointer hover:bg-darkGreyBg"
+      className="flex items-center justify-between p-2 hover:bg-gray-700 rounded-lg cursor-pointer hover:bg-gray700"
       onClick={() => setSubMenuOpen(!subMenuOpen)}
     >
       <div className="flex items-center gap-3">

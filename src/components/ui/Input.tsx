@@ -14,8 +14,8 @@ const inputVariants = cva(
   {
     variants: {
       state: {
-        default: 'bg-darkGreyBg border-[transparent] border-2 focus:outline-none focus:border-darkBlue',
-        error: 'bg-darkGreyBg border-[#ef4444] border-2 text-[#ef4444] placeholder-[#ef4444] hover:outline-none hover:border-[#ef4444]',
+        default: 'bg-gray700 border-[transparent] border-2 focus:outline-none focus:border-blue600',
+        error: 'bg-gray700 border-red500 border-2 text-red500 placeholder-red500 hover:outline-none',
       },
     },
     defaultVariants: {

@@ -44,9 +44,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-between min-h-screen bg-white text-black">
+    <div className="flex items-center justify-between min-h-screen">
       <div className="custom-gradient w-full flex min-h-screen justify-center items-center flex-col">
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg p-10 bg-white rounded-lg shadow-2xl">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg p-10 rounded-lg shadow-2xl">
           <h2 className="text-2xl font-bold mb-4 text-center">Sign In</h2>
           <div className="space-y-4">
             <Label errorText={errors.email?.message} hasError={errors.email}>

@@ -24,4 +24,4 @@ const yellowTail = Yellowtail({
   variable: '--font-yellowtail',
 })
 
-export { roboto, openSans, yellowTail }
+export { openSans, roboto, yellowTail }

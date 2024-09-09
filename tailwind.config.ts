@@ -8,23 +8,24 @@ const config: Config = {
   ],
   theme: {
     colors: {
-      lightGreyText: 'var(--ligth-grey-text)',
-      darkGreyBg: 'var(--dark-grey-bg)',
-      darkBlueBg: 'var(--dark-blue-bg)',
-      componentBg: 'var(--component-bg)',
-      hoverBg: 'var(--hover-bg)',
-      blackColor: 'var(--black-color)',
-      lightTextColor: 'var(--ligth-text-color)',
-      linkColorBlue: 'var(--link-color-blue)',
-      darkBlue: 'var(--dark-blue)',
-      navTextColor: 'var(--nav-text-color)',
-      borderColor: 'var(--border-color)',
-      profileHeaderBg: 'var(--profile-header-bg)',
-      profileTextColor: 'var(--profile-text-color)',
-      nodeInputBg: 'var(--node-input-bg)',
-      buttonColorText: 'var(--button-color-text)',
-      dashboardHoverColorBg: 'var(--dashboard-hover-color-bg)',
-      iconsColor: 'var(--icons-color)',
+      gray400: 'var(--gray-400)', /* ligthGreyText */
+      gray700: 'var(--gray-700)', /* darkGreyBg */
+      blue900: 'var(--blue-900)', /* blue600Bg */
+      gray800: 'var(--gray-800)', /* componentBg */
+      gray50Opacity: 'var(--gray-50-opacity)', /* hoverBg */
+      black: 'var(--black)', /* blackColor */
+      gray500: 'var(--gray-500)', /* ligthTextColor */
+      blue500: 'var(--blue-500)', /* linkColorBlue */
+      blue600: 'var(--blue-600)', /* blue600 */
+      gray100: 'var(--gray-100)', /* nav-textColor */
+      gray100Opacity: 'var(--gray-100-opacity)', /* gray100Opacity */
+      gray700Bg: 'var(--gray-700-bg)', /* profileHeaderBg */
+      gray200: 'var(--gray-200)', /* profileTextColor */
+      gray400Bg: 'var(--gray-400-bg)', /* nodeInputBg */
+      gray600HoverBg: 'var(--gray-600-hover-bg)', /* dashboardHoverColorBg */
+      gray500Icon: 'var(--gray-500-icon)', /* iconsColor */
+      red500: 'var(--red-500)', /* iconsColor */
+      white: 'var(--white)',
     },
     fontFamily: {
       roboto: 'var(--font-roboto)',

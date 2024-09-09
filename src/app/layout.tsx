@@ -1,7 +1,7 @@
 import { openSans, roboto, yellowTail } from '@/fonts/fonts'
 import { constructMetadata } from '@/lib/utils'
-import type { Metadata } from 'next'
 
+import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = constructMetadata()

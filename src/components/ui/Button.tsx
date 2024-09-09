@@ -15,9 +15,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-darkBlue text-buttonColorText hover:bg-linkColorBlue',
-        secondary: 'bg-componentBg text-lightTextColor border border-borderColor hover:text-buttonColorText',
-        delete: 'bg-[#ef4444] text-[#fff] hover:bg-red-700',
+        primary: 'bg-blue600 text-white hover:bg-blue500',
+        secondary: 'bg-gray800 text-gray500 border border-gray100Opacity hover:text-white',
+        delete: 'bg-red500 text-white hover:bg-red-700',
       },
       size: {
         sm: 'py-2 px-4 text-sm font-medium',

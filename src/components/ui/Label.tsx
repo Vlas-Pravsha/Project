@@ -28,7 +28,7 @@ function Label({
     >
       {title && <h3 className="text-base leading-5 font-medium">{title}</h3>}
       {children}
-      {hasError && (<span className="text-[#ef4444] text-xs leading-3 ml-1.5">{errorText}</span>)}
+      {hasError && (<span className="text-red500 text-xs leading-3 ml-1.5">{errorText}</span>)}
     </label>
   )
 }
