@@ -1,4 +1,3 @@
-import Footer from '@/components/layout/Footer'
 import MainLayout from '@/components/layout/MainLayout'
 import type { ReactNode } from 'react'
 

@@ -27,8 +27,7 @@
 }
 
 .app {
-  background-color: var(--blue-900);
-  padding: 16px;
+  background-color: var(--gray-900);
   grid-area: c;
 }
 

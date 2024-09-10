@@ -48,7 +48,7 @@ function Header({ setOpenSideBar }: { setOpenSideBar: any }) {
                 width="30"
                 height="30"
               />
-              <h2 className="text-2xl font-bold text-gray-400">DashBoard</h2>
+              <h2 className="text-2xl font-bold">DashBoard</h2>
             </div>
           </Link>
           <div className="flex items-center border border-gray100Opacity bg-gray700 rounded-lg px-2 py-1">

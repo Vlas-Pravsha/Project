@@ -176,15 +176,11 @@ export default function SignUp() {
             </div>
           </div>
           <p className="text-xs text-center text-gray-400 mt-6">
-            By clicking continue, you agree to our
-            {' '}
+            By clicking continue, you agree to our&nbsp;
             <a href="#" className="underline">Terms of Service</a>
-            {' '}
-            and
-            {' '}
+              &nbsp;and&nbsp;
             <a href="#" className="underline">Privacy Policy</a>
-            {' '}
-            .
+              &nbsp; .
           </p>
         </form>
       </div>

@@ -1,8 +1,8 @@
 'use client'
 
 import { useLocalStorage } from '@/hooks'
+import styles from '../style/MainLayout.module.css'
 import Header from './Header'
-import styles from './MainLayout.module.css'
 import Sidebar from './NavBar'
 
 function MainLayout({ children }: { children: React.ReactNode }) {

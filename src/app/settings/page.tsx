@@ -25,6 +25,7 @@ function UserSetting() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -50,8 +51,13 @@ function UserSetting() {
     setShowNewPassword(!showNewPassword)
   }
 
+  const handleResetForm = (event: MouseEvent) => {
+    event.preventDefault()
+    reset()
+  }
+
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4 p-4">
       <div className="w-full flex flex-row gap-4">
         <div className="flex flex-col gap-4 min-w-[30%]">
           <div className="flex gap-5 bg-gray800 border border-gray100Opacity rounded-lg p-6">
@@ -129,7 +135,10 @@ function UserSetting() {
                 <Button type="submit" variant="primary">
                   Save changes
                 </Button>
-                <Button variant="secondary">
+                <Button
+                  variant="secondary"
+                  onClick={event => handleResetForm(event)}
+                >
                   Clear
                 </Button>
               </div>

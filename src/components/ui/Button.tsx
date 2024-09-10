@@ -20,9 +20,9 @@ const buttonVariants = cva(
         delete: 'bg-red500 text-white hover:bg-red-700',
       },
       size: {
-        sm: 'py-2 px-4 text-sm font-medium',
-        md: 'py-2 px-4 text-md font-medium',
-        lg: 'py-3 px-6 text-lg font-bold',
+        sm: 'h-8 px-4 text-sm font-medium',
+        md: 'h-10 px-4 text-md font-medium',
+        lg: 'h-12 px-6 text-lg font-bold',
       },
       fullWidth: {
         true: 'w-full',
