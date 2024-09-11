@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import type { ModalProps } from '@/hooks/useModal'
-import type { ComponentProps, FC, PropsWithChildren } from 'react'
+import type { FC, HTMLAttributes, PropsWithChildren } from 'react'
 import Portal from '../common/Portal'
 
 const ModalLayout: FC<PropsWithChildren<ModalProps>> = ({
@@ -29,15 +29,15 @@ const ModalLayout: FC<PropsWithChildren<ModalProps>> = ({
   )
 }
 
-const ModalText: FC<ComponentProps<'div'>> = ({ children, className, ...props }) => {
+function ModalText({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <div {...props} className={cn('text-gray300 text-lg font-medium', className)}>
+    <p {...props} className={cn('text-gray300 text-lg font-medium', className)}>
       {children}
-    </div>
+    </p>
   )
 }
 
-const ModalBody: FC<ComponentProps<'div'>> = ({ children, className, ...props }) => {
+function ModalBody({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div {...props} className={cn('w-[425px] bg-gray800 p-4 rounded-lg', className)}>
       {children}
@@ -45,7 +45,7 @@ const ModalBody: FC<ComponentProps<'div'>> = ({ children, className, ...props })
   )
 }
 
-const ModalFooter: FC<ComponentProps<'div'>> = ({ children, className, ...props }) => {
+function ModalFooter({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div {...props} className={cn('flex gap-4 mb-5', className)}>
       {children}
