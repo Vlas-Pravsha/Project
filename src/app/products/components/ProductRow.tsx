@@ -2,7 +2,7 @@ import { Button } from '@/components/ui'
 import CheckBox from '@/components/ui/CheckBox'
 import { Edit, Trash } from 'lucide-react'
 import React from 'react'
-import type { ProductItem } from '../page'
+import type { ProductItem } from './Table'
 
 interface ProductRowProps {
   product: ProductItem

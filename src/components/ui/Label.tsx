@@ -3,8 +3,6 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import * as React from 'react'
 import type { FieldError } from 'react-hook-form'
 
-const labelVariants = cva('w-full flex flex-col gap-2')
-
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement>,
   VariantProps<typeof labelVariants> {
@@ -12,6 +10,8 @@ export interface LabelProps
   title?: string
   hasError?: FieldError | undefined
 }
+
+const labelVariants = cva('w-full flex flex-col gap-2')
 
 function Label({
   className,

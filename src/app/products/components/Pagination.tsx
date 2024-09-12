@@ -14,8 +14,8 @@ function Pagination() {
         </div>
       </div>
       <div className="flex gap-4">
-        <Button variant="primary" iconBefore={<ArrowLeft className="w-4 h-4 text-gray-500" />}>Previous</Button>
-        <Button variant="primary" iconAfter={<ArrowRight className="w-4 h-4 text-gray-500" />}>Next</Button>
+        <Button variant="primary" iconBefore={<ArrowLeft className="w-4 h-4" color="white" />}>Previous</Button>
+        <Button variant="primary" iconAfter={<ArrowRight className="w-4 h-4" color="white" />}>Next</Button>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import CheckBox from '@/components/ui/CheckBox'
 
-function TableHeader({ tableTitle }: { tableTitle: string[] }) {
+function TableHeader({ tableHeaderArray }: { tableHeaderArray: string[] }) {
   const thStyle = 'text-left p-4 text-xs font-medium bg-gray800 text-gray500'
 
   return (
@@ -9,7 +9,7 @@ function TableHeader({ tableTitle }: { tableTitle: string[] }) {
         <th className={thStyle}>
           <CheckBox />
         </th>
-        {tableTitle.map(item => (
+        {tableHeaderArray.map(item => (
           <th className={thStyle} key={item}>
             {item}
           </th>

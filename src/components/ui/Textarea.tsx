@@ -3,18 +3,16 @@ import { cva } from 'class-variance-authority'
 import React from 'react'
 import type { FieldError } from 'react-hook-form'
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  placeholder: string
+interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   hasError?: FieldError | undefined
-  type?: 'password' | 'text' | 'email' | 'number'
 }
 
-const inputVariants = cva(
+const textareaVariants = cva(
   'w-full p-2 rounded-md',
   {
     variants: {
       variant: {
-        default: 'bg-gray700 border-[transparent] border-2 focus:outline-none focus:border-blue600',
+        default: 'bg-gray700 border-2 border-transparent focus:outline-none focus:border-blue-600',
         error: 'bg-gray700 border-red500 border-2 text-red500 placeholder-red500 hover:outline-none',
       },
     },
@@ -24,20 +22,20 @@ const inputVariants = cva(
   },
 )
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ placeholder, hasError, type = 'text', className, ...rest }, ref) => {
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ hasError, rows, className, placeholder, ...props }, ref) => {
     const variant = hasError ? 'error' : 'default'
     return (
-      <input
+      <textarea
+        {...props}
         ref={ref}
-        type={type}
-        className={cn(inputVariants({ variant }), className)}
+        className={cn(textareaVariants({ variant }), className)}
         placeholder={placeholder}
-        {...rest}
+        rows={rows}
       />
     )
   },
 )
 
-Input.displayName = 'Input'
-export { Input }
+Textarea.displayName = 'Textarea'
+export { Textarea }

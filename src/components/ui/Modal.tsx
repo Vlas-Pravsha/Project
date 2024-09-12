@@ -39,7 +39,7 @@ function ModalText({ children, className, ...props }: HTMLAttributes<HTMLParagra
 
 function ModalBody({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div {...props} className={cn('w-[425px] bg-gray800 p-4 rounded-lg', className)}>
+    <div {...props} className={cn('', className)}>
       {children}
     </div>
   )
@@ -53,6 +53,14 @@ function ModalFooter({ children, className, ...props }: HTMLAttributes<HTMLDivEl
   )
 }
 
+function ModalContent({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div {...props} className={cn('w-[425px] flex flex-col gap-4 bg-gray800 rounded-lg p-4', className)}>
+      {children}
+    </div>
+  )
+}
+
 const ModalComponent: FC<PropsWithChildren<ModalProps>> = ({
   children,
   ...layoutProps
@@ -60,10 +68,9 @@ const ModalComponent: FC<PropsWithChildren<ModalProps>> = ({
   return <ModalLayout {...layoutProps}>{children}</ModalLayout>
 }
 
-const Modal = Object.assign(ModalComponent, {
+export const Modal = Object.assign(ModalComponent, {
   Text: ModalText,
   Body: ModalBody,
   Footer: ModalFooter,
+  Content: ModalContent,
 })
-
-export default Modal
