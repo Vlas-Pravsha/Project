@@ -1,18 +1,7 @@
-import { Loader2, Trash2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
+import type { ProductItem } from '@/contexts/ProductsContext'
 import ProductRow from './ProductRow'
 import TableHeader from './TableHeader'
-
-export interface ProductItem {
-  brand: any
-  productName: any
-  id: string
-  name: string
-  category: string
-  technology: string
-  description: string
-  price: string
-  discount: string
-}
 
 interface TableProps {
   tableHeaderArray: string[]

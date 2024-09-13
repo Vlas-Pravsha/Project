@@ -1,7 +1,7 @@
 import { Button, Modal } from '@/components/ui'
+import { useProducts } from '@/contexts/ProductsContext'
 import Image from 'next/image'
 import type { ModalProps } from '@/hooks/useModal'
-import { deleteProduct } from '../actions'
 
 interface DeleteModalProps {
   deleteModalProps: ModalProps
@@ -9,6 +9,8 @@ interface DeleteModalProps {
 }
 
 function DeleteModal({ deleteModalProps, id }: DeleteModalProps) {
+  const { deleteProduct } = useProducts()
+
   const handleDeleteProduct = (id: string) => {
     deleteModalProps.onClose()
     deleteProduct(id)

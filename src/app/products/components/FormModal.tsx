@@ -1,38 +1,41 @@
 import { Button, Input, Label, Modal, Textarea } from '@/components/ui'
+import { useProducts } from '@/contexts/ProductsContext'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import type { ProductItem } from '@/contexts/ProductsContext'
 import type { ModalProps } from '@/hooks/useModal'
 
 interface FormModalProps {
   formModalProps: ModalProps
-  onAddProduct: (id: ProductFormData) => void
 }
 
 const productSchema = z.object({
-  productName: z.string().min(1, 'Product name is required'),
-  category: z.string().min(1, 'Category is required'),
-  brand: z.string().min(1, 'Brand is required'),
-  price: z.string().min(1, 'Price is required'),
+  name: z.string().min(2, 'Product name is required'),
+  category: z.string().min(2, 'Category is required'),
+  technology: z.string().min(2, 'Technology is required'),
+  price: z.string().min(2, 'Price is required'),
   description: z.string().min(10, 'Description must be at least 10 characters long'),
 })
 
 export type ProductFormData = z.infer<typeof productSchema>
 
-function FormModal({ formModalProps, onAddProduct }: FormModalProps) {
+function FormModal({ formModalProps }: FormModalProps) {
+  const { addProduct } = useProducts()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<ProductFormData>({
+  } = useForm<ProductItem>({
     resolver: zodResolver(productSchema),
   })
 
-  const onSubmit = (data: ProductFormData) => {
-    onAddProduct(data)
+  const onSubmit = (data: ProductItem) => {
+    addProduct(data)
     formModalProps.onClose()
   }
 
@@ -40,7 +43,7 @@ function FormModal({ formModalProps, onAddProduct }: FormModalProps) {
     if (formModalProps.open) {
       reset()
     }
-  }, [formModalProps.open])
+  }, [formModalProps.open, reset])
 
   return (
     <Modal {...formModalProps} onClose={formModalProps.onClose}>
@@ -58,16 +61,16 @@ function FormModal({ formModalProps, onAddProduct }: FormModalProps) {
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-6">
           <div className="grid grid-cols-2 gap-6">
-            <Label title="Product Name" errorText={errors.productName?.message} hasError={errors.productName}>
-              <Input placeholder="Apple iMac 27" {...register('productName')} hasError={errors.productName} />
+            <Label title="Product Name" errorText={errors.name?.message} hasError={errors.name}>
+              <Input placeholder="Apple iMac 27" {...register('name')} hasError={errors.name} />
             </Label>
             <Label title="Category" errorText={errors.category?.message} hasError={errors.category}>
               <Input placeholder="Electronics" {...register('category')} hasError={errors.category} />
             </Label>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <Label title="Brand" errorText={errors.brand?.message} hasError={errors.brand}>
-              <Input placeholder="Apple" {...register('brand')} hasError={errors.brand} />
+            <Label title="Technology" errorText={errors.technology?.message} hasError={errors.technology}>
+              <Input placeholder="Apple" {...register('technology')} hasError={errors.technology} />
             </Label>
             <Label title="Price" errorText={errors.price?.message} hasError={errors.price}>
               <Input placeholder="2300" type="text" {...register('price')} hasError={errors.price} />

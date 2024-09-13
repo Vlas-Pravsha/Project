@@ -3,8 +3,8 @@ import CheckBox from '@/components/ui/CheckBox'
 import { useModal } from '@/hooks'
 import { Edit, Trash } from 'lucide-react'
 import React from 'react'
+import type { ProductItem } from '@/contexts/ProductsContext'
 import DeleteModal from './DeleteModal'
-import type { ProductItem } from './Table'
 
 interface ProductRowProps {
   product: ProductItem

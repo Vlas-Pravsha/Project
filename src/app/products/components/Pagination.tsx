@@ -1,10 +1,9 @@
 import { Button } from '@/components/ui'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import React from 'react'
-import type { ProductItem } from './Table'
+import type { ProductFormData } from './FormModal'
 
 interface PaginationProps {
-  products: ProductItem[]
+  products: ProductFormData[]
 }
 
 function Pagination({ products }: PaginationProps) {
