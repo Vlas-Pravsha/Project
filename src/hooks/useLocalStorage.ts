@@ -14,10 +14,11 @@
 
 //   return [value, setValue]
 // }
+'use client'
 
 import { useEffect, useState } from 'react'
 
-export function useLocalStorage<T>(key: string, initialValue: T) {
+function useLocalStorage<T>(key: string, initialValue: T) {
   const [value, setValue] = useState(() => {
     if (typeof window === 'undefined') {
       return initialValue
@@ -37,3 +38,5 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 
   return [value, setValue]
 }
+
+export { useLocalStorage }

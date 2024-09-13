@@ -2,8 +2,7 @@
 
 import { signOut } from '@/app/auth/actions'
 import { Button } from '@/components/ui/'
-import { useUser } from '@/hooks/'
-import { useTheme } from '@/hooks/useTheme'
+import { useTheme, useUser } from '@/hooks/'
 
 import { Loader2, Menu, Moon, Search, Sun } from 'lucide-react'
 import Image from 'next/image'

@@ -8,6 +8,7 @@ import type { ModalProps } from '@/hooks/useModal'
 
 interface FormModalProps {
   formModalProps: ModalProps
+  onAddProduct: (id: ProductFormData) => void
 }
 
 const productSchema = z.object({
@@ -18,9 +19,9 @@ const productSchema = z.object({
   description: z.string().min(10, 'Description must be at least 10 characters long'),
 })
 
-type ProductFormData = z.infer<typeof productSchema>
+export type ProductFormData = z.infer<typeof productSchema>
 
-function FormModal({ formModalProps }: FormModalProps) {
+function FormModal({ formModalProps, onAddProduct }: FormModalProps) {
   const {
     register,
     handleSubmit,
@@ -31,8 +32,7 @@ function FormModal({ formModalProps }: FormModalProps) {
   })
 
   const onSubmit = (data: ProductFormData) => {
-    // eslint-disable-next-line no-console
-    console.log(data)
+    onAddProduct(data)
     formModalProps.onClose()
   }
 
@@ -44,7 +44,7 @@ function FormModal({ formModalProps }: FormModalProps) {
 
   return (
     <Modal {...formModalProps} onClose={formModalProps.onClose}>
-      <Modal.Content className="w-[640px]">
+      <Modal.Content className="w-[640px] p-6">
         <div className="flex justify-between pb-6 border-b border-gray100Opacity">
           <h4 className="text-xl font-semibold">Add Product</h4>
           <Image

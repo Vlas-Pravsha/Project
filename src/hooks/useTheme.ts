@@ -1,4 +1,4 @@
-export function useTheme() {
+function useTheme() {
   const THEME_KEY = 'app-theme'
   const DARK_THEME = 'dark'
   const LIGHT_THEME = 'light'
@@ -39,3 +39,5 @@ export function useTheme() {
     initTheme,
   }
 }
+
+export { useTheme }

@@ -1,12 +1,19 @@
 import { Button, Modal } from '@/components/ui'
 import Image from 'next/image'
 import type { ModalProps } from '@/hooks/useModal'
+import { deleteProduct } from '../actions'
 
 interface DeleteModalProps {
   deleteModalProps: ModalProps
+  id: string
 }
 
-function DeleteModal({ deleteModalProps }: DeleteModalProps) {
+function DeleteModal({ deleteModalProps, id }: DeleteModalProps) {
+  const handleDeleteProduct = (id: string) => {
+    deleteModalProps.onClose()
+    deleteProduct(id)
+  }
+
   return (
     <Modal {...deleteModalProps}>
       <Modal.Content>
@@ -35,7 +42,12 @@ function DeleteModal({ deleteModalProps }: DeleteModalProps) {
           </div>
         </Modal.Body>
         <Modal.Footer className="flex justify-center p-2">
-          <Button variant="delete">Yes, I'm sure</Button>
+          <Button
+            variant="delete"
+            onClick={() => handleDeleteProduct(id)}
+          >
+            Yes, I'm sure
+          </Button>
           <Button variant="secondary" onClick={deleteModalProps.onClose}>No, cancel</Button>
         </Modal.Footer>
       </Modal.Content>

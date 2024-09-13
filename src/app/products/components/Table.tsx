@@ -1,15 +1,10 @@
-import { createClient } from '@/utils/supabase/client'
 import { Loader2, Trash2 } from 'lucide-react'
-import { useEffect, useState } from 'react'
 import ProductRow from './ProductRow'
 import TableHeader from './TableHeader'
 
-interface TableProps {
-  toogleHandleClick: () => void
-  tableHeaderArray: string[]
-}
-
 export interface ProductItem {
+  brand: any
+  productName: any
   id: string
   name: string
   category: string
@@ -19,32 +14,13 @@ export interface ProductItem {
   discount: string
 }
 
-function Table({ toogleHandleClick, tableHeaderArray }: TableProps) {
-  const [products, setProducts] = useState<ProductItem[]>([])
-  const [loading, setLoading] = useState(true)
-  const supabase = createClient()
+interface TableProps {
+  tableHeaderArray: string[]
+  loading: boolean
+  products: ProductItem[]
+}
 
-  const fetchProducts = async () => {
-    try {
-      setLoading(true)
-      const { data, error } = await supabase.from('products').select('*')
-      if (error)
-        throw error
-
-      setProducts(data || [])
-    }
-    catch (error: any) {
-      console.error('Error fetching products:', error.message)
-    }
-    finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    fetchProducts()
-  }, [])
-
+function Table({ tableHeaderArray, products, loading }: TableProps) {
   if (loading) {
     return (
       <div className="flex gap-4 items-center p-4">
@@ -59,7 +35,7 @@ function Table({ toogleHandleClick, tableHeaderArray }: TableProps) {
       <TableHeader tableHeaderArray={tableHeaderArray} />
       <tbody>
         {products.map((product, index) => (
-          <ProductRow key={product.id} product={product} index={index} toogleHandleClick={toogleHandleClick} />
+          <ProductRow key={product.id} product={product} index={index} />
         ))}
       </tbody>
     </table>

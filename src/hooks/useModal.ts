@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 
 type ModalAnimation = 'in' | 'out'
@@ -37,4 +39,4 @@ function useModal(): ModalProps {
   }
 }
 
-export default useModal
+export { useModal }
