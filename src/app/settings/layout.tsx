@@ -3,7 +3,9 @@ import type { ReactNode } from 'react'
 
 function layout({ children }: { children: ReactNode }) {
   return (
-    <MainLayout>{children}</MainLayout>
+    <MainLayout>
+      {children}
+    </MainLayout>
   )
 }
 

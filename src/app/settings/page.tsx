@@ -9,6 +9,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import type { MouseEvent } from 'react'
+import General from './components/General'
 
 const schema = z.object({
   email: z.string().email({ message: 'Incorrect email format' }),
@@ -145,10 +146,9 @@ function UserSetting() {
             </form>
           </div>
         </div>
-        <div className="w-full bg-gray800 border border-gray100Opacity rounded-lg p-6"></div>
+        <General />
       </div>
       <Footer />
-
     </div>
   )
 }

@@ -37,6 +37,7 @@ body.dark {
   --red-500: #dc2626;  /*600*/
   --default-color: #000000;
 }
+
 body {
   background-color: var(--gray-800);
 }

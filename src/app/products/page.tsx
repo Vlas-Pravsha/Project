@@ -2,7 +2,7 @@
 
 import MainLayout from '@/components/layout/MainLayout'
 import { Button, Input } from '@/components/ui'
-import { useProducts } from '@/contexts/ProductsContext'
+import { useProducts } from '@/contexts/'
 import { useDebounce, useModal } from '@/hooks/'
 import { Plus } from 'lucide-react'
 import React, { useState } from 'react'

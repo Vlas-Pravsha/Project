@@ -1,5 +1,5 @@
 import { Button, Modal } from '@/components/ui'
-import { useProducts } from '@/contexts/ProductsContext'
+import { useProducts } from '@/contexts/'
 import Image from 'next/image'
 import type { ModalProps } from '@/hooks/useModal'
 

@@ -1,4 +1,4 @@
-import { AppWindow, Github, LayoutDashboard, Settings } from 'lucide-react'
+import { AppWindow, Github, Kanban, LayoutDashboard, Settings } from 'lucide-react'
 import Link from 'next/link'
 import NavItem from '../NavItem'
 
@@ -14,6 +14,12 @@ function Sidebar({ openSideBar }: { openSideBar: boolean }) {
       icon: <AppWindow className="w-6 h-6" color="var(--gray-100)" />,
       href: '/products',
     },
+    {
+      mainTitle: 'Kanban',
+      icon: <Kanban className="w-6 h-6" color="var(--gray-100)" />,
+      href: '/kanban',
+    },
+
     {
       mainTitle: 'Settings',
       icon: <Settings className="w-6 h-6" color="var(--gray-100)" />,

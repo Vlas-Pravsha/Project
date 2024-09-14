@@ -23,7 +23,7 @@ export async function signup(data: {
   })
 
   if (error) {
-    redirect('/error')
+    throw new Error(error.message)
   }
 
   revalidatePath('/', 'layout')

@@ -10,18 +10,18 @@ function useUser() {
 
   const supabase = createClient()
 
-  useEffect(() => {
-    async function getUser() {
-      const { data, error } = await supabase.auth.getUser()
-      if (error || !data?.user) {
-        console.error('No active session or user not found')
-        setLoading(false)
-        return
-      }
-      setUser(data.user)
+  async function getUser() {
+    const { data, error } = await supabase.auth.getUser()
+    if (error || !data?.user) {
+      console.error('No active session or user not found')
       setLoading(false)
+      return
     }
+    setUser(data.user)
+    setLoading(false)
+  }
 
+  useEffect(() => {
     getUser()
   }, [supabase.auth])
 

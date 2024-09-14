@@ -50,12 +50,13 @@ export default function SignUp() {
         password: data.password,
         fullName: `${data.firstName} ${data.lastName}`,
       })
-      toast.success('Account created successfully!')
       router.push('/')
     }
+
     catch (error) {
       toast.error(error instanceof Error ? error.message : 'Failed to create account. Please try again.')
     }
+
     finally {
       setLoading(false)
     }
@@ -184,7 +185,7 @@ export default function SignUp() {
           </p>
         </form>
       </div>
-      <ToastContainer position="bottom-right" autoClose={5000} />
+      <ToastContainer position="bottom-right" autoClose={5000} theme="colored" />
     </div>
   )
 }

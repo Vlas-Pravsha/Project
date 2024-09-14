@@ -32,7 +32,6 @@ export default function LoginPage() {
     setLoading(true)
     try {
       await login(data)
-      toast.success('Logged in successfully!')
       router.push('/')
     }
     catch (error) {
@@ -71,7 +70,7 @@ export default function LoginPage() {
             {loading ? 'Loading...' : 'Login'}
           </Button>
         </form>
-        <ToastContainer position="bottom-right" autoClose={5000} />
+        <ToastContainer position="bottom-right" autoClose={5000} theme="colored" />
       </div>
     </div>
   )

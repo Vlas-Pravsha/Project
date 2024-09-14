@@ -1,11 +1,11 @@
 import { Button, Input, Label, Modal, Textarea } from '@/components/ui'
-import { useProducts } from '@/contexts/ProductsContext'
+import { useProducts } from '@/contexts/'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import type { ProductItem } from '@/contexts/ProductsContext'
+import type { ProductItem } from '@/contexts/'
 import type { ModalProps } from '@/hooks/useModal'
 
 interface FormModalProps {
@@ -17,6 +17,7 @@ const productSchema = z.object({
   category: z.string().min(2, 'Category is required'),
   technology: z.string().min(2, 'Technology is required'),
   price: z.string().min(2, 'Price is required'),
+  discount: z.string().min(2, 'Discount is required'),
   description: z.string().min(10, 'Description must be at least 10 characters long'),
 })
 
@@ -76,6 +77,9 @@ function FormModal({ formModalProps }: FormModalProps) {
               <Input placeholder="2300" type="text" {...register('price')} hasError={errors.price} />
             </Label>
           </div>
+          <Label title="Discount" errorText={errors.discount?.message} hasError={errors.discount}>
+            <Input placeholder="15%" type="text" {...register('discount')} hasError={errors.discount} />
+          </Label>
           <Label title="Product Description" errorText={errors.description?.message} hasError={errors.description}>
             <Textarea
               {...register('description')}

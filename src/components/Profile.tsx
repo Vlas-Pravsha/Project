@@ -9,7 +9,7 @@ import type { User } from '@supabase/supabase-js'
 function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: User }) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const profileArr = [
+  const userData = [
     {
       id: crypto.randomUUID(),
       fullName: `${user.identities![0].identity_data!.full_name}`,
@@ -37,7 +37,7 @@ function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: Use
       </div>
       {isOpen && (
         <div className="absolute bg-gray700 rounded-lg mt-2 p-4 right-0 border border-gray100Opacity min-w-48">
-          {profileArr.map(item => (
+          {userData.map(item => (
             <div key={item.id} className="flex flex-col">
               <h2 className="text-lg font-semibold">{item.fullName}</h2>
               <span className="text-sm text-gray200 font-semibold mb-2">

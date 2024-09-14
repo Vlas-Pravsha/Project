@@ -1,4 +1,4 @@
-import { ProductsContextProvider } from '@/contexts/ProductsContext'
+import { ProductsContextProvider } from '@/contexts/'
 
 export default function RootLayout({
   children,

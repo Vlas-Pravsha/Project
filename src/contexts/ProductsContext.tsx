@@ -5,11 +5,8 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import type { ProductFormData } from '@/app/products/components/FormModal'
 import type { ReactNode } from 'react'
 
-const supabase = createClient()
-
 export interface ProductItem extends ProductFormData {
   id: string
-  discount: string
 }
 
 interface ProductContextType {
@@ -19,9 +16,11 @@ interface ProductContextType {
   deleteProduct: (id: string) => Promise<void>
 }
 
+const supabase = createClient()
+
 const ProductsContext = createContext<ProductContextType | undefined>(undefined)
 
-export function ProductsContextProvider({ children }: { children: ReactNode }) {
+function ProductsContextProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
   const [products, setProducts] = useState<ProductItem[]>([])
 
@@ -46,7 +45,7 @@ export function ProductsContextProvider({ children }: { children: ReactNode }) {
     fetchProducts()
   }, [])
 
-  const addProduct = async (newProduct: any) => {
+  const addProduct = async (newProduct: ProductItem) => {
     try {
       const { data: { user } } = await supabase.auth.getUser()
 
@@ -86,7 +85,30 @@ export function ProductsContextProvider({ children }: { children: ReactNode }) {
       console.error('Error deleting product:', error.message)
     }
   }
-  const value = useMemo(() => ({ addProduct, deleteProduct, loading, products }), [loading, products])
+
+  async function updateProduct(updateProduct: ProductItem) {
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      throw new Error('User is not logged in')
+    }
+
+    const { error } = await supabase.from('todos').update(updateProduct).match({
+      name: updateProduct.name,
+      category: updateProduct.category,
+      technology: updateProduct.technology,
+      description: updateProduct.description,
+      price: updateProduct.price,
+      discount: 'No',
+      user_id: user.id,
+    })
+
+    if (error) {
+      throw new Error('Error updating task')
+    }
+  }
+
+  const value = useMemo(() => ({ updateProduct, addProduct, deleteProduct, loading, products }), [loading, products])
 
   return (
     <ProductsContext.Provider value={value}>
@@ -95,10 +117,12 @@ export function ProductsContextProvider({ children }: { children: ReactNode }) {
   )
 }
 
-export function useProducts() {
+function useProducts() {
   const context = useContext(ProductsContext)
   if (!context) {
     throw new Error('useProducts must be used within a ProductsContextProvider')
   }
   return context
 }
+
+export { ProductsContextProvider, useProducts }
