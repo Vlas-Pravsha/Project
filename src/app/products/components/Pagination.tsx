@@ -1,13 +1,13 @@
 import { Button } from '@/components/ui'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import type { ProductFormData } from './FormModal'
 
 interface PaginationProps {
-  products: ProductFormData[]
+  totalItems: number | string
+  handlePrevious: () => void
+  handleNext: () => void
 }
 
-function Pagination({ products }: PaginationProps) {
-  const length = products.length
+function Pagination({ totalItems, handleNext, handlePrevious }: PaginationProps) {
   return (
     <div className="flex justify-between items-center gap-4 mx-4 my-3">
       <div className="flex items-center gap-2">
@@ -15,12 +15,12 @@ function Pagination({ products }: PaginationProps) {
           Showing&nbsp;
           <span className="text-base font-medium">1-15</span>
             &nbsp;of&nbsp;
-          <span className="text-base font-medium">{length}</span>
+          <span className="text-base font-medium">{totalItems}</span>
         </div>
       </div>
       <div className="flex gap-4">
-        <Button variant="primary" iconBefore={<ArrowLeft className="w-4 h-4" color="white" />}>Previous</Button>
-        <Button variant="primary" iconAfter={<ArrowRight className="w-4 h-4" color="white" />}>Next</Button>
+        <Button variant="primary" iconBefore={<ArrowLeft className="w-4 h-4" color="white" />} onClick={handlePrevious}>Previous</Button>
+        <Button variant="primary" iconAfter={<ArrowRight className="w-4 h-4" color="white" />} onClick={handleNext}>Next</Button>
       </div>
     </div>
   )

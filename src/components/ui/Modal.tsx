@@ -65,7 +65,11 @@ const ModalComponent: FC<PropsWithChildren<ModalProps>> = ({
   children,
   ...layoutProps
 }) => {
-  return <ModalLayout {...layoutProps}>{children}</ModalLayout>
+  return (
+    <ModalLayout {...layoutProps}>
+      {children}
+    </ModalLayout>
+  )
 }
 
 export const Modal = Object.assign(ModalComponent, {

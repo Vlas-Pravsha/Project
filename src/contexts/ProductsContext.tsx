@@ -12,6 +12,7 @@ export interface ProductItem extends ProductFormData {
 interface ProductContextType {
   products: ProductItem[]
   addProduct: (data: ProductItem) => Promise<void>
+  updateProduct: (data: ProductItem) => Promise<void>
   loading: boolean
   deleteProduct: (id: string) => Promise<void>
 }
@@ -59,7 +60,7 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
           technology: newProduct.technology,
           description: newProduct.description,
           price: newProduct.price,
-          discount: 'No',
+          discount: newProduct.discount,
           user_id: user.id,
         },
       ]).select('*')
@@ -93,13 +94,17 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
       throw new Error('User is not logged in')
     }
 
-    const { error } = await supabase.from('todos').update(updateProduct).match({
+    if (!updateProduct.id) {
+      throw new Error('Product ID is required for update')
+    }
+
+    const { error } = await supabase.from('products').update(updateProduct).match({
       name: updateProduct.name,
       category: updateProduct.category,
       technology: updateProduct.technology,
       description: updateProduct.description,
       price: updateProduct.price,
-      discount: 'No',
+      discount: updateProduct.discount,
       user_id: user.id,
     })
 

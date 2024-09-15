@@ -8,12 +8,12 @@ interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 }
 
 const textareaVariants = cva(
-  'w-full p-2 rounded-md',
+  'w-full p-2 rounded-md border-2 bg-gray700',
   {
     variants: {
       variant: {
-        default: 'bg-gray700 border-2 border-transparent focus:outline-none focus:border-blue-600',
-        error: 'bg-gray700 border-red500 border-2 text-red500 placeholder-red500 hover:outline-none',
+        default: 'border-transparent focus:outline-none focus:border-blue-600',
+        error: 'border-red500 text-red500 placeholder-red500 hover:outline-none',
       },
     },
     defaultVariants: {

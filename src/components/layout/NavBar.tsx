@@ -10,16 +10,15 @@ function Sidebar({ openSideBar }: { openSideBar: boolean }) {
       href: '/',
     },
     {
-      mainTitle: 'Products',
-      icon: <AppWindow className="w-6 h-6" color="var(--gray-100)" />,
-      href: '/products',
-    },
-    {
       mainTitle: 'Kanban',
       icon: <Kanban className="w-6 h-6" color="var(--gray-100)" />,
       href: '/kanban',
     },
-
+    {
+      mainTitle: 'Products',
+      icon: <AppWindow className="w-6 h-6" color="var(--gray-100)" />,
+      href: '/products',
+    },
     {
       mainTitle: 'Settings',
       icon: <Settings className="w-6 h-6" color="var(--gray-100)" />,

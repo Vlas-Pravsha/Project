@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import React from 'react'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'delete'
+  variant?: 'primary' | 'secondary' | 'delete' | 'dashed'
   size?: 'sm' | 'md' | 'lg'
   fullWidth?: boolean
   iconBefore?: React.ReactNode
@@ -17,6 +17,7 @@ const buttonVariants = cva(
       variant: {
         primary: 'bg-blue600 text-white hover:bg-blue500',
         secondary: 'bg-gray800 text-gray500 border border-gray100Opacity hover:text-white',
+        dashed: 'bg-transparent text-gray-500 border-2 border-dashed border-gray100Opacity',
         delete: 'bg-red500 text-white hover:bg-red-700',
       },
       size: {

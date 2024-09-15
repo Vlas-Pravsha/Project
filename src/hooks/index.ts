@@ -1,5 +1,6 @@
 export * from './useDebounce'
 export * from './useLocalStorage'
 export * from './useModal'
+export * from './usePagination'
 export * from './useTheme'
 export * from './useUser'

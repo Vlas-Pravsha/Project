@@ -13,6 +13,7 @@ interface ProductRowProps {
 
 function ProductRow({ product, index }: ProductRowProps) {
   const deleteModalProps = useModal()
+
   const { name, category, technology, id, description, price, discount } = product
   const slicedDescription = description.slice(0, 71)
 
@@ -38,7 +39,7 @@ function ProductRow({ product, index }: ProductRowProps) {
           <span className="text-sm">{index}</span>
         </td>
         <td className="p-4">
-          <span className="text-sm">{price}</span>
+          <span className="text-sm">{`$${price}`}</span>
         </td>
         <td className="p-4">{discount}</td>
         <td className="p-4">
