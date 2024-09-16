@@ -36,13 +36,10 @@ function CardDescription({ children, className, ...props }: HTMLAttributes<HTMLP
   )
 }
 
-function CardImage({ className, ...props }: any) {
-  const { src, alt } = props
+function CardImage({ className, ...props }: HTMLAttributes<HTMLImageElement>) {
   return (
     <img
       className={cn('', className)}
-      src={src}
-      alt={alt}
       width={408}
       height={272}
       {...props}
@@ -50,7 +47,7 @@ function CardImage({ className, ...props }: any) {
   )
 }
 
-function CardDeadlines({ children, className, ...props }: any) {
+function CardDeadlines({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) {
   return (
     <div className={cn(' text-[#5b36a0] bg-purple-300 font-medium rounded-lg flex items-center justify-center text-sm px-3 py-1 gap-1', className)} {...props}>
       <Clock4 className="w-4 h-4" color="#5b36a0" />

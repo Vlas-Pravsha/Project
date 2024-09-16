@@ -7,7 +7,7 @@ function useTheme() {
     return localStorage.getItem(THEME_KEY) || LIGHT_THEME
   }
 
-  const applyTheme = (theme: any) => {
+  const applyTheme = (theme: string) => {
     if (theme === DARK_THEME) {
       document.body.classList.add('dark')
     }
@@ -16,7 +16,7 @@ function useTheme() {
     }
   }
 
-  const setTheme = (theme: any) => {
+  const setTheme = (theme: string) => {
     localStorage.setItem(THEME_KEY, theme)
     applyTheme(theme)
   }
