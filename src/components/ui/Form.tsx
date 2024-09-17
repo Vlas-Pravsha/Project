@@ -1,68 +1,93 @@
 import { cn } from '@/lib/utils'
-import React from 'react'
-import type { FC, HTMLAttributes, PropsWithChildren } from 'react'
-import type { FieldError } from 'react-hook-form'
-import { Label } from './Label'
+import * as React from 'react'
 
-const FormLayout: FC<PropsWithChildren & HTMLAttributes<HTMLFormElement>> = ({ children, className, ...props }) => {
-  return (
-    <form className={cn('w-full', className)} {...props}>
-      {children}
-    </form>
-  )
-}
+const FormLayout = React.forwardRef<
+  HTMLFormElement,
+  React.HTMLAttributes<HTMLFormElement>
+>(({ className, ...props }, ref) => (
+  <form
+    ref={ref}
+    className={cn('space-y-4', className)}
+    {...props}
+  />
+))
+FormLayout.displayName = 'FormLayout'
 
-function FormHeader({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn('mb-4', className)} {...props}>
-      {children}
-    </div>
-  )
-}
+const FormField = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn('space-y-2', className)}
+    {...props}
+  />
+))
+FormField.displayName = 'FormField'
 
-function FormTitle({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
-  return (
-    <h2 className={cn('text-2xl font-bold', className)} {...props}>
-      {children}
-    </h2>
-  )
-}
+const FormLabel = React.forwardRef<
+  HTMLLabelElement,
+  React.LabelHTMLAttributes<HTMLLabelElement>
+>(({ className, ...props }, ref) => (
+  <label
+    ref={ref}
+    className={cn('text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70', className)}
+    {...props}
+  />
+))
+FormLabel.displayName = 'FormLabel'
 
-function FormDescription({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) {
-  return (
-    <p className={cn('text-gray-400 text-sm font-normal', className)} {...props}>
-      {children}
-    </p>
-  )
-}
+const FormControl = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn('mt-1', className)}
+    {...props}
+  />
+))
+FormControl.displayName = 'FormControl'
 
-interface FormLabelProps extends HTMLAttributes<HTMLLabelElement> {
-  errorText?: string
-  hasError?: FieldError
-}
+const FormDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <p
+    ref={ref}
+    className={cn('text-sm text-muted-foreground', className)}
+    {...props}
+  />
+))
+FormDescription.displayName = 'FormDescription'
 
-function FormLabel({ children, className, errorText, hasError, ...props }: FormLabelProps) {
-  return (
-    <Label className={cn('', className)} {...props} errorText={errorText} hasError={hasError}>
-      {children}
-    </Label>
-  )
-}
+const FormMessage = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, children, ...props }, ref) => (
+  <p
+    ref={ref}
+    className={cn('text-sm font-medium text-destructive', className)}
+    {...props}
+  >
+    {children}
+  </p>
+))
+FormMessage.displayName = 'FormMessage'
 
-const Formcomponent: FC<PropsWithChildren & HTMLAttributes<HTMLFormElement>> = ({
-  children,
-  ...props
-}) => {
-  return (
-    <FormLayout {...props}>
-      {children}
-    </FormLayout>
-  )
-}
+const FormComponent = React.forwardRef<
+  HTMLFormElement,
+  React.HTMLAttributes<HTMLFormElement>
+>(({ children, ...props }, ref) => (
+  <FormLayout ref={ref} {...props}>
+    {children}
+  </FormLayout>
+))
 
-export const Form = Object.assign(Formcomponent, {
-  Header: FormHeader,
-  Title: FormTitle,
-  Description: FormDescription,
+export const Form = Object.assign(FormComponent, {
+  Field: FormField,
   Label: FormLabel,
+  Control: FormControl,
+  Description: FormDescription,
+  Message: FormMessage,
 })

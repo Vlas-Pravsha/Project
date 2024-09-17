@@ -3,7 +3,7 @@
 import { useLocalStorage } from '@/hooks'
 import styles from '../style/MainLayout.module.css'
 import Header from './Header'
-import Sidebar from './NavBar'
+import Sidebar from './Sidebar'
 
 function MainLayout({ children }: { children: React.ReactNode }) {
   const [openSideBar, setOpenSideBar] = useLocalStorage<boolean>('sideBar', true)

@@ -102,39 +102,31 @@ export default function SignUp() {
           <h2 className="text-2xl font-bold mb-2 text-center">Create an account</h2>
           <p className="text-sm text-gray-400 mb-6 text-center">Enter your email below to create your account</p>
           <div className="space-y-4">
-            <div className="space-y-2">
-              <Label errorText={errors.email?.message} hasError={errors.email}>
-                <Input type="text" placeholder="email@example.com" {...register('email')} hasError={errors.email} />
-              </Label>
-            </div>
-            <div className="space-y-2">
-              <Label errorText={errors.firstName?.message} hasError={errors.firstName}>
-                <Input type="text" placeholder="your first perfect name" {...register('firstName')} hasError={errors.firstName} />
-              </Label>
-            </div>
-            <div className="space-y-2">
-              <Label errorText={errors.lastName?.message} hasError={errors.lastName}>
-                <Input type="text" placeholder="your second amazing name" {...register('lastName')} hasError={errors.lastName} />
-              </Label>
-            </div>
-            <div className="space-y-2">
-              <Label errorText={errors.password?.message} hasError={errors.password}>
-                <div className="relative">
-                  <Input
-                    type={showCurrentPassword ? 'text' : 'password'}
-                    placeholder="your very secret password"
-                    {...register('password')}
-                    hasError={errors.password}
-                  />
-                  <button
-                    onClick={event => toggleCurrentPassword(event)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
-                  >
-                    {showCurrentPassword ? <Eye size={20} /> : <EyeOff size={20} />}
-                  </button>
-                </div>
-              </Label>
-            </div>
+            <Label errorText={errors.email?.message} hasError={errors.email}>
+              <Input type="text" placeholder="email@example.com" {...register('email')} hasError={errors.email} />
+            </Label>
+            <Label errorText={errors.firstName?.message} hasError={errors.firstName}>
+              <Input type="text" placeholder="your first perfect name" {...register('firstName')} hasError={errors.firstName} />
+            </Label>
+            <Label errorText={errors.lastName?.message} hasError={errors.lastName}>
+              <Input type="text" placeholder="your second amazing name" {...register('lastName')} hasError={errors.lastName} />
+            </Label>
+            <Label errorText={errors.password?.message} hasError={errors.password}>
+              <div className="relative">
+                <Input
+                  type={showCurrentPassword ? 'text' : 'password'}
+                  placeholder="your very secret password"
+                  {...register('password')}
+                  hasError={errors.password}
+                />
+                <button
+                  onClick={event => toggleCurrentPassword(event)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
+                >
+                  {showCurrentPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                </button>
+              </div>
+            </Label>
             <div className="space-y-2">
               <Label errorText={errors.confirmPassword?.message} hasError={errors.confirmPassword}>
                 <div className="relative">

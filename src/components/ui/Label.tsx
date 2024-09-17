@@ -26,9 +26,9 @@ function Label({
       className={cn(labelVariants(), className)}
       {...props}
     >
-      {title && <h3 className="text-base leading-5 font-medium">{title}</h3>}
+      {title && <h3 className="text-base font-medium">{title}</h3>}
       {children}
-      {hasError && (<span className="text-red500 text-xs leading-3 ml-1.5">{errorText}</span>)}
+      {hasError && (<span className="text-red500 text-xs ml-1.5">{errorText}</span>)}
     </label>
   )
 }

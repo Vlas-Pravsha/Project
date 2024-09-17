@@ -1,35 +1,13 @@
+import { sidebarMenu } from '@/constants/sidebar'
 import { AppWindow, Github, Kanban, LayoutDashboard, Settings } from 'lucide-react'
 import Link from 'next/link'
 import NavItem from '../NavItem'
 
 function Sidebar({ openSideBar }: { openSideBar: boolean }) {
-  const sidebar = [
-    {
-      mainTitle: 'Dashboard',
-      icon: <LayoutDashboard className="w-6 h-6" color="var(--gray-100)" />,
-      href: '/',
-    },
-    {
-      mainTitle: 'Kanban',
-      icon: <Kanban className="w-6 h-6" color="var(--gray-100)" />,
-      href: '/kanban',
-    },
-    {
-      mainTitle: 'Products',
-      icon: <AppWindow className="w-6 h-6" color="var(--gray-100)" />,
-      href: '/products',
-    },
-    {
-      mainTitle: 'Settings',
-      icon: <Settings className="w-6 h-6" color="var(--gray-100)" />,
-      href: '/settings',
-    },
-  ]
-
   return (
     <div className={`${openSideBar ? 'px-6' : 'px-2'} py-6 fixed top-[65px] bottom-0 flex-col bg-gray800 z-10`}>
       <div className="flex flex-col gap-4 pb-5 border-b border-gray100Opacity">
-        {sidebar.map((item, index) => (
+        {sidebarMenu.map((item, index) => (
           <NavItem key={index} item={item} openSideBar={openSideBar} />
         ))}
       </div>

@@ -2,28 +2,21 @@
 
 import { signOut } from '@/app/auth/actions'
 import { Button } from '@/components/ui/'
-import { useTheme, useUser } from '@/hooks/'
+import { useTheme } from '@/contexts/'
 
+import { useUser } from '@/hooks/'
 import { Loader2, Menu, Moon, Search, Sun } from 'lucide-react'
-import Image from 'next/image'
 
+import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
 import Profile from '../Profile'
 
 function Header({ setOpenSideBar }: { setOpenSideBar: any }) {
-  const { getTheme, toggleTheme, initTheme } = useTheme()
-  const [themeDark, setThemeDark] = useState(false)
+  const { theme, toggleTheme } = useTheme()
   const { user, setUser, loading } = useUser()
-
-  useEffect(() => {
-    initTheme()
-    setThemeDark(getTheme() === 'dark')
-  }, [])
 
   const handleToggleTheme = () => {
     toggleTheme()
-    setThemeDark(!themeDark)
   }
 
   const handleSignOut = async () => {
@@ -61,7 +54,7 @@ function Header({ setOpenSideBar }: { setOpenSideBar: any }) {
         </div>
         <div className="flex items-center gap-4">
           <button onClick={handleToggleTheme} className="p-2 rounded-lg hover:bg-gray700">
-            {themeDark
+            {theme === 'dark'
               ? <Sun className="w-6 h-6 text-gray500Icon" />
               : <Moon className="w-6 h-6 text-gray500Icon" />}
           </button>

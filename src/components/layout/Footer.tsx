@@ -1,21 +1,5 @@
-import { Facebook, Github, Instagram, Linkedin, Twitter } from 'lucide-react'
+import { footerMenuItems, footerSocialIcons } from '@/constants/footer'
 import React from 'react'
-
-const footerData = [
-  { id: crypto.randomUUID(), value: 'Terms and conditions' },
-  { id: crypto.randomUUID(), value: 'Privacy Policy' },
-  { id: crypto.randomUUID(), value: 'Licensing' },
-  { id: crypto.randomUUID(), value: 'Cookie Policy' },
-  { id: crypto.randomUUID(), value: 'Contact' },
-]
-
-const footerDataImg = [
-  { id: crypto.randomUUID(), Img: Github },
-  { id: crypto.randomUUID(), Img: Twitter },
-  { id: crypto.randomUUID(), Img: Linkedin },
-  { id: crypto.randomUUID(), Img: Facebook },
-  { id: crypto.randomUUID(), Img: Instagram },
-]
 
 function Footer() {
   const currentYear = new Date().getFullYear()
@@ -24,14 +8,14 @@ function Footer() {
     <div className="flex flex-col gap-4">
       <div className="w-full flex justify-between items-center bg-gray800 border border-gray100Opacity rounded-lg p-8 ">
         <div className="flex items-center flex-wrap gap-6 md:gap-4">
-          {footerData.map(item => (
+          {footerMenuItems.map(item => (
             <div key={item.id} className="text-sm font-light text-gray-400 hover:cursor-pointe">
               {item.value}
             </div>
           ))}
         </div>
         <div className="flex gap-6 md:gap-4">
-          {footerDataImg.map(item => (
+          {footerSocialIcons.map(item => (
             <div key={item.id}>
               <item.Img className="w-5 h-5 text-gray-400 hover:cursor-pointer" />
             </div>

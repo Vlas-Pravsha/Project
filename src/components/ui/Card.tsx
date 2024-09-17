@@ -36,12 +36,19 @@ function CardDescription({ children, className, ...props }: HTMLAttributes<HTMLP
   )
 }
 
-function CardImage({ className, ...props }: HTMLAttributes<HTMLImageElement>) {
+interface CardImageProps extends HTMLAttributes<HTMLImageElement> {
+  src: string
+  alt: string
+}
+
+function CardImage({ src, alt, className, ...props }: CardImageProps) {
   return (
     <img
       className={cn('', className)}
       width={408}
       height={272}
+      src={src}
+      alt={alt}
       {...props}
     />
   )
