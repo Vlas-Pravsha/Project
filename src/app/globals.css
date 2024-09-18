@@ -11,8 +11,9 @@
   --gray-lightest: #f9fafb;
   --gray-light: #e5e7eb;
   --gray-medium: #9ca3af;
-  --gray-dark: #4b5563;
+  --gray-dark: #374151;
   --gray-darkest: #1f2937;
+
   
   --opacity-light: rgba(249, 250, 251, 0.1);
   --opacity-medium: rgba(229, 231, 235, 0.1);

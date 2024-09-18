@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import type { User } from '@supabase/supabase-js'
+import Portal from './common/Portal'
 
 function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: User }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -36,35 +37,36 @@ function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: Use
         />
       </div>
       {isOpen && (
-        <div className="absolute bg-gray-dark rounded-lg mt-2 p-4 right-0 border border-opacity-medium min-w-48">
-          {userData.map(item => (
-            <div key={item.id} className="flex flex-col">
-              <h2 className="text-lg font-semibold">{item.fullName}</h2>
-              <span className="text-sm text-gray-medium font-semibold mb-2">
-                {item.email}
-              </span>
-              <div className="border-opacity-medium mb-2" />
-              <div className="flex flex-col gap-2">
-                {item.options.map(option => (
-                  <Link href={option.href} key={option.id}>
-                    <div className="text-sm text-gray-medium px-2 py-1 hover:bg-hoverBg rounded-md cursor-pointer">
-                      {option.text}
-                    </div>
-                  </Link>
-                ))}
+        <Portal>
+          <div className="absolute bg-gray-dark rounded-lg mt-2 p-4 right-0 top-12 z-10  border border-opacity-medium min-w-48">
+            {userData.map(item => (
+              <div key={item.id} className="flex flex-col">
+                <h2 className="text-lg font-semibold">{item.fullName}</h2>
+                <span className="text-sm text-gray-medium font-semibold mb-2">
+                  {item.email}
+                </span>
+                <div className="border-opacity-medium mb-2" />
+                <div className="flex flex-col gap-2">
+                  {item.options.map(option => (
+                    <Link href={option.href} key={option.id}>
+                      <div className="text-sm text-gray-medium px-2 py-1 hover:bg-hoverBg rounded-md cursor-pointer">
+                        {option.text}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="mt-2"
+                  onClick={handleSignOut}
+                >
+                  Log Out
+                </Button>
               </div>
-              <Button
-                variant="secondary"
-                size="sm"
-                className="mt-2"
-                onClick={handleSignOut}
-              >
-                Log Out
-              </Button>
-
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Portal>
       )}
     </div>
   )

@@ -5,15 +5,19 @@ interface PaginationProps {
   totalItems: number | string
   handlePrevious: () => void
   handleNext: () => void
+  ITEMS_PER_PAGE: number
 }
 
-function Pagination({ totalItems, handleNext, handlePrevious }: PaginationProps) {
+function Pagination({ totalItems, handleNext, handlePrevious, ITEMS_PER_PAGE }: PaginationProps) {
   return (
     <div className="flex justify-between items-center gap-4 mx-4 my-3">
       <div className="flex items-center gap-2">
         <div className="text-gray-500 text-sm">
           Showing&nbsp;
-          <span className="text-base font-medium">1-15</span>
+          <span className="text-base font-medium">
+            1-
+            {ITEMS_PER_PAGE}
+          </span>
             &nbsp;of&nbsp;
           <span className="text-base font-medium">{totalItems}</span>
         </div>

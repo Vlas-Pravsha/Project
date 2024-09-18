@@ -3,25 +3,19 @@
 import MainLayout from '@/components/layout/MainLayout'
 import { Button, Input } from '@/components/ui'
 import { useProducts } from '@/contexts/'
-import { useDebounce, useModal, usePagination } from '@/hooks/'
-import { Plus } from 'lucide-react'
-import React, { useState } from 'react'
+import { useModal, usePagination } from '@/hooks/'
+import { Plus, Trash2 } from 'lucide-react'
+import React from 'react'
 import FormModal from './components/FormModal'
 import Pagination from './components/Pagination'
 import Table from './components/Table'
 
 const tableHeaderArray = ['PRODUCT NAME', 'TECHNOLOGY', 'DESCRIPTION', 'ID', 'PRICE', 'DISCOUNT', 'ACTIONS']
-const ITEMS_PER_PAGE = 15
+const ITEMS_PER_PAGE = 12
 
 function Products() {
-  const [searchValue, setSearchValue] = useState('')
-  const debouncedSearch = useDebounce<string>(searchValue)
-  const { products, loading } = useProducts()
+  const { filteredProducts, loading, handleSearchChange } = useProducts()
   const formModalProps = useModal()
-
-  const filteredProducts = products.filter(item =>
-    item.name.toLowerCase().includes(debouncedSearch.toLowerCase()),
-  )
 
   const {
     currentProducts,
@@ -35,12 +29,15 @@ function Products() {
         <div className="w-full">
           <h2 className="text-2xl font-semibold my-4 mx-6">All products</h2>
           <div className="flex justify-between mb-4 mx-5">
-            <Input
-              placeholder="Search for product"
-              className="max-w-sm"
-              value={searchValue}
-              onChange={event => setSearchValue(event.target.value)}
-            />
+            <div className="flex gap-4 items-center">
+              <div className="border-r-2 border-opacity-medium pr-4 min-w-96">
+                <Input
+                  placeholder="Search for product"
+                  onChange={handleSearchChange}
+                />
+              </div>
+              <Trash2 className="w-6 h-6" />
+            </div>
             <Button
               variant="primary"
               size="md"
@@ -56,7 +53,8 @@ function Products() {
             tableHeaderArray={tableHeaderArray}
           />
           <Pagination
-            totalItems={products.length}
+            ITEMS_PER_PAGE={ITEMS_PER_PAGE}
+            totalItems={filteredProducts.length}
             handlePrevious={handlePreviousPage}
             handleNext={handleNextPage}
           />

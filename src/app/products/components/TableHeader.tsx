@@ -1,13 +1,26 @@
 import CheckBox from '@/components/ui/CheckBox'
+import { useProducts } from '@/contexts'
+import type { ProductItem } from '@/contexts'
 
-function TableHeader({ tableHeaderArray }: { tableHeaderArray: string[] }) {
-  const thStyle = 'text-left p-4 text-xs font-medium bg-gray-darkest  text-gray-medium'
+interface TableHeaderProps {
+  tableHeaderArray: string[]
+  products: ProductItem[]
+}
+
+function TableHeader({ tableHeaderArray, products }: TableHeaderProps) {
+  const { handleCheckboxChange } = useProducts()
+
+  const thStyle = 'text-left p-4 text-xs font-medium"  text-gray-medium'
 
   return (
     <thead>
       <tr className="bg-gray-dark">
         <th className={thStyle}>
-          <CheckBox />
+          <CheckBox
+            name="allSelect"
+            checked={!products.some(product => product?.isChecked !== true)}
+            onChange={handleCheckboxChange}
+          />
         </th>
         {tableHeaderArray.map(item => (
           <th className={thStyle} key={item}>

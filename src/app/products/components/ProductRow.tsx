@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui'
 import CheckBox from '@/components/ui/CheckBox'
+import { type ProductItem, useProducts } from '@/contexts/ProductsContext'
 import { useModal } from '@/hooks'
 import { Edit, Trash } from 'lucide-react'
 import React from 'react'
-import type { ProductItem } from '@/contexts/ProductsContext'
 import DeleteModal from './DeleteModal'
 
 interface ProductRowProps {
@@ -13,6 +13,7 @@ interface ProductRowProps {
 
 function ProductRow({ product, index }: ProductRowProps) {
   const deleteModalProps = useModal()
+  const { handleCheckboxChange } = useProducts()
 
   const { name, category, technology, id, description, price, discount } = product
   const slicedDescription = description.slice(0, 71)
@@ -21,7 +22,11 @@ function ProductRow({ product, index }: ProductRowProps) {
     <>
       <tr key={id} className="border-t border-opacity-medium">
         <td className="p-4">
-          <CheckBox />
+          <CheckBox
+            name={product.id.toString()}
+            checked={product?.isChecked || false}
+            onChange={handleCheckboxChange}
+          />
         </td>
         <td className="p-4">
           <div className="flex gap-2">

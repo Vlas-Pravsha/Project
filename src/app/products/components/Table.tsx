@@ -21,7 +21,7 @@ function Table({ tableHeaderArray, products, loading }: TableProps) {
 
   return (
     <table className="w-full border-b border-t border-opacity-medium">
-      <TableHeader tableHeaderArray={tableHeaderArray} />
+      <TableHeader tableHeaderArray={tableHeaderArray} products={products} />
       <tbody>
         {products.map((product, index) => (
           <ProductRow key={product.id} product={product} index={index} />

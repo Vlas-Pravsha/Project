@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 import { Clock4 } from 'lucide-react'
 import React from 'react'
 
-import type { FC, HTMLAttributes, PropsWithChildren } from 'react'
+import type { FC, HTMLAttributes, ImgHTMLAttributes, PropsWithChildren } from 'react'
 
 const CardLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -36,10 +36,7 @@ function CardDescription({ children, className, ...props }: HTMLAttributes<HTMLP
   )
 }
 
-interface CardImageProps extends HTMLAttributes<HTMLImageElement> {
-  src: string
-  alt: string
-}
+interface CardImageProps extends ImgHTMLAttributes<HTMLImageElement> {}
 
 function CardImage({ src, alt, className, ...props }: CardImageProps) {
   return (

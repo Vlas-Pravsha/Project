@@ -25,7 +25,7 @@ function Header({ toggleSidebar }: { toggleSidebar: () => void }) {
   }
 
   return (
-    <div className="bg-gray-darkest  fixed top-0 left-0 right-0 z-10 border-b border-opacity-medium">
+    <div className="bg-gray-darkest fixed top-0 left-0 right-0 z-10 border-b border-opacity-medium">
       <div className="flex items-center justify-between p-3 px-6 mx-auto">
         <div className="flex items-center gap-8">
           <button onClick={toggleSidebar} className="p-2 rounded-lg hover:bg-gray-dark">

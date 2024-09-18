@@ -1,10 +1,12 @@
-import React from 'react'
+import type { InputHTMLAttributes } from 'react'
 import styles from '../style/Checkbox.module.css'
 
-function CheckBox() {
+interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {}
+
+function CheckBox({ ...props }: CheckBoxProps) {
   return (
     <div className={styles.wrapper}>
-      <input type="checkbox" className={styles.input} />
+      <input type="checkbox" className={styles.input} {...props} />
     </div>
   )
 }

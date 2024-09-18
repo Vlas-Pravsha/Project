@@ -10,7 +10,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const inputVariants = cva(
-  'w-full p-2 rounded-md bg-gray-dark border-2',
+  'w-full p-2 rounded-lg bg-gray-dark border-2',
   {
     variants: {
       variant: {
