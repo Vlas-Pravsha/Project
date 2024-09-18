@@ -6,7 +6,7 @@ import type { FC, HTMLAttributes, PropsWithChildren } from 'react'
 
 const CardLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className={cn('max-w-md p-5 flex flex-col justify-center items-center bg-gray800 rounded-lg gap-5')}>
+    <div className={cn('max-w-md p-5 flex flex-col justify-center items-center bg-gray-darkest  rounded-lg gap-5')}>
       {children}
     </div>
   )

@@ -15,12 +15,12 @@ function NavItem({ item, openSideBar }: { item: SideBarType, openSideBar: boolea
   return (
     <Link
       href={`${item.href}`}
-      className="flex items-center justify-between p-2 rounded-lg cursor-pointer hover:bg-gray700"
+      className="flex items-center justify-between p-2 rounded-lg cursor-pointer hover:bg-gray-dark"
       onClick={() => setSubMenuOpen(!subMenuOpen)}
     >
       <div className="flex items-center gap-3">
         {item.icon}
-        <span className={`${openSideBar ? 'flex' : 'hidden'} text-gray100 text-md font-medium`}>{item.mainTitle}</span>
+        <span className={`${openSideBar ? 'flex' : 'hidden'} text-gray-light text-md font-medium`}>{item.mainTitle}</span>
       </div>
     </Link>
   )

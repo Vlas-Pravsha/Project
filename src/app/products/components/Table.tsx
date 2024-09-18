@@ -20,7 +20,7 @@ function Table({ tableHeaderArray, products, loading }: TableProps) {
   }
 
   return (
-    <table className="w-full border-b border-t border-gray100Opacity">
+    <table className="w-full border-b border-t border-opacity-medium">
       <TableHeader tableHeaderArray={tableHeaderArray} />
       <tbody>
         {products.map((product, index) => (

@@ -49,7 +49,7 @@ function FormModal({ formModalProps }: FormModalProps) {
   return (
     <Modal {...formModalProps} onClose={formModalProps.onClose}>
       <Modal.Content className="w-[640px] p-6">
-        <div className="flex justify-between pb-6 border-b border-gray100Opacity">
+        <div className="flex justify-between pb-6 border-b border-opacity-medium">
           <h4 className="text-xl font-semibold">Add Product</h4>
           <Image
             src="/exit.svg"
@@ -88,7 +88,7 @@ function FormModal({ formModalProps }: FormModalProps) {
               rows={5}
             />
           </Label>
-          <Modal.Footer className="flex justify-between pt-6 border-t border-gray100Opacity">
+          <Modal.Footer className="flex justify-between pt-6 border-t border-opacity-medium">
             <Button type="submit" variant="primary">Add product</Button>
           </Modal.Footer>
         </form>

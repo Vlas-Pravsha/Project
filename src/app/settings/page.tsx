@@ -61,7 +61,7 @@ function UserSetting() {
     <div className="w-full flex flex-col gap-4 p-4">
       <div className="w-full flex flex-row gap-4">
         <div className="flex flex-col gap-4 min-w-[30%]">
-          <div className="flex gap-5 bg-gray800 border border-gray100Opacity rounded-lg p-6">
+          <div className="flex gap-5 bg-gray-darkest  border border-opacity-medium rounded-lg p-6">
             <Image
               src="/neil-sims.png"
               alt="Avatar"
@@ -73,7 +73,7 @@ function UserSetting() {
             <div className="flex flex-col gap-5">
               <div className="flex flex-col">
                 <h2 className="text-xl font-bold">Profile picture</h2>
-                <p className="text-sm text-gray500">
+                <p className="text-sm text-gray-medium">
                   JPG, GIF or PNG. Max size of 800K
                 </p>
               </div>
@@ -83,7 +83,7 @@ function UserSetting() {
               </div>
             </div>
           </div>
-          <div className="bg-gray800 rounded-lg w-full  p-6">
+          <div className="bg-gray-darkest  rounded-lg w-full  p-6">
             <h2 className="text-2xl font-bold mb-6">Personal data</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <Label errorText={errors.email?.message} hasError={errors.email} title="Your e-mail">

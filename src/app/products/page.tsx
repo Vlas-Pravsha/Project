@@ -31,7 +31,7 @@ function Products() {
 
   return (
     <MainLayout>
-      <div className="flex bg-gray800">
+      <div className="flex bg-gray-darkest ">
         <div className="w-full">
           <h2 className="text-2xl font-semibold my-4 mx-6">All products</h2>
           <div className="flex justify-between mb-4 mx-5">

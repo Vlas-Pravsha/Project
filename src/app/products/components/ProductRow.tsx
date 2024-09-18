@@ -19,7 +19,7 @@ function ProductRow({ product, index }: ProductRowProps) {
 
   return (
     <>
-      <tr key={id} className="border-t border-gray100Opacity">
+      <tr key={id} className="border-t border-opacity-medium">
         <td className="p-4">
           <CheckBox />
         </td>
@@ -27,13 +27,13 @@ function ProductRow({ product, index }: ProductRowProps) {
           <div className="flex gap-2">
             <div className="flex flex-col">
               <div className="text-lg font-semibold">{name}</div>
-              <span className="text-sm text-gray500">{category}</span>
+              <span className="text-sm text-gray-medium">{category}</span>
             </div>
           </div>
         </td>
         <td className="p-4">{technology}</td>
         <td className="p-4">
-          <span className="text-sm text-gray500">{`${description.length > 70 ? `${slicedDescription}...` : description}`}</span>
+          <span className="text-sm text-gray-medium">{`${description.length > 70 ? `${slicedDescription}...` : description}`}</span>
         </td>
         <td className="p-4">
           <span className="text-sm">{index}</span>

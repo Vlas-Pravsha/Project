@@ -31,7 +31,7 @@ const ModalLayout: FC<PropsWithChildren<ModalProps>> = ({
 
 function ModalText({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p {...props} className={cn('text-gray300 text-lg font-medium', className)}>
+    <p {...props} className={cn('text-gray-medium text-lg font-medium', className)}>
       {children}
     </p>
   )
@@ -55,7 +55,7 @@ function ModalFooter({ children, className, ...props }: HTMLAttributes<HTMLDivEl
 
 function ModalContent({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div {...props} className={cn('w-[425px] flex flex-col gap-4 bg-gray800 rounded-lg p-4', className)}>
+    <div {...props} className={cn('w-[425px] flex flex-col gap-4 bg-gray-darkest  rounded-lg p-4', className)}>
       {children}
     </div>
   )

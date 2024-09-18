@@ -42,7 +42,7 @@ function General() {
   }
 
   return (
-    <div className="w-full bg-gray800 border border-gray100Opacity rounded-lg p-6">
+    <div className="w-full bg-gray-darkest  border border-opacity-medium rounded-lg p-6">
       <form
         className="w-full flex flex-col gap-6 p-8"
         onSubmit={handleSubmit(onSubmit)}

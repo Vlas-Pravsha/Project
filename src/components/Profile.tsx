@@ -36,18 +36,18 @@ function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: Use
         />
       </div>
       {isOpen && (
-        <div className="absolute bg-gray700 rounded-lg mt-2 p-4 right-0 border border-gray100Opacity min-w-48">
+        <div className="absolute bg-gray-dark rounded-lg mt-2 p-4 right-0 border border-opacity-medium min-w-48">
           {userData.map(item => (
             <div key={item.id} className="flex flex-col">
               <h2 className="text-lg font-semibold">{item.fullName}</h2>
-              <span className="text-sm text-gray200 font-semibold mb-2">
+              <span className="text-sm text-gray-medium font-semibold mb-2">
                 {item.email}
               </span>
-              <div className="border-gray100Opacity mb-2" />
+              <div className="border-opacity-medium mb-2" />
               <div className="flex flex-col gap-2">
                 {item.options.map(option => (
                   <Link href={option.href} key={option.id}>
-                    <div className="text-sm text-gray200 px-2 py-1 hover:bg-hoverBg rounded-md cursor-pointer">
+                    <div className="text-sm text-gray-medium px-2 py-1 hover:bg-hoverBg rounded-md cursor-pointer">
                       {option.text}
                     </div>
                   </Link>

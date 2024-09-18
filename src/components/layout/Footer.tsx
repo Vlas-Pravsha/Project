@@ -6,7 +6,7 @@ function Footer() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="w-full flex justify-between items-center bg-gray800 border border-gray100Opacity rounded-lg p-8 ">
+      <div className="w-full flex justify-between items-center bg-gray-darkest  border border-opacity-medium rounded-lg p-8 ">
         <div className="flex items-center flex-wrap gap-6 md:gap-4">
           {footerMenuItems.map(item => (
             <div key={item.id} className="text-sm font-light text-gray-400 hover:cursor-pointe">

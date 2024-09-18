@@ -13,7 +13,7 @@
     height: 100%;
     background-color: var(--gray-700);
     border-radius: 4px;
-    border: 1px solid var(--gray-100-opacity);
+    border: 1px solid var(--opacity-medium);
     &:checked {
       background-color: #1c64f2;
       background-image: url(/check.svg);

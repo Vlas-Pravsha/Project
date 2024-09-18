@@ -16,7 +16,7 @@ function NotFoundPage() {
         />
         <div className="max-w-[900px] flex flex-col justify-center items-center text-center gap-4">
           <h1 className="text-4xl font-bold md:text-5xl sm:text-2xl">Page not found</h1>
-          <p className="text-lg font-medium text-gray500 mb-5 sm:text-base">
+          <p className="text-lg font-medium text-gray-medium mb-5 sm:text-base">
             Oops! Looks like you followed a bad link. If you think this is a
             problem with us, please tell us.
           </p>

@@ -19,7 +19,7 @@
 
 .nav {
   grid-area: n;
-  border-right: 1px solid var(--gray-100-opacity);
+  border-right: 1px solid var(--opacity-medium);
 }
 
 .header {
@@ -27,7 +27,7 @@
 }
 
 .app {
-  background-color: var(--gray-900);
+  background-color: var(--color-secondary);
   grid-area: c;
 }
 

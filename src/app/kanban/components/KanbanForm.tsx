@@ -47,7 +47,7 @@ function KanbanForm({ cardModalProps }: FormModalProps) {
   return (
     <Modal {...cardModalProps} onClose={cardModalProps.onClose}>
       <Modal.Content className="w-[640px] p-6">
-        <div className="flex justify-between pb-6 border-b border-gray100Opacity">
+        <div className="flex justify-between pb-6 border-b border-opacity-medium">
           <h4 className="text-xl font-semibold">Add new task</h4>
           <Image
             src="/exit.svg"
@@ -76,7 +76,7 @@ function KanbanForm({ cardModalProps }: FormModalProps) {
             />
           </Label>
           <Upload {...register('image')} />
-          <Modal.Footer className="flex pt-6 border-t border-gray100Opacity">
+          <Modal.Footer className="flex pt-6 border-t border-opacity-medium">
             <Button type="submit" variant="primary" iconBefore={<Plus className="w-4 h-4" color="white" />}>Add card</Button>
             <Button variant="secondary" onClick={cardModalProps.onClose}>Close</Button>
           </Modal.Footer>

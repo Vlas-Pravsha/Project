@@ -13,27 +13,24 @@ const config: Config = {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        gray100: 'var(--gray-100)', /* nav-text-color */
-        gray400: 'var(--gray-400)', /* ligth-grey-text */
-        gray500: 'var(--gray-500)', /* ligth-text-color */
-        gray700: 'var(--gray-700)', /* dark-grey-bg */
-        gray900: 'var(--gray-900)', /* dark-blue-bg */
-        gray800: 'var(--gray-800)', /* component-bg */
-        gray50Opacity: 'var(--gray-50-opacity)', /* hover-bg */
-        blue500: 'var(--blue-500)', /* link-color-blue */
-        blue600: 'var(--blue-600)', /* dark-blue */
-        gray100Opacity: 'var(--gray-100-opacity)', /* border-color */
-        gray700Bg: 'var(--gray-700-bg)', /* profile-header-bg */
-        gray200: 'var(--gray-200)', /* profile-text-color */
-        gray400Bg: 'var(--gray-400-bg)', /* node-input-bg */
-        gray600HoverBg: 'var(--gray-600-hover-bg)', /* dashboard-hover-color-bg */
-        gray500Icon: 'var(--gray-500-icon)', /* icons-color */
-        red500: 'var(--red-500)', /* iconsColor */
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        accent: 'var(--color-accent)',
+        danger: 'var(--color-danger)',
+        gray: {
+          lightest: 'var(--gray-lightest)',
+          light: 'var(--gray-light)',
+          medium: 'var(--gray-medium)',
+          dark: 'var(--gray-dark)',
+          darkest: 'var(--gray-darkest)',
+        },
+        opacity: {
+          light: 'var(--opacity-light)',
+          medium: 'var(--opacity-medium)',
+        },
       },
       fontFamily: {
         roboto: 'var(--font-roboto)',
-        openSans: 'var(--font-open-sans)',
-        yellowtail: 'var(--font-yellowtail)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',

@@ -1,11 +1,11 @@
 import CheckBox from '@/components/ui/CheckBox'
 
 function TableHeader({ tableHeaderArray }: { tableHeaderArray: string[] }) {
-  const thStyle = 'text-left p-4 text-xs font-medium bg-gray800 text-gray500'
+  const thStyle = 'text-left p-4 text-xs font-medium bg-gray-darkest  text-gray-medium'
 
   return (
     <thead>
-      <tr className="bg-gray700">
+      <tr className="bg-gray-dark">
         <th className={thStyle}>
           <CheckBox />
         </th>

@@ -15,10 +15,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-blue600 text-white hover:bg-blue500',
-        secondary: 'bg-gray800 text-gray500 border border-gray100Opacity hover:text-white',
-        dashed: 'bg-transparent text-gray-500 border-2 border-dashed border-gray100Opacity',
-        delete: 'bg-red500 text-white hover:bg-red-700',
+        primary: 'bg-accent text-white hover:bg-accent',
+        secondary: 'bg-gray-darkest text-gray-medium border border-opacity-medium hover:text-white',
+        dashed: 'bg-transparent text-gray-500 border-2 border-dashed border-opacity-medium',
+        delete: 'bg-danger text-white hover:bg-red-700',
       },
       size: {
         sm: 'h-8 px-4 text-sm font-medium',
