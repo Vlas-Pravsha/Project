@@ -6,7 +6,7 @@ import type { FieldError } from 'react-hook-form'
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder: string
   hasError?: FieldError | undefined
-  type?: 'password' | 'text' | 'email' | 'number'
+  type?: React.HTMLInputTypeAttribute
 }
 
 const inputVariants = cva(

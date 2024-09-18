@@ -1,17 +1,19 @@
 'use client'
 
 import { Button, Input, Label } from '@/components/ui'
+import { usePasswordVisibility } from '@/hooks'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Chrome, Eye, EyeOff, Github } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { toast, ToastContainer } from 'react-toastify'
 
+import { toast, ToastContainer } from 'react-toastify'
 import * as z from 'zod'
 import type { MouseEvent } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
+
 import { signup } from '../actions'
 
 import { signInWithGithub, signInWithGoogle } from '../authUtils'
@@ -33,8 +35,8 @@ type FormData = z.infer<typeof schema>
 
 export default function SignUp() {
   const [loading, setLoading] = useState<boolean>(false)
-  const [showCurrentPassword, setShowCurrentPassword] = useState(false)
-  const [showNewPassword, setShowNewPassword] = useState(false)
+  const currentPassword = usePasswordVisibility()
+  const newPassword = usePasswordVisibility()
 
   const router = useRouter()
 
@@ -85,16 +87,6 @@ export default function SignUp() {
     }
   }
 
-  const toggleCurrentPassword = (event: MouseEvent) => {
-    event.preventDefault()
-    setShowCurrentPassword(!showCurrentPassword)
-  }
-
-  const toggleNewPassword = (event: MouseEvent) => {
-    event.preventDefault()
-    setShowNewPassword(!showNewPassword)
-  }
-
   return (
     <div className="flex items-center justify-between min-h-screen">
       <div className="custom-gradient w-full flex justify-center min-h-screen  items-center flex-col gap-12">
@@ -114,16 +106,16 @@ export default function SignUp() {
             <Label errorText={errors.password?.message} hasError={errors.password}>
               <div className="relative">
                 <Input
-                  type={showCurrentPassword ? 'text' : 'password'}
-                  placeholder="your very secret password"
-                  {...register('password')}
                   hasError={errors.password}
+                  placeholder="your very secret password"
+                  type={currentPassword.inputType}
+                  {...register('password')}
                 />
                 <button
-                  onClick={event => toggleCurrentPassword(event)}
+                  onClick={currentPassword.togglePasswordVisibility}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
                 >
-                  {showCurrentPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                  {currentPassword.passwordShown ? <Eye size={20} /> : <EyeOff size={20} />}
                 </button>
               </div>
             </Label>
@@ -131,16 +123,16 @@ export default function SignUp() {
               <Label errorText={errors.confirmPassword?.message} hasError={errors.confirmPassword}>
                 <div className="relative">
                   <Input
-                    type={showNewPassword ? 'text' : 'password'}
-                    placeholder="confirm your password"
-                    {...register('confirmPassword')}
                     hasError={errors.confirmPassword}
+                    placeholder="confirm your password"
+                    type={newPassword.inputType}
+                    {...register('confirmPassword')}
                   />
                   <button
-                    onClick={event => toggleNewPassword(event)}
+                    onClick={newPassword.togglePasswordVisibility}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
                   >
-                    {showNewPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                    {newPassword.passwordShown ? <Eye size={20} /> : <EyeOff size={20} />}
                   </button>
                 </div>
               </Label>

@@ -2,10 +2,10 @@
 
 import Footer from '@/components/layout/Footer'
 import { Button, Input, Label } from '@/components/ui'
+import { usePasswordVisibility } from '@/hooks/'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeOff } from 'lucide-react'
 import Image from 'next/image'
-import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import type { MouseEvent } from 'react'
@@ -20,8 +20,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 function UserSetting() {
-  const [showCurrentPassword, setShowCurrentPassword] = useState(false)
-  const [showNewPassword, setShowNewPassword] = useState(false)
+  const currentPassword = usePasswordVisibility()
+  const newPassword = usePasswordVisibility()
 
   const {
     register,
@@ -40,16 +40,6 @@ function UserSetting() {
   const onSubmit = (data: FormData) => {
     // eslint-disable-next-line no-console
     console.log(data)
-  }
-
-  const toggleCurrentPassword = (event: MouseEvent) => {
-    event.preventDefault()
-    setShowCurrentPassword(!showCurrentPassword)
-  }
-
-  const toggleNewPassword = (event: MouseEvent) => {
-    event.preventDefault()
-    setShowNewPassword(!showNewPassword)
   }
 
   const handleResetForm = (event: MouseEvent) => {
@@ -92,41 +82,37 @@ function UserSetting() {
               <div>
                 <h3 className="text-xl font-semibold mb-4">Пароль</h3>
                 <div className="space-y-4">
-                  <Label errorText={errors.currentPassword?.message}hasError={errors.currentPassword}title="Current password">
+                  <Label errorText={errors.currentPassword?.message} hasError={errors.currentPassword} title="Current password">
                     <div className="relative">
                       <Input
                         hasError={errors.currentPassword}
                         placeholder="password"
-                        type={showCurrentPassword ? 'text' : 'password'}
+                        type={currentPassword.inputType}
                         {...register('currentPassword')}
                       />
                       <button
-                        onClick={event => toggleCurrentPassword(event)}
+                        onClick={currentPassword.togglePasswordVisibility}
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
                       >
-                        {showCurrentPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                        {currentPassword.passwordShown ? <Eye size={20} /> : <EyeOff size={20} />}
                       </button>
                     </div>
                   </Label>
 
-                  <Label
-                    errorText={errors.newPassword?.message}
-                    hasError={errors.newPassword}
-                    title="New password"
-                  >
+                  <Label errorText={errors.newPassword?.message} hasError={errors.newPassword} title="New password">
                     <div className="relative">
                       <Input
                         hasError={errors.newPassword}
                         placeholder="password"
-                        type={showNewPassword ? 'text' : 'password'}
+                        type={newPassword.inputType}
                         id="newPassword"
                         {...register('newPassword')}
                       />
                       <button
-                        onClick={event => toggleNewPassword(event)}
+                        onClick={newPassword.togglePasswordVisibility}
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
                       >
-                        {showNewPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                        {newPassword.passwordShown ? <Eye size={20} /> : <EyeOff size={20} />}
                       </button>
                     </div>
                   </Label>
