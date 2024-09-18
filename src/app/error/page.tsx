@@ -19,7 +19,7 @@ function Error() {
         <div className="max-w-[900px] flex flex-col justify-center items-center text-center gap-4">
           <h1 className="text-4xl font-bold md:text-5xl sm:text-2xl">Something has gone seriously wrong</h1>
           <p className="text-lg font-medium text-gray-medium mb-5 sm:text-base">
-            It's always time for a coffee break. We should be back by the time you finish your coffee.
+            It&apos;s always time for a coffee break. We should be back by the time you finish your coffee.
           </p>
           <Link href="/">
             <Button variant="primary" size="sm">Go back home</Button>

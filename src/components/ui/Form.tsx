@@ -84,6 +84,8 @@ const FormComponent = React.forwardRef<
   </FormLayout>
 ))
 
+FormComponent.displayName = 'FormComponent'
+
 export const Form = Object.assign(FormComponent, {
   Field: FormField,
   Label: FormLabel,

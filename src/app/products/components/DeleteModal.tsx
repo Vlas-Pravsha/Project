@@ -48,7 +48,7 @@ function DeleteModal({ deleteModalProps, id }: DeleteModalProps) {
             variant="delete"
             onClick={() => handleDeleteProduct(id)}
           >
-            Yes, I'm sure
+            Yes, I&apos;m sure
           </Button>
           <Button variant="secondary" onClick={deleteModalProps.onClose}>No, cancel</Button>
         </Modal.Footer>
