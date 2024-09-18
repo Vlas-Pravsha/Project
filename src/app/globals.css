@@ -5,7 +5,7 @@
 .light {
   --color-primary: #ffffff;
   --color-secondary: #111827;
-  --color-accent: #3b82f6;
+  --color-accent: #2563eb;
   --color-danger: #dc2626;
   
   --gray-lightest: #f9fafb;
@@ -21,7 +21,7 @@
 .dark {
   --color-primary: #000000;
   --color-secondary: #f9fafb;
-  --color-accent: #3b82f6;
+  --color-accent: #2563eb;
   --color-danger: #dc2626;
   
   --gray-lightest: #111827;

@@ -9,7 +9,7 @@ interface SideBarType {
   href?: string
 }
 
-function NavItem({ item, openSideBar }: { item: SideBarType, openSideBar: boolean }) {
+function SidebarItem({ item, openSideBar }: { item: SideBarType, openSideBar: boolean }) {
   const [subMenuOpen, setSubMenuOpen] = useState(false)
 
   return (
@@ -26,4 +26,4 @@ function NavItem({ item, openSideBar }: { item: SideBarType, openSideBar: boolea
   )
 }
 
-export default NavItem
+export default SidebarItem

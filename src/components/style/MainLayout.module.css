@@ -19,7 +19,6 @@
 
 .nav {
   grid-area: n;
-  border-right: 1px solid var(--opacity-medium);
 }
 
 .header {

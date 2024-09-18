@@ -7,8 +7,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function constructMetadata({
-  title = 'Dashboard',
-  description = 'Create Dashboard',
+  title = 'Crm',
+  description = 'Create Crm',
   icons = '',
 }: {
   title?: string

@@ -11,7 +11,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Profile from '../Profile'
 
-function Header({ setOpenSideBar }: { setOpenSideBar: any }) {
+function Header({ toggleSidebar }: { toggleSidebar: () => void }) {
   const { theme, toggleTheme } = useTheme()
   const { user, setUser, loading } = useUser()
 
@@ -28,7 +28,7 @@ function Header({ setOpenSideBar }: { setOpenSideBar: any }) {
     <div className="bg-gray-darkest  fixed top-0 left-0 right-0 z-10 border-b border-opacity-medium">
       <div className="flex items-center justify-between p-3 px-6 mx-auto">
         <div className="flex items-center gap-8">
-          <button onClick={() => setOpenSideBar((prev: boolean) => !prev)} className="p-2 rounded-lg hover:bg-gray-dark">
+          <button onClick={toggleSidebar} className="p-2 rounded-lg hover:bg-gray-dark">
             <Menu className="w-6 h-6 text-gray-mediumIcon" />
           </button>
           <Link href="/">

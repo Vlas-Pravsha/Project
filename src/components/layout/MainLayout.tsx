@@ -8,10 +8,14 @@ import Sidebar from './Sidebar'
 function MainLayout({ children }: { children: React.ReactNode }) {
   const [openSideBar, setOpenSideBar] = useLocalStorage<boolean>('sideBar', true)
 
+  const toggleSidebar = () => {
+    setOpenSideBar((prev: boolean) => !prev)
+  }
+
   return (
     <div className={`${openSideBar ? styles.openSideBar : styles.closeSideBar} ${styles.container}`}>
       <div className={styles.header}>
-        <Header setOpenSideBar={setOpenSideBar} />
+        <Header toggleSidebar={toggleSidebar} />
       </div>
       <div className={styles.nav}>
         <Sidebar openSideBar={openSideBar} />
