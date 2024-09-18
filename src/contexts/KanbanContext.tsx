@@ -1,5 +1,6 @@
 'use client'
 
+import { getErrorMessage } from '@/types/'
 import { createClient } from '@/utils/supabase/client'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import type { CardFormData } from '@/app/kanban/components/KanbanForm'
@@ -34,8 +35,9 @@ function KanbanContextProvider({ children }: { children: ReactNode }) {
 
       setKanbanCard(data || [])
     }
-    catch (error: any) {
-      console.error('Error fetching kanbanCards:', error.message)
+    catch (error) {
+      const { message } = getErrorMessage(error)
+      console.error('Error fetching kanbanCards:', message)
     }
     finally {
       setLoading(false)
@@ -65,8 +67,9 @@ function KanbanContextProvider({ children }: { children: ReactNode }) {
 
       setKanbanCard(prevCard => [...prevCard, data[0]])
     }
-    catch (error: any) {
-      console.error('Error adding card:', error.message)
+    catch (error) {
+      const { message } = getErrorMessage(error)
+      console.error('Error adding card:', message)
     }
   }
 
@@ -78,8 +81,9 @@ function KanbanContextProvider({ children }: { children: ReactNode }) {
 
       setKanbanCard(prevCard => prevCard.filter(card => card.id !== cardId))
     }
-    catch (error: any) {
-      console.error('Error deleting card:', error.message)
+    catch (error) {
+      const { message } = getErrorMessage(error)
+      console.error('Error deleting card:', message)
     }
   }
 

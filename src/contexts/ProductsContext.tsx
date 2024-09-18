@@ -1,5 +1,6 @@
 'use client'
 
+import { getErrorMessage } from '@/types'
 import { createClient } from '@/utils/supabase/client'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import type { ProductFormData } from '@/app/products/components/FormModal'
@@ -34,8 +35,9 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
 
       setProducts(data || [])
     }
-    catch (error: any) {
-      console.error('Error fetching products:', error.message)
+    catch (error) {
+      const { message } = getErrorMessage(error)
+      console.error('Error fetching products:', message)
     }
     finally {
       setLoading(false)
@@ -69,8 +71,9 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
 
       setProducts(prevProducts => [...prevProducts, data[0]])
     }
-    catch (error: any) {
-      console.error('Error adding product:', error.message)
+    catch (error) {
+      const { message } = getErrorMessage(error)
+      console.error('Error adding product:', message)
     }
   }
 
@@ -82,8 +85,9 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
 
       setProducts(prevProducts => prevProducts.filter(product => product.id !== productId))
     }
-    catch (error: any) {
-      console.error('Error deleting product:', error.message)
+    catch (error) {
+      const { message } = getErrorMessage(error)
+      console.error('Error deleting product:', message)
     }
   }
 
