@@ -44,6 +44,11 @@ function KanbanForm({ cardModalProps }: FormModalProps) {
     }
   }, [cardModalProps.open, reset])
 
+  const handleCloseModal = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    cardModalProps.onClose()
+  }
+
   return (
     <Modal {...cardModalProps} onClose={cardModalProps.onClose}>
       <Modal.Content className="w-[640px] p-6">
@@ -78,7 +83,7 @@ function KanbanForm({ cardModalProps }: FormModalProps) {
           <Upload {...register('image')} />
           <Modal.Footer className="flex pt-6 border-t border-opacity-medium">
             <Button type="submit" variant="primary" iconBefore={<Plus className="w-4 h-4" color="white" />}>Add card</Button>
-            <Button variant="secondary" onClick={cardModalProps.onClose}>Close</Button>
+            <Button variant="secondary" onClick={event => handleCloseModal(event)}>Close</Button>
           </Modal.Footer>
         </form>
       </Modal.Content>

@@ -5,15 +5,18 @@ import type { ModalProps } from '@/hooks/useModal'
 
 interface DeleteModalProps {
   deleteModalProps: ModalProps
-  id: string
+  id?: string
 }
 
 function DeleteModal({ deleteModalProps, id }: DeleteModalProps) {
-  const { deleteProduct } = useProducts()
+  const { deleteProduct, deleteProducts } = useProducts()
 
   const handleDeleteProduct = (id: string) => {
     deleteModalProps.onClose()
-    deleteProduct(id)
+    if (id) {
+      deleteProduct(id)
+    }
+    deleteProducts()
   }
 
   return (
@@ -39,14 +42,16 @@ function DeleteModal({ deleteModalProps, id }: DeleteModalProps) {
               height="60"
             />
             <Modal.Text>
-              Are you sure you want to delete this user?
+              {id
+                ? <p>Are you sure you want to delete this product?</p>
+                : <p>Do you want to remove this product from list?</p> }
             </Modal.Text>
           </div>
         </Modal.Body>
         <Modal.Footer className="flex justify-center p-2">
           <Button
             variant="delete"
-            onClick={() => handleDeleteProduct(id)}
+            onClick={() => handleDeleteProduct(id!)}
           >
             Yes, I&apos;m sure
           </Button>

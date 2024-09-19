@@ -13,19 +13,22 @@ export interface ProductItem extends ProductFormData {
 }
 
 interface ProductContextType {
+  loading: boolean
   products: ProductItem[]
   filteredProducts: ProductItem[]
   addProduct: (data: ProductItem) => Promise<void>
   updateProduct: (data: ProductItem) => Promise<void>
-  loading: boolean
   deleteProduct: (id: string) => Promise<void>
-  handleCheckboxChange: (event: any) => void
-  handleSearchChange: (event: any) => void
+  handleCheckboxChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  deleteProducts: () => Promise<void>
 }
 
 const supabase = createClient()
 
 const ProductsContext = createContext<ProductContextType | undefined>(undefined)
+
+const PRODUCTS_DATABASE = 'products'
 
 function ProductsContextProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
@@ -36,7 +39,7 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
   const fetchProducts = async () => {
     try {
       setLoading(true)
-      const { data, error } = await supabase.from('products').select('*')
+      const { data, error } = await supabase.from(PRODUCTS_DATABASE).select('*')
       if (error)
         throw error
 
@@ -62,7 +65,7 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
       if (!user) {
         throw new Error('User is not authenticated')
       }
-      const { data, error } = await supabase.from('products').insert([
+      const { data, error } = await supabase.from(PRODUCTS_DATABASE).insert([
         {
           name: newProduct.name,
           category: newProduct.category,
@@ -86,7 +89,7 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
 
   const deleteProduct = async (productId: string) => {
     try {
-      const { error } = await supabase.from('products').delete().match({ id: productId })
+      const { error } = await supabase.from(PRODUCTS_DATABASE).delete().match({ id: productId })
       if (error)
         throw error
 
@@ -95,6 +98,32 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
     catch (error) {
       const { message } = getErrorMessage(error)
       console.error('Error deleting product:', message)
+    }
+  }
+
+  const deleteProducts = async () => {
+    try {
+      const productsToDelete = products.filter(product => product.isChecked)
+      const productIdsToDelete = productsToDelete.map(product => product.id)
+
+      if (productIdsToDelete.length === 0) {
+        return
+      }
+
+      const { error } = await supabase
+        .from(PRODUCTS_DATABASE)
+        .delete()
+        .in('id', productIdsToDelete)
+
+      if (error)
+        throw error
+
+      setProducts(prevProducts => prevProducts.filter(product => !product.isChecked))
+    }
+
+    catch (error) {
+      const { message } = getErrorMessage(error)
+      console.error('Error deleting products:', message)
     }
   }
 
@@ -109,7 +138,7 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
       throw new Error('Product ID is required for update')
     }
 
-    const { error } = await supabase.from('products').update(updateProduct).match({
+    const { error } = await supabase.from(PRODUCTS_DATABASE).update(updateProduct).match({
       name: updateProduct.name,
       category: updateProduct.category,
       technology: updateProduct.technology,
@@ -157,6 +186,7 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
     products,
     filteredProducts,
     handleCheckboxChange,
+    deleteProducts,
     handleSearchChange,
   }), [loading, products, filteredProducts, searchValue])
 

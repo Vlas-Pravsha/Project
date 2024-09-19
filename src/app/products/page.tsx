@@ -6,16 +6,18 @@ import { useProducts } from '@/contexts/'
 import { useModal, usePagination } from '@/hooks/'
 import { Plus, Trash2 } from 'lucide-react'
 import React from 'react'
+import DeleteModal from './components/DeleteModal'
 import FormModal from './components/FormModal'
 import Pagination from './components/Pagination'
 import Table from './components/Table'
 
 const tableHeaderArray = ['PRODUCT NAME', 'TECHNOLOGY', 'DESCRIPTION', 'ID', 'PRICE', 'DISCOUNT', 'ACTIONS']
-const ITEMS_PER_PAGE = 12
+const ITEMS_PER_PAGE = 15
 
 function Products() {
   const { filteredProducts, loading, handleSearchChange } = useProducts()
   const formModalProps = useModal()
+  const deleteModalProps = useModal()
 
   const {
     currentProducts,
@@ -36,7 +38,10 @@ function Products() {
                   onChange={handleSearchChange}
                 />
               </div>
-              <Trash2 className="w-6 h-6" />
+              <Trash2
+                className="w-6 h-6 hover:cursor-pointer"
+                onClick={deleteModalProps.onOpen}
+              />
             </div>
             <Button
               variant="primary"
@@ -60,6 +65,7 @@ function Products() {
           />
         </div>
         <FormModal formModalProps={formModalProps} />
+        <DeleteModal deleteModalProps={deleteModalProps} />
       </div>
     </MainLayout>
   )

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/'
 import { useTheme } from '@/contexts/'
 
 import { useUser } from '@/hooks/'
-import { Loader2, Menu, Moon, Search, Sun } from 'lucide-react'
+import { Loader2, LogIn, Menu, Moon, Search, Sun } from 'lucide-react'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -64,8 +64,8 @@ function Header({ toggleSidebar }: { toggleSidebar: () => void }) {
               ? <Profile handleSignOut={handleSignOut} user={user} />
               : (
                   <Link href="/auth/sign-up">
-                    <Button variant="secondary" size="sm">
-                      Sign Up
+                    <Button variant="primary" size="sm" iconBefore={<LogIn />}>
+                      Login/Register
                     </Button>
                   </Link>
                 )}
