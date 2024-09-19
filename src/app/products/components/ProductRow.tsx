@@ -5,6 +5,7 @@ import { useModal } from '@/hooks'
 import { Edit, Trash } from 'lucide-react'
 import React from 'react'
 import DeleteModal from './DeleteModal'
+import FormModal from './FormModal'
 
 interface ProductRowProps {
   product: ProductItem
@@ -13,6 +14,8 @@ interface ProductRowProps {
 
 function ProductRow({ product, index }: ProductRowProps) {
   const deleteModalProps = useModal()
+  const formEditModalProps = useModal()
+
   const { handleCheckboxChange } = useProducts()
 
   const { name, category, technology, id, description, price, discount } = product
@@ -49,7 +52,7 @@ function ProductRow({ product, index }: ProductRowProps) {
         <td className="p-4">{discount}</td>
         <td className="p-4">
           <div className="flex gap-4">
-            <Button variant="primary" size="sm" iconBefore={<Edit className="w-4 h-4" color="white" />}>
+            <Button variant="primary" size="sm" iconBefore={<Edit className="w-4 h-4" color="white" />} onClick={formEditModalProps.onOpen}>
               Update
             </Button>
             <Button size="sm" variant="delete" iconBefore={<Trash className="w-4 h-4" color="white" />} onClick={deleteModalProps.onOpen}>
@@ -59,6 +62,7 @@ function ProductRow({ product, index }: ProductRowProps) {
         </td>
       </tr>
       <DeleteModal deleteModalProps={deleteModalProps} id={id} />
+      <FormModal modalProps={formEditModalProps} product={product} id={id} />
     </>
   )
 }

@@ -22,7 +22,9 @@ function Products() {
   const {
     currentProducts,
     handlePreviousPage,
+    totalPages,
     handleNextPage,
+    currentPage,
   } = usePagination(filteredProducts, ITEMS_PER_PAGE)
 
   return (
@@ -58,13 +60,15 @@ function Products() {
             tableHeaderArray={tableHeaderArray}
           />
           <Pagination
+            totalPages={totalPages}
             ITEMS_PER_PAGE={ITEMS_PER_PAGE}
             totalItems={filteredProducts.length}
             handlePrevious={handlePreviousPage}
             handleNext={handleNextPage}
+            currentPage={currentPage}
           />
         </div>
-        <FormModal formModalProps={formModalProps} />
+        <FormModal modalProps={formModalProps} />
         <DeleteModal deleteModalProps={deleteModalProps} />
       </div>
     </MainLayout>

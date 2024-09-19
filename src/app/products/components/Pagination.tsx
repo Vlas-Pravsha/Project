@@ -6,9 +6,11 @@ interface PaginationProps {
   handlePrevious: () => void
   handleNext: () => void
   ITEMS_PER_PAGE: number
+  currentPage: number
+  totalPages: number
 }
 
-function Pagination({ totalItems, handleNext, handlePrevious, ITEMS_PER_PAGE }: PaginationProps) {
+function Pagination({ totalPages, currentPage, totalItems, handleNext, handlePrevious, ITEMS_PER_PAGE }: PaginationProps) {
   return (
     <div className="flex justify-between items-center gap-4 mx-4 my-3">
       <div className="flex items-center gap-2">
@@ -23,8 +25,22 @@ function Pagination({ totalItems, handleNext, handlePrevious, ITEMS_PER_PAGE }: 
         </div>
       </div>
       <div className="flex gap-4">
-        <Button variant="primary" iconBefore={<ArrowLeft className="w-4 h-4" color="white" />} onClick={handlePrevious}>Previous</Button>
-        <Button variant="primary" iconAfter={<ArrowRight className="w-4 h-4" color="white" />} onClick={handleNext}>Next</Button>
+        <Button
+          variant="primary"
+          disabled={currentPage === 1}
+          iconBefore={<ArrowLeft className="w-4 h-4" color="white" />}
+          onClick={handlePrevious}
+        >
+          Previous
+        </Button>
+        <Button
+          variant="primary"
+          disabled={currentPage === totalPages}
+          iconAfter={<ArrowRight className="w-4 h-4" color="white" />}
+          onClick={handleNext}
+        >
+          Next
+        </Button>
       </div>
     </div>
   )

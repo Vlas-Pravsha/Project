@@ -17,7 +17,7 @@ interface ProductContextType {
   products: ProductItem[]
   filteredProducts: ProductItem[]
   addProduct: (data: ProductItem) => Promise<void>
-  updateProduct: (data: ProductItem) => Promise<void>
+  updateProduct: (data: ProductItem, id: string) => Promise<void>
   deleteProduct: (id: string) => Promise<void>
   handleCheckboxChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -127,30 +127,32 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  async function updateProduct(updateProduct: ProductItem) {
+  async function updateProduct(updateProduct: ProductItem, id: string) {
     const { data: { user } } = await supabase.auth.getUser()
 
     if (!user) {
       throw new Error('User is not logged in')
     }
 
-    if (!updateProduct.id) {
+    if (!id) {
       throw new Error('Product ID is required for update')
     }
 
-    const { error } = await supabase.from(PRODUCTS_DATABASE).update(updateProduct).match({
-      name: updateProduct.name,
-      category: updateProduct.category,
-      technology: updateProduct.technology,
-      description: updateProduct.description,
-      price: updateProduct.price,
-      discount: updateProduct.discount,
-      user_id: user.id,
-    })
+    const { error } = await supabase
+      .from(PRODUCTS_DATABASE)
+      .update(updateProduct)
+      .eq('id', id)
+      .eq('user_id', user.id)
 
     if (error) {
-      throw new Error('Error updating task')
+      throw new Error('Error updating product')
     }
+
+    setProducts(prevProducts =>
+      prevProducts.map(product =>
+        product.id === id ? { ...product, ...updateProduct } : product,
+      ),
+    )
   }
 
   const filteredProducts = products.filter(item =>

@@ -11,7 +11,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const buttonVariants = cva(
-  'rounded-lg flex items-center justify-center',
+  'rounded-lg flex items-center justify-center transition-colors duration-200',
   {
     variants: {
       variant: {
@@ -29,11 +29,15 @@ const buttonVariants = cva(
         true: 'w-full',
         false: 'w-auto',
       },
+      disabled: {
+        true: 'opacity-50 cursor-not-allowed',
+      },
     },
     defaultVariants: {
       variant: 'primary',
       size: 'md',
       fullWidth: false,
+      disabled: false,
     },
   },
 )
@@ -46,10 +50,15 @@ function Button({
   className,
   iconBefore,
   iconAfter,
+  disabled,
   ...props
 }: ButtonProps & VariantProps<typeof buttonVariants>) {
   return (
-    <button className={cn(buttonVariants({ variant, size, fullWidth }), className)} {...props}>
+    <button
+      className={cn(buttonVariants({ variant, size, fullWidth, disabled }), className)}
+      disabled={disabled}
+      {...props}
+    >
       {iconBefore && <span className="mr-2">{iconBefore}</span>}
       {children}
       {iconAfter && <span className="ml-2">{iconAfter}</span>}

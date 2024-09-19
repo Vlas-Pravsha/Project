@@ -9,7 +9,9 @@ import type { ProductItem } from '@/contexts/'
 import type { ModalProps } from '@/hooks/useModal'
 
 interface FormModalProps {
-  formModalProps: ModalProps
+  modalProps: ModalProps
+  id?: string
+  product?: ProductItem
 }
 
 const productSchema = z.object({
@@ -23,8 +25,8 @@ const productSchema = z.object({
 
 export type ProductFormData = z.infer<typeof productSchema>
 
-function FormModal({ formModalProps }: FormModalProps) {
-  const { addProduct } = useProducts()
+function FormModal({ modalProps, product, id }: FormModalProps) {
+  const { addProduct, updateProduct } = useProducts()
 
   const {
     register,
@@ -33,29 +35,42 @@ function FormModal({ formModalProps }: FormModalProps) {
     reset,
   } = useForm<ProductItem>({
     resolver: zodResolver(productSchema),
+    defaultValues: product || {
+      name: '',
+      category: '',
+      technology: '',
+      price: '',
+      discount: '',
+      description: '',
+    },
   })
 
   const onSubmit = (data: ProductItem) => {
-    addProduct(data)
-    formModalProps.onClose()
+    if (product) {
+      updateProduct(data, id!)
+    }
+    else {
+      addProduct(data)
+    }
+    modalProps.onClose()
   }
 
   useEffect(() => {
-    if (formModalProps.open) {
+    if (modalProps.open) {
       reset()
     }
-  }, [formModalProps.open, reset])
+  }, [modalProps.open, product, reset])
 
   return (
-    <Modal {...formModalProps} onClose={formModalProps.onClose}>
+    <Modal {...modalProps} onClose={modalProps.onClose}>
       <Modal.Content className="w-[640px] p-6">
         <div className="flex justify-between pb-6 border-b border-opacity-medium">
-          <h4 className="text-xl font-semibold">Add Product</h4>
+          <h4 className="text-xl font-semibold">{product ? 'Edit Product' : 'Add Product'}</h4>
           <Image
             src="/exit.svg"
             alt="Exit"
             className="h-5 w-5 hover:cursor-pointer"
-            onClick={formModalProps.onClose}
+            onClick={modalProps.onClose}
             width="20"
             height="20"
           />
@@ -89,7 +104,7 @@ function FormModal({ formModalProps }: FormModalProps) {
             />
           </Label>
           <Modal.Footer className="flex justify-between pt-6 border-t border-opacity-medium">
-            <Button type="submit" variant="primary">Add product</Button>
+            <Button type="submit" variant="primary">{product ? 'Update product' : 'Add product'}</Button>
           </Modal.Footer>
         </form>
       </Modal.Content>

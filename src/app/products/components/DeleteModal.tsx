@@ -42,9 +42,7 @@ function DeleteModal({ deleteModalProps, id }: DeleteModalProps) {
               height="60"
             />
             <Modal.Text>
-              {id
-                ? <p>Are you sure you want to delete this product?</p>
-                : <p>Do you want to remove this product from list?</p> }
+              Are you sure you want to delete this product?
             </Modal.Text>
           </div>
         </Modal.Body>
