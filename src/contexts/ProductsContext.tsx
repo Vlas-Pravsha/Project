@@ -155,9 +155,11 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
     )
   }
 
-  const filteredProducts = products.filter(item =>
-    item.name.toLowerCase().includes(debouncedSearch.toLowerCase()),
-  )
+  const filteredProducts = useMemo(() => {
+    return products.filter(item =>
+      item.name.toLowerCase().includes(debouncedSearch.toLowerCase()),
+    )
+  }, [products, debouncedSearch])
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value)
@@ -166,14 +168,14 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name: id, checked } = event.target
     if (id === 'allSelect') {
-      const tempProduct = filteredProducts.map(product => ({
+      const tempProduct = products.map(product => ({
         ...product,
         isChecked: checked,
       }))
       setProducts(tempProduct)
     }
     else {
-      const tempProduct = filteredProducts.map(product =>
+      const tempProduct = products.map(product =>
         product.id.toString() === id ? { ...product, isChecked: checked } : product,
       )
       setProducts(tempProduct)
@@ -190,7 +192,7 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
     handleCheckboxChange,
     deleteProducts,
     handleSearchChange,
-  }), [loading, products, filteredProducts, searchValue])
+  }), [loading, products, filteredProducts, debouncedSearch])
 
   return (
     <ProductsContext.Provider value={value}>

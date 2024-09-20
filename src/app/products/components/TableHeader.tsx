@@ -10,7 +10,7 @@ interface TableHeaderProps {
 function TableHeader({ tableHeaderArray, products }: TableHeaderProps) {
   const { handleCheckboxChange } = useProducts()
 
-  const thStyle = 'text-left p-4 text-xs font-medium"  text-gray-medium'
+  const thStyle = 'text-left p-4 text-xs font-medium  text-gray-medium'
 
   return (
     <thead>

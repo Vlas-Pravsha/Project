@@ -27,6 +27,14 @@ function Products() {
     currentPage,
   } = usePagination(filteredProducts, ITEMS_PER_PAGE)
 
+  const isCheckedItems = filteredProducts.some(item => item.isChecked)
+
+  function handleOpenDeleteModal() {
+    if (isCheckedItems) {
+      deleteModalProps.onOpen()
+    }
+  }
+
   return (
     <MainLayout>
       <div className="flex bg-gray-darkest ">
@@ -36,14 +44,13 @@ function Products() {
             <div className="flex gap-4 items-center">
               <div className="border-r-2 border-opacity-medium pr-4 min-w-96">
                 <Input
-                  placeholder="Search for product"
+                  placeholder="Search for product by name"
                   onChange={handleSearchChange}
                 />
               </div>
-              <Trash2
-                className="w-6 h-6 hover:cursor-pointer"
-                onClick={deleteModalProps.onOpen}
-              />
+              <button title="Select products to remove"onClick={handleOpenDeleteModal}>
+                <Trash2 className="w-6 h-6 hover:cursor-pointer" />
+              </button>
             </div>
             <Button
               variant="primary"

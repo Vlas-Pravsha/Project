@@ -11,12 +11,14 @@ interface DeleteModalProps {
 function DeleteModal({ deleteModalProps, id }: DeleteModalProps) {
   const { deleteProduct, deleteProducts } = useProducts()
 
-  const handleDeleteProduct = (id: string) => {
+  const handleDeleteProduct = () => {
     deleteModalProps.onClose()
     if (id) {
       deleteProduct(id)
     }
-    deleteProducts()
+    else {
+      deleteProducts()
+    }
   }
 
   return (
@@ -41,15 +43,23 @@ function DeleteModal({ deleteModalProps, id }: DeleteModalProps) {
               width="60"
               height="60"
             />
-            <Modal.Text>
-              Are you sure you want to delete this product?
-            </Modal.Text>
+            {id
+              ? (
+                  <Modal.Text>
+                    Are you sure you want to delete this product?
+                  </Modal.Text>
+                )
+              : (
+                  <Modal.Text>
+                    Are you sure you want to delete all checked products?
+                  </Modal.Text>
+                )}
           </div>
         </Modal.Body>
         <Modal.Footer className="flex justify-center p-2">
           <Button
             variant="delete"
-            onClick={() => handleDeleteProduct(id!)}
+            onClick={handleDeleteProduct}
           >
             Yes, I&apos;m sure
           </Button>
@@ -57,7 +67,6 @@ function DeleteModal({ deleteModalProps, id }: DeleteModalProps) {
         </Modal.Footer>
       </Modal.Content>
     </Modal>
-
   )
 }
 
