@@ -2,17 +2,17 @@
 
 import Footer from '@/components/layout/Footer'
 import { Button, Input, Label } from '@/components/ui'
-import { usePasswordVisibility } from '@/hooks/'
+import { usePasswordVisibility, useUser } from '@/hooks/'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeOff } from 'lucide-react'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import type { MouseEvent } from 'react'
-import General from './components/General'
+import GeneralInfo from './components/GeneralInfo'
+import SkillsAndHobbies from './components/SkillsAndHobbies'
 
 const schema = z.object({
-  email: z.string().email({ message: 'Incorrect email format' }),
   currentPassword: z.string().min(8, { message: 'Password must contain a minimum of 8 characters' }),
   newPassword: z.string().min(8, { message: 'Password must contain a minimum of 8 characters' }),
 })
@@ -20,6 +20,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 function UserSetting() {
+  const { user } = useUser()
   const currentPassword = usePasswordVisibility()
   const newPassword = usePasswordVisibility()
 
@@ -31,7 +32,6 @@ function UserSetting() {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: '',
       currentPassword: '',
       newPassword: '',
     },
@@ -73,14 +73,16 @@ function UserSetting() {
               </div>
             </div>
           </div>
-          <div className="bg-gray-darkest  rounded-lg w-full  p-6">
+          <SkillsAndHobbies />
+
+          <div className="bg-gray-darkest border border-opacity-medium rounded-lg w-full p-6">
             <h2 className="text-2xl font-bold mb-6">Personal data</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <Label errorText={errors.email?.message} hasError={errors.email} title="Your e-mail">
-                <Input hasError={errors.email} placeholder="email" type="text" id="email" {...register('email')} />
+              <Label title="Your e-mail">
+                <Input placeholder="email" type="text" disabled defaultValue={user?.email} />
               </Label>
               <div>
-                <h3 className="text-xl font-semibold mb-4">Пароль</h3>
+                <h3 className="text-xl font-semibold mb-4">Password</h3>
                 <div className="space-y-4">
                   <Label errorText={errors.currentPassword?.message} hasError={errors.currentPassword} title="Current password">
                     <div className="relative">
@@ -132,7 +134,9 @@ function UserSetting() {
             </form>
           </div>
         </div>
-        <General />
+        <div className="flex flex-col gap-4 w-full">
+          <GeneralInfo />
+        </div>
       </div>
       <Footer />
     </div>

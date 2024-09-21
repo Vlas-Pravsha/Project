@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import React from 'react'
 
 interface PaginationProps {
   totalItems: number | string
@@ -10,18 +11,33 @@ interface PaginationProps {
   totalPages: number
 }
 
-function Pagination({ totalPages, currentPage, totalItems, handleNext, handlePrevious, ITEMS_PER_PAGE }: PaginationProps) {
+function Pagination({
+  totalPages,
+  currentPage,
+  totalItems,
+  handleNext,
+  handlePrevious,
+  ITEMS_PER_PAGE,
+}: PaginationProps) {
+  const renderItemCount = () => {
+    const numTotalItems = Number(totalItems)
+    if (numTotalItems === 0) {
+      return '0 of 0'
+    }
+    const start = 1
+    const end = Math.min(ITEMS_PER_PAGE, numTotalItems)
+
+    return `${start}-${end} of ${numTotalItems}`
+  }
+
   return (
     <div className="flex justify-between items-center gap-4 mx-4 my-3">
       <div className="flex items-center gap-2">
         <div className="text-gray-500 text-sm">
           Showing&nbsp;
           <span className="text-base font-medium">
-            1-
-            {ITEMS_PER_PAGE}
+            {renderItemCount()}
           </span>
-            &nbsp;of&nbsp;
-          <span className="text-base font-medium">{totalItems}</span>
         </div>
       </div>
       <div className="flex gap-4">

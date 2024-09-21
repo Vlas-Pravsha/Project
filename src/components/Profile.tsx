@@ -16,6 +16,7 @@ function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: Use
       fullName: `${user.identities![0].identity_data!.full_name}`,
       email: user.email,
       options: [
+        { id: crypto.randomUUID(), text: 'Profile', href: '/profile' },
         { id: crypto.randomUUID(), text: 'DashBoard', href: '/' },
         { id: crypto.randomUUID(), text: 'Settings', href: '/settings' },
       ],

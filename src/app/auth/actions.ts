@@ -59,3 +59,27 @@ export async function signOut() {
 
   revalidatePath('/', 'layout')
 }
+
+export async function resetPassword(email: string) {
+  const supabase = createClient()
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email)
+
+  if (error) {
+    redirect('/error')
+  }
+
+  revalidatePath('/', 'layout')
+}
+
+export async function updateUserPassword(new_password: string) {
+  const supabase = createClient()
+
+  const { error } = await supabase.auth.updateUser({ password: new_password })
+
+  if (error) {
+    redirect('/error')
+  }
+
+  revalidatePath('/', 'layout')
+}

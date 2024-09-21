@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Input, Label } from '@/components/ui'
+import { Button, Input, Label, Textarea } from '@/components/ui'
 import { inputsArray } from '@/constants/general'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
@@ -14,17 +14,18 @@ const schema = z.object({
   City: z.string().min(1, 'City is required'),
   Address: z.string().min(1, 'Address is required'),
   Number: z.string().min(10, 'Invalid phone number').regex(/^\d+$/, 'Invalid number'),
-  Email: z.string().email('Invalid email'),
+  Education: z.string().email('Invalid Education'),
   Birthday: z.string().min(1, 'Birthday is required'),
   Organization: z.string().optional(),
   Role: z.string().optional(),
   Department: z.string().optional(),
   Code: z.string().optional(),
+  aboutMe: z.string(),
 })
 
 export type GeneralFormData = z.infer<typeof schema>
 
-function General() {
+function GeneralInfo() {
   const [_, setData] = React.useState<GeneralFormData>()
 
   const {
@@ -66,10 +67,19 @@ function General() {
             </Label>
           ))}
         </div>
+        <Label title="About me" errorText={errors.aboutMe?.message} hasError={errors.aboutMe}>
+          <Textarea
+            {...register('aboutMe')}
+            hasError={errors.aboutMe}
+            placeholder="e.g. 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, Ram 16 GB DDR4 2300Mhz"
+            rows={4}
+          />
+        </Label>
+
         <Button variant="primary" size="md" className="w-32">Save all</Button>
       </form>
     </div>
   )
 }
 
-export default General
+export default GeneralInfo

@@ -1,5 +1,5 @@
 import { v1 } from 'uuid'
-import type { GeneralFormData } from '@/app/settings/components/General'
+import type { GeneralFormData } from '@/app/settings/components/GeneralInfo'
 
 export function inputsArray(errors: any) {
   return [
@@ -50,17 +50,17 @@ export function inputsArray(errors: any) {
     },
     {
       id: v1(),
-      errorText: 'Invalid email',
-      title: 'Email',
+      errorText: 'Invalid Education',
+      title: 'Education',
       text: 'Tip',
-      hasError: errors.Email,
-      placeholder: 'example@company.com',
-      register: 'Email' as keyof GeneralFormData,
+      hasError: errors.Education,
+      placeholder: 'Education...',
+      register: 'Education' as keyof GeneralFormData,
     },
     {
       id: v1(),
       errorText: 'Invalid number',
-      title: 'Number',
+      title: 'Phone number',
       text: 'Tip',
       hasError: errors.Number,
       placeholder: 'e.g. 123 456 7890',
