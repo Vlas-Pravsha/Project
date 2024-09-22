@@ -80,7 +80,7 @@ function KanbanForm({ cardModalProps }: FormModalProps) {
               rows={5}
             />
           </Label>
-          <Upload {...register('image')} />
+          <Upload {...register('image')}>Drop files to upload</Upload>
           <Modal.Footer className="flex pt-6 border-t border-opacity-medium">
             <Button type="submit" variant="primary" iconBefore={<Plus className="w-4 h-4" color="white" />}>Add card</Button>
             <Button variant="secondary" onClick={event => handleCloseModal(event)}>Close</Button>

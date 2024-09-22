@@ -24,7 +24,7 @@ const uploadVariants = cva(
 )
 
 const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
-  ({ hasError, className, placeholder, ...props }, ref) => {
+  ({ hasError, className, placeholder, children, ...props }, ref) => {
     const variant = hasError ? 'error' : 'default'
     return (
       <div className={cn(uploadVariants({ variant }), className)}>
@@ -37,7 +37,7 @@ const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
         />
         <label htmlFor="file-upload" className="cursor-pointer flex justify-center gap-2 px-4 py-10 items-center">
           <Image className="w-6 h-6 text-gray-400" />
-          <span className="text-base text-gray-500">Drop files to upload</span>
+          <span className="text-base text-gray-500">{children}</span>
         </label>
       </div>
     )
