@@ -1,5 +1,4 @@
-import { Button } from '@/components/ui'
-import CheckBox from '@/components/ui/CheckBox'
+import { Button, CheckBox } from '@/components/ui'
 import { type ProductItem, useProducts } from '@/contexts/ProductsContext'
 import { useModal } from '@/hooks'
 import { Edit, Trash } from 'lucide-react'

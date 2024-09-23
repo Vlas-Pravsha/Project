@@ -1,4 +1,4 @@
-import CheckBox from '@/components/ui/CheckBox'
+import { CheckBox } from '@/components/ui/'
 import { useProducts } from '@/contexts'
 import type { ProductItem } from '@/contexts'
 

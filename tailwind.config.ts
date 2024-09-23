@@ -48,7 +48,37 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities, theme }: any) {
+      const newUtilities = {
+        '.scrollbar-elegant': {
+          '&::-webkit-scrollbar': {
+            width: '10px',
+            height: '10px',
+          },
+          '&::-webkit-scrollbar-track': {
+            backgroundColor: 'transparent',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: theme('colors.gray.medium'),
+            borderRadius: '5px',
+            innerHeight: '2px',
+            border: '2px solid transparent',
+            backgroundClip: 'content-box',
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: theme('colors.gray.medium'),
+          },
+          '&::-webkit-scrollbar-corner': {
+            backgroundColor: 'transparent',
+          },
+          'scrollbarWidth': 'thin',
+          'scrollbarColor': `${theme('colors.gray.medium')} transparent`,
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    },
+  ],
 }
 
 export default config

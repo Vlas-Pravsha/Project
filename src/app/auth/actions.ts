@@ -72,14 +72,17 @@ export async function resetPassword(email: string) {
   revalidatePath('/', 'layout')
 }
 
-export async function updateUserPassword(new_password: string) {
+export async function updateUserPassword(newPassword: string) {
   const supabase = createClient()
 
-  const { error } = await supabase.auth.updateUser({ password: new_password })
+  const { error } = await supabase.auth.updateUser({
+    password: newPassword,
+  })
 
   if (error) {
-    redirect('/error')
+    console.error('Error updating password:', error.message)
+    return { success: false, error: error.message }
   }
 
-  revalidatePath('/', 'layout')
+  return { success: true }
 }

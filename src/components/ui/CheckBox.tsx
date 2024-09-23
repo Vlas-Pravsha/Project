@@ -16,4 +16,4 @@ function CheckBox({ className, ...props }: CheckBoxProps) {
   )
 }
 
-export default CheckBox
+export { CheckBox }

@@ -49,7 +49,7 @@ function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: Use
                 <div className="border-opacity-medium mb-2" />
                 <div className="flex flex-col gap-2">
                   {item.options.map(option => (
-                    <Link href={option.href} key={option.id}>
+                    <Link href={option.href} key={option.id} className="rounded-lg hover:bg-gray-darkest">
                       <div className="text-sm text-gray-medium px-2 py-1 hover:bg-hoverBg rounded-md cursor-pointer">
                         {option.text}
                       </div>

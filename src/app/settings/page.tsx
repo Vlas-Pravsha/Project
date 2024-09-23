@@ -8,7 +8,7 @@ function UserSetting() {
   return (
     <div className="w-full flex flex-col gap-4 p-4">
       <div className="w-full flex flex-row gap-4">
-        <div className="flex flex-col gap-4 min-w-[30%]">
+        <div className="flex flex-col gap-4 w-full max-w-[30%]">
           <UserImageUpload />
           <SkillsAndHobbies />
           <ResetPassword />
