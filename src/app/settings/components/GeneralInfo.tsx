@@ -8,18 +8,18 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 const schema = z.object({
-  Name: z.string().min(1, 'Name is required').max(20, 'Max 20 characters'),
-  Sername: z.string().min(1, 'Surname is required').max(20, 'Max 20 characters'),
-  Country: z.string().min(1, 'Country is required'),
-  City: z.string().min(1, 'City is required'),
-  Address: z.string().min(1, 'Address is required'),
-  Number: z.string().min(10, 'Invalid phone number').regex(/^\d+$/, 'Invalid number'),
-  Education: z.string().email('Invalid Education'),
-  Birthday: z.string().min(1, 'Birthday is required'),
-  Organization: z.string().optional(),
-  Role: z.string().optional(),
-  Department: z.string().optional(),
-  Code: z.string().optional(),
+  name: z.string().min(1, 'Name is required').max(20, 'Max 20 characters'),
+  sername: z.string().min(1, 'Surname is required').max(20, 'Max 20 characters'),
+  country: z.string().min(1, 'Country is required'),
+  city: z.string().min(1, 'City is required'),
+  address: z.string().min(1, 'Address is required'),
+  number: z.string().min(10, 'Invalid phone number').regex(/^\d+$/, 'Invalid number'),
+  education: z.string().min(1, 'Invalid Education'),
+  birthday: z.string().min(1, 'Birthday is required'),
+  organization: z.string().optional(),
+  role: z.string().optional(),
+  department: z.string().optional(),
+  code: z.string().optional(),
   aboutMe: z.string(),
 })
 
@@ -75,7 +75,6 @@ function GeneralInfo() {
             rows={4}
           />
         </Label>
-
         <Button variant="primary" size="md" className="w-32">Save all</Button>
       </form>
     </div>

@@ -22,7 +22,7 @@ function Profile({ handleSignOut, user }: { handleSignOut: () => void, user: Use
       ],
     },
   ]
-
+  
   const toggle = () => setIsOpen(!isOpen)
 
   return (

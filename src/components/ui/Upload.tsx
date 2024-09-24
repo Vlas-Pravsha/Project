@@ -6,6 +6,7 @@ import type { FieldError } from 'react-hook-form'
 
 interface UploadProps extends React.InputHTMLAttributes<HTMLInputElement> {
   hasError?: FieldError | undefined
+  name: string
 }
 
 const uploadVariants = cva(
@@ -13,7 +14,7 @@ const uploadVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-gray-100/50',
+        default: 'border-gray-medium',
         error: 'border-red-500',
       },
     },
@@ -24,11 +25,12 @@ const uploadVariants = cva(
 )
 
 const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
-  ({ hasError, className, placeholder, children, ...props }, ref) => {
+  ({ hasError, name, className, placeholder, children, ...props }, ref) => {
     const variant = hasError ? 'error' : 'default'
     return (
       <div className={cn(uploadVariants({ variant }), className)}>
         <input
+          name={name}
           ref={ref}
           type="file"
           id="file-upload"

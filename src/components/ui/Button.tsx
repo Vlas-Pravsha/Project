@@ -11,7 +11,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const buttonVariants = cva(
-  'rounded-lg flex items-center justify-center transition-colors duration-200',
+  'rounded-lg flex items-center justify-center hover:transition-colors hover:duration-200',
   {
     variants: {
       variant: {
