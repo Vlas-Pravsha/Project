@@ -11,6 +11,7 @@ import type { ModalProps } from '@/hooks/useModal'
 
 interface FormModalProps {
   cardModalProps: ModalProps
+  setCards: any
 }
 
 const cardSchema = z.object({
@@ -22,7 +23,7 @@ const cardSchema = z.object({
 
 export type CardFormData = z.infer<typeof cardSchema>
 
-function KanbanForm({ cardModalProps }: FormModalProps) {
+function KanbanForm({ cardModalProps, setCards }: FormModalProps) {
   const {
     register,
     handleSubmit,
@@ -34,6 +35,7 @@ function KanbanForm({ cardModalProps }: FormModalProps) {
 
   const onSubmit = (data: CardFormData) => {
     cardModalProps.onClose()
+    setCards(data)
     // eslint-disable-next-line no-console
     console.log(data)
   }

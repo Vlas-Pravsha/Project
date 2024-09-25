@@ -2,6 +2,8 @@ import Footer from '@/components/layout/Footer'
 import { ChevronRight, Home } from 'lucide-react'
 import React from 'react'
 
+const componentClass = 'p-8 bg-gray-darkest border border-opacity-medium rounded-lg'
+
 function ProfilePage() {
   return (
     <div className="p-4 w-full">
@@ -16,12 +18,12 @@ function ProfilePage() {
       <h2 className="text-2xl font-semibold my-6">All products</h2>
       <div className="flex gap-4 my-4 w-full">
         <div className="flex flex-col gap-4  w-4/12">
-          <div className="p-8 bg-gray-darkest border border-opacity-medium rounded-lg"></div>
-          <div className="p-8 bg-gray-darkest border border-opacity-medium rounded-lg"></div>
+          <div className={componentClass}></div>
+          <div className={componentClass}></div>
         </div>
         <div className="flex flex-col gap-4 w-8/12">
-          <div className="p-8 bg-gray-darkest border border-opacity-medium rounded-lg"></div>
-          <div className="p-8 bg-gray-darkest border border-opacity-medium rounded-lg"></div>
+          <div className={componentClass}></div>
+          <div className={componentClass}></div>
         </div>
       </div>
       <Footer />
