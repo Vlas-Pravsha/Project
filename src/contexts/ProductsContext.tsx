@@ -1,5 +1,6 @@
 'use client'
 
+import { getCurrentUser } from '@/app/auth/authUtils'
 import { useDebounce } from '@/hooks'
 import { getErrorMessage } from '@/types'
 import { createClient } from '@/utils/supabase/client'
@@ -60,7 +61,7 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
 
   const addProduct = async (newProduct: ProductItem) => {
     try {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await getCurrentUser()
 
       if (!user) {
         throw new Error('User is not authenticated')
@@ -128,7 +129,7 @@ function ProductsContextProvider({ children }: { children: ReactNode }) {
   }
 
   async function updateProduct(updateProduct: ProductItem, id: string) {
-    const { data: { user } } = await supabase.auth.getUser()
+    const { data: { user } } = await getCurrentUser()
 
     if (!user) {
       throw new Error('User is not logged in')

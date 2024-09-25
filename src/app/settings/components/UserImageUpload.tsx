@@ -3,7 +3,7 @@
 import { Button, Upload } from '@/components/ui'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Image from 'next/image'
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
@@ -19,16 +19,16 @@ const schema = z.object({
     }),
 })
 
-type FormData = z.infer<typeof schema>
+export type UserImageData = z.infer<typeof schema>
 
 function UserImageUpload() {
   const [preview, setPreview] = useState('')
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<UserImageData>({
     resolver: zodResolver(schema),
   })
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: UserImageData) => {
     const file = data.image
     if (file) {
       const urlImage = URL.createObjectURL(file)
@@ -37,6 +37,7 @@ function UserImageUpload() {
       console.log(data)
     }
   }
+
   const handleResetForm = (event: any) => {
     event.preventDefault()
     setPreview('')

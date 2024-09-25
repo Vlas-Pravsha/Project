@@ -1,5 +1,6 @@
 'use client'
 
+import { getCurrentUser } from '@/app/auth/authUtils'
 import { getErrorMessage } from '@/types/'
 import { createClient } from '@/utils/supabase/client'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
@@ -50,7 +51,7 @@ function KanbanContextProvider({ children }: { children: ReactNode }) {
 
   const addCard = async (newCard: KanbanCardItem) => {
     try {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await getCurrentUser()
 
       if (!user) {
         throw new Error('User is not authenticated')
@@ -88,7 +89,7 @@ function KanbanContextProvider({ children }: { children: ReactNode }) {
   }
 
   async function updateCard(updateCard: KanbanCardItem) {
-    const { data: { user } } = await supabase.auth.getUser()
+    const { data: { user } } = await getCurrentUser()
 
     if (!user) {
       throw new Error('User is not logged in')

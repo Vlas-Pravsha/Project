@@ -3,6 +3,7 @@
 import { Button, Select } from '@/components/ui'
 import { hobbiesOptions, skillsOptions } from '@/constants/skillAndHobbies'
 
+import { useUserContext } from '@/contexts/UserInfoContext'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -18,10 +19,11 @@ const formSchema = z.object({
   hobbies: z.array(z.object({ label: z.string(), value: z.string() })).min(1, 'Please select at least one hobby'),
 })
 
-type FormData = z.infer<typeof formSchema>
+export type SkillsAndHobbiesData = z.infer<typeof formSchema>
 
 function SkillsAndHobbies() {
-  const { control, handleSubmit, formState: { errors } } = useForm<FormData>({
+  const { saveUserInfo } = useUserContext()
+  const { control, handleSubmit, formState: { errors } } = useForm<SkillsAndHobbiesData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       skills: [skillsOptions[0]],
@@ -29,7 +31,8 @@ function SkillsAndHobbies() {
     },
   })
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: SkillsAndHobbiesData) => {
+    saveUserInfo(data)
     // eslint-disable-next-line no-console
     console.log(data)
   }
