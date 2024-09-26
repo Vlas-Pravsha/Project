@@ -1,4 +1,3 @@
-/* eslint-disable react/no-useless-fragment */
 import { Card } from '@/components/ui/'
 import { SquarePen } from 'lucide-react'
 import React from 'react'

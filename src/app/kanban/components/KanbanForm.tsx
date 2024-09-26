@@ -36,7 +36,6 @@ function KanbanForm({ cardModalProps, setCards }: FormModalProps) {
   const onSubmit = (data: CardFormData) => {
     cardModalProps.onClose()
     setCards(data)
-    // eslint-disable-next-line no-console
     console.log(data)
   }
 
