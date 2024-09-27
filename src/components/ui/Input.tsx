@@ -25,7 +25,7 @@ const inputVariants = cva(
 )
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ placeholder, hasError, type = 'text', className, ...rest }, ref) => {
+  ({ placeholder, hasError, type, className, ...rest }, ref) => {
     const variant = hasError ? 'error' : 'default'
     return (
       <input

@@ -1,7 +1,7 @@
 import { Flame, Trash } from 'lucide-react'
 import { useState } from 'react'
+import type { CardType } from '@/contexts'
 import type { Dispatch, SetStateAction } from 'react'
-import type { CardType } from '../page'
 
 function BurnBarrel({ setCards }: { setCards: Dispatch<SetStateAction<CardType[]>> }) {
   const [active, setActive] = useState(false)

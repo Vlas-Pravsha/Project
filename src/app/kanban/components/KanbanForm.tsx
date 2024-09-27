@@ -1,29 +1,34 @@
 'use client'
 
 import { Button, Input, Label, Modal, Textarea, Upload } from '@/components/ui'
+import { useKanbanCard } from '@/contexts'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Plus } from 'lucide-react'
 import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import type { CardType } from '@/contexts'
 import type { ModalProps } from '@/hooks/useModal'
 
 interface FormModalProps {
-  cardModalProps: ModalProps
-  setCards: any
+  modalProps: ModalProps
+  card?: CardType
+  id?: string
 }
 
 const cardSchema = z.object({
   title: z.string().min(2, 'Product name is required'),
   description: z.string().min(10, 'Description must be at least 10 characters long'),
-  deadlines: z.string().min(1, 'Deadlines is required'),
+  deadlines: z.number().min(1, 'Deadlines is required'),
   image: z.any().optional(),
 })
 
 export type CardFormData = z.infer<typeof cardSchema>
 
-function KanbanForm({ cardModalProps, setCards }: FormModalProps) {
+function KanbanForm({ card, modalProps, id }: FormModalProps) {
+  const { addCard, updateCard } = useKanbanCard()
+
   const {
     register,
     handleSubmit,
@@ -31,27 +36,37 @@ function KanbanForm({ cardModalProps, setCards }: FormModalProps) {
     reset,
   } = useForm<CardFormData>({
     resolver: zodResolver(cardSchema),
+    defaultValues: card || {
+      title: '',
+      description: '',
+      deadlines: 0,
+      image: '',
+    },
   })
 
   const onSubmit = (data: CardFormData) => {
-    cardModalProps.onClose()
-    setCards(data)
-    console.log(data)
+    if (card) {
+      updateCard(data, id!)
+    }
+    else {
+      addCard(data)
+    }
+    modalProps.onClose()
   }
 
   useEffect(() => {
-    if (cardModalProps.open) {
+    if (modalProps.open) {
       reset()
     }
-  }, [cardModalProps.open, reset])
+  }, [modalProps.open, reset])
 
   const handleCloseModal = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    cardModalProps.onClose()
+    modalProps.onClose()
   }
 
   return (
-    <Modal {...cardModalProps} onClose={cardModalProps.onClose}>
+    <Modal {...modalProps} onClose={modalProps.onClose}>
       <Modal.Content className="w-[640px] p-6">
         <div className="flex justify-between pb-6 border-b border-opacity-medium">
           <h4 className="text-xl font-semibold">Add new task</h4>
@@ -59,7 +74,7 @@ function KanbanForm({ cardModalProps, setCards }: FormModalProps) {
             src="/exit.svg"
             alt="Exit"
             className="h-5 w-5 hover:cursor-pointer"
-            onClick={cardModalProps.onClose}
+            onClick={modalProps.onClose}
             width="20"
             height="20"
           />
@@ -70,7 +85,7 @@ function KanbanForm({ cardModalProps, setCards }: FormModalProps) {
               <Input placeholder="Apple iMac 27" {...register('title')} hasError={errors.title} />
             </Label>
             <Label title="Deadlines" className="w-3/12" errorText={errors.deadlines?.message} hasError={errors.deadlines}>
-              <Input placeholder="7 days left" {...register('deadlines')} hasError={errors.deadlines} />
+              <Input placeholder="7 days left" {...register('deadlines', { valueAsNumber: true })} hasError={errors.deadlines} />
             </Label>
           </div>
           <Label title="Task Description" errorText={errors.description?.message} hasError={errors.description}>

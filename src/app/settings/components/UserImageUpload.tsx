@@ -38,7 +38,7 @@ function UserImageUpload() {
     }
   }
 
-  const handleResetForm = (event: any) => {
+  const handleResetForm = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault()
     setPreview('')
     reset()

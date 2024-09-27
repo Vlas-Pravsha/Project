@@ -43,7 +43,7 @@ function GeneralInfo() {
     setData(data)
   }
 
-  const handleResetForm = (event: any) => {
+  const handleResetForm = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault()
     reset()
   }

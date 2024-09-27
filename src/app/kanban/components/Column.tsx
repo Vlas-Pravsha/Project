@@ -1,9 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
+import type { CardType, ColumnType } from '@/contexts'
 import type { Dispatch, SetStateAction } from 'react'
 import KanbanCard from './KanbanCard'
-import type { CardType, ColumnType } from '../page'
 
 interface ColumnProps {
   title: string
@@ -14,34 +13,57 @@ interface ColumnProps {
 }
 
 function Column({ title, headingColor, cards, column, setCards }: ColumnProps) {
-  const [active, setActive] = useState(false)
-
-  const handleDragStart = (e: React.DragEvent, card: Omit<CardType, 'image'>) => {
+  const handleDragStart = (e: React.DragEvent, card: CardType) => {
     e.dataTransfer.setData('cardId', card.id)
-  }
-
-  const getIndicators = () => {
-    return Array.from(document.querySelectorAll(`[data-column="${column}"]`))
-  }
-
-  const highlightIndificator = (e: React.DragEvent) => {
-    const indicators = getIndicators()
+    e.dataTransfer.setData('sourceColumn', card.column)
   }
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault()
-    highlightIndificator(e)
-    setActive(true)
   }
 
   const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault()
-    setActive(false)
   }
 
-  const handleDragEnd = (e: React.DragEvent) => {
+  const handleDrop = (e: React.DragEvent) => {
     e.preventDefault()
-    setActive(false)
+
+    const cardId = e.dataTransfer.getData('cardId')
+
+    setCards((prevCards) => {
+      const draggedCard = prevCards.find(card => card.id === cardId)
+      if (!draggedCard)
+        return prevCards
+
+      const updatedCards = prevCards.filter(card => card.id !== cardId)
+      const dropIndex = updatedCards.filter(card => card.column === column).length
+
+      const newCard = { ...draggedCard, column }
+      updatedCards.splice(dropIndex, 0, newCard)
+
+      return updatedCards
+    })
+  }
+
+  const handleCardDrop = (e: React.DragEvent, targetCardId: string) => {
+    e.preventDefault()
+
+    const cardId = e.dataTransfer.getData('cardId')
+
+    setCards((prevCards) => {
+      const draggedCard = prevCards.find(card => card.id === cardId)
+      if (!draggedCard)
+        return prevCards
+
+      const updatedCards = prevCards.filter(card => card.id !== cardId)
+      const dropIndex = updatedCards.findIndex(card => card.id === targetCardId)
+
+      const newCard = { ...draggedCard, column }
+      updatedCards.splice(dropIndex, 0, newCard)
+
+      return updatedCards
+    })
   }
 
   const filteredCards = cards.filter(c => c.column === column)
@@ -57,18 +79,25 @@ function Column({ title, headingColor, cards, column, setCards }: ColumnProps) {
       <div
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
-        onDrop={handleDragEnd}
-        className={`h-full w-full transition-colors ${
-          active ? 'bg-zinc-800' : 'bg-neutral-800/0'
-        }`}
+        onDrop={handleDrop}
+        className="h-full w-full transition-colors"
       >
         {filteredCards.map((c) => {
           return (
-            <KanbanCard
+            <div
               key={c.id}
-              handleDragStart={handleDragStart}
-              {...c}
-            />
+              onDragOver={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+              }}
+              onDrop={e => handleCardDrop(e, c.id)}
+            >
+              <KanbanCard
+                card={c}
+                handleDragStart={handleDragStart}
+                {...c}
+              />
+            </div>
           )
         })}
       </div>

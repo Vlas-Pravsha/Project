@@ -51,10 +51,13 @@ function CardImage({ src, alt, className, ...props }: CardImageProps) {
   )
 }
 
-function CardDeadlines({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) {
+interface CardDeadlinesProps extends HTMLAttributes<HTMLDivElement> {
+  icon: React.ElementType
+}
+function CardDeadlines({ icon: Icon, children, className, ...props }: CardDeadlinesProps) {
   return (
-    <div className={cn(' text-[#5b36a0] bg-purple-300 font-medium rounded-lg flex items-center justify-center text-sm px-3 py-1 gap-1', className)} {...props}>
-      <Clock4 className="w-4 h-4" color="#5b36a0" />
+    <div className={cn('text-[#5b36a0] bg-purple-300 font-medium rounded-lg flex items-center justify-center text-sm px-3 py-1 gap-1', className)} {...props}>
+      <Icon className="w-4 h-4" color="#5b36a0" />
       {children}
     </div>
   )
