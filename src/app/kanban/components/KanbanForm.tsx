@@ -29,12 +29,7 @@ export type CardFormData = z.infer<typeof cardSchema>
 function KanbanForm({ card, modalProps, id }: FormModalProps) {
   const { addCard, updateCard } = useKanbanCard()
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<CardFormData>({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<CardFormData>({
     resolver: zodResolver(cardSchema),
     defaultValues: card || {
       title: '',

@@ -93,8 +93,8 @@ function Column({ title, headingColor, cards, column, setCards }: ColumnProps) {
               onDrop={e => handleCardDrop(e, c.id)}
             >
               <KanbanCard
-                card={c}
                 handleDragStart={handleDragStart}
+                card={c}
                 {...c}
               />
             </div>
