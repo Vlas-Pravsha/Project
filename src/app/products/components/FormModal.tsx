@@ -18,7 +18,7 @@ const productSchema = z.object({
   name: z.string().min(2, 'Product name is required'),
   category: z.string().min(2, 'Category is required'),
   technology: z.string().min(2, 'Technology is required'),
-  price: z.string().min(2, 'Price is required'),
+  price: z.number().min(1, 'Price is required'),
   discount: z.string().min(2, 'Discount is required'),
   description: z.string().min(10, 'Description must be at least 10 characters long'),
 })
@@ -35,14 +35,7 @@ function FormModal({ modalProps, product, id }: FormModalProps) {
     reset,
   } = useForm<ProductItem>({
     resolver: zodResolver(productSchema),
-    defaultValues: product || {
-      name: '',
-      category: '',
-      technology: '',
-      price: '',
-      discount: '',
-      description: '',
-    },
+    defaultValues: product,
   })
 
   const onSubmit = (data: ProductItem) => {
@@ -89,7 +82,7 @@ function FormModal({ modalProps, product, id }: FormModalProps) {
               <Input placeholder="Apple" {...register('technology')} hasError={errors.technology} />
             </Label>
             <Label title="Price" errorText={errors.price?.message} hasError={errors.price}>
-              <Input placeholder="2300" type="text" {...register('price')} hasError={errors.price} />
+              <Input placeholder="2300" type="text" {...register('price', { valueAsNumber: true })} hasError={errors.price} />
             </Label>
           </div>
           <Label title="Discount" errorText={errors.discount?.message} hasError={errors.discount}>

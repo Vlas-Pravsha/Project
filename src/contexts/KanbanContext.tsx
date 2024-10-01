@@ -1,7 +1,7 @@
 'use client'
 
 import { useLocalStorage } from '@/hooks'
-import { createContext, useContext, useMemo } from 'react'
+import { createContext, useContext, useEffect, useMemo } from 'react'
 import type { CardFormData } from '@/app/kanban/components/KanbanForm'
 import type { ReactNode } from 'react'
 
@@ -25,6 +25,18 @@ const KanbanContext = createContext<KanbanCardContextType | undefined>(undefined
 
 function KanbanContextProvider({ children }: { children: ReactNode }) {
   const [kanbanCard, setKanbanCard] = useLocalStorage<CardType[]>('kanban', DEFAULT_CARDS)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setKanbanCard(prevCards =>
+        prevCards.map(card =>
+          card.deadlines > 0 ? { ...card, deadlines: card.deadlines - 1 } : card,
+        ),
+      )
+    }, 1000 * 60 * 60 * 24)
+
+    return () => clearInterval(interval)
+  }, [setKanbanCard])
 
   const addCard = (data: CardFormData) => {
     const file = data.image[0]

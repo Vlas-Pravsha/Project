@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/'
-import { useDaysLeftCount, useModal } from '@/hooks'
+import { useModal } from '@/hooks'
 import { Check, Clock4, SquarePen } from 'lucide-react'
 import type { CardType } from '@/contexts'
 import KanbanForm from './KanbanForm'
@@ -10,7 +10,6 @@ type CardProps = CardType & {
 }
 
 function KanbanCard({ title, id, column, description, deadlines, image, card, handleDragStart }: CardProps) {
-  // const { remainingDays } = useDaysLeftCount(deadlines)
   const cardModalEditProps = useModal()
 
   return (
@@ -33,21 +32,19 @@ function KanbanCard({ title, id, column, description, deadlines, image, card, ha
           {description}
         </Card.Description>
 
-        <div className="w-full flex justify-end">
+        <Card.Footer>
           {column === 'done'
             ? (
-                <Card.Deadlines icon={Check} className="bg-green-300">
+                <Card.Deadlines icon={Check} className="bg-green-300 text-[#5b36a0]">
                   Done
                 </Card.Deadlines>
               )
             : (
-                <Card.Deadlines icon={Clock4}>
-                  {deadlines}
-                  {' '}
-                  days left
+                <Card.Deadlines icon={Clock4} className={`${deadlines > 0 ? 'bg-purple-300 ' : 'bg-secondary'}`}>
+                  {deadlines > 0 ? <p className="text-[#5b36a0]">{`${deadlines} days left`}</p> : <p className="text-gray-medium">time&apos;s up</p>}
                 </Card.Deadlines>
               )}
-        </div>
+        </Card.Footer>
       </Card>
       <KanbanForm modalProps={cardModalEditProps} card={card} id={id} />
     </div>

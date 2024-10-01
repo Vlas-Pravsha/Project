@@ -1,5 +1,4 @@
 import { cn } from '@/lib/utils'
-import { Clock4 } from 'lucide-react'
 import React from 'react'
 
 import type { FC, HTMLAttributes, ImgHTMLAttributes, PropsWithChildren } from 'react'
@@ -54,10 +53,19 @@ function CardImage({ src, alt, className, ...props }: CardImageProps) {
 interface CardDeadlinesProps extends HTMLAttributes<HTMLDivElement> {
   icon: React.ElementType
 }
+
 function CardDeadlines({ icon: Icon, children, className, ...props }: CardDeadlinesProps) {
   return (
-    <div className={cn('text-[#5b36a0] bg-purple-300 font-medium rounded-lg flex items-center justify-center text-sm px-3 py-1 gap-1', className)} {...props}>
-      <Icon className="w-4 h-4" color="#5b36a0" />
+    <div className={cn('font-medium rounded-lg flex items-center justify-center text-sm px-3 py-1 gap-1', className)} {...props}>
+      <Icon className="w-4 h-4 -mt-0.5" color="#5b36a0" />
+      {children}
+    </div>
+  )
+}
+
+function CardFooter({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) {
+  return (
+    <div className={cn('w-full flex justify-end', className)} {...props}>
       {children}
     </div>
   )
@@ -80,4 +88,5 @@ export const Card = Object.assign(Cardomponent, {
   Description: CardDescription,
   Image: CardImage,
   Deadlines: CardDeadlines,
+  Footer: CardFooter,
 })

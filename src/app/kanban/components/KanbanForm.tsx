@@ -31,12 +31,7 @@ function KanbanForm({ card, modalProps, id }: FormModalProps) {
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<CardFormData>({
     resolver: zodResolver(cardSchema),
-    defaultValues: card || {
-      title: '',
-      description: '',
-      deadlines: 0,
-      image: '',
-    },
+    defaultValues: card,
   })
 
   const onSubmit = (data: CardFormData) => {
