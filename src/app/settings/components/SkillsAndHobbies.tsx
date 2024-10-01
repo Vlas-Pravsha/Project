@@ -22,7 +22,7 @@ const formSchema = z.object({
 export type SkillsAndHobbiesData = z.infer<typeof formSchema>
 
 function SkillsAndHobbies() {
-  const { saveUserInfo } = useUserContext()
+  // const { saveUserInfo } = useUserContext()
   const { control, handleSubmit, formState: { errors } } = useForm<SkillsAndHobbiesData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,7 +32,6 @@ function SkillsAndHobbies() {
   })
 
   const onSubmit = (data: SkillsAndHobbiesData) => {
-    saveUserInfo(data)
     // eslint-disable-next-line no-console
     console.log(data)
   }

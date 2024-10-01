@@ -64,7 +64,9 @@ function KanbanForm({ card, modalProps, id }: FormModalProps) {
     <Modal {...modalProps} onClose={modalProps.onClose}>
       <Modal.Content className="w-[640px] p-6">
         <div className="flex justify-between pb-6 border-b border-opacity-medium">
-          <h4 className="text-xl font-semibold">Add new task</h4>
+          <h4 className="text-xl font-semibold">
+            {card ? 'Update task' : 'Add new task'}
+          </h4>
           <Image
             src="/exit.svg"
             alt="Exit"
@@ -93,7 +95,9 @@ function KanbanForm({ card, modalProps, id }: FormModalProps) {
           </Label>
           <Upload {...register('image')}>Drop files to upload</Upload>
           <Modal.Footer className="flex pt-6 border-t border-opacity-medium">
-            <Button type="submit" variant="primary" iconBefore={<Plus className="w-4 h-4" color="white" />}>Add card</Button>
+            <Button type="submit" variant="primary" iconBefore={!card && <Plus className="w-4 h-4" color="white" />}>
+              {card ? 'Update card' : 'Add card'}
+            </Button>
             <Button variant="secondary" onClick={event => handleCloseModal(event)}>Close</Button>
           </Modal.Footer>
         </form>

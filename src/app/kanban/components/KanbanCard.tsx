@@ -1,8 +1,7 @@
 import { Card } from '@/components/ui/'
-import { type CardType, useKanbanCard } from '@/contexts'
 import { useDaysLeftCount, useModal } from '@/hooks'
 import { Check, Clock4, SquarePen } from 'lucide-react'
-import React, { useEffect } from 'react'
+import type { CardType } from '@/contexts'
 import KanbanForm from './KanbanForm'
 
 type CardProps = CardType & {
@@ -11,14 +10,14 @@ type CardProps = CardType & {
 }
 
 function KanbanCard({ title, id, column, description, deadlines, image, card, handleDragStart }: CardProps) {
-  const { remainingDays } = useDaysLeftCount(deadlines)
+  // const { remainingDays } = useDaysLeftCount(deadlines)
   const cardModalEditProps = useModal()
 
   return (
     <div
-      className="cursor-grab active:cursor-grabbing pb-4"
-      draggable="true"
-      onDragStart={e => handleDragStart(e, { title, id, column, description, deadlines })}
+      className="rounded-lg cursor-grab active:cursor-grabbing mb-4"
+      onDragStart={e => handleDragStart(e, card)}
+      draggable
     >
       <Card>
         <Card.Header>
@@ -43,7 +42,9 @@ function KanbanCard({ title, id, column, description, deadlines, image, card, ha
               )
             : (
                 <Card.Deadlines icon={Clock4}>
-                  {remainingDays}
+                  {deadlines}
+                  {' '}
+                  days left
                 </Card.Deadlines>
               )}
         </div>
