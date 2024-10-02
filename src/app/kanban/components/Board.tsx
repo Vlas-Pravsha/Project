@@ -10,7 +10,7 @@ interface BoardProps {
 
 function Board({ cards, setCards }: BoardProps) {
   return (
-    <div className="flex h-full w-full gap-6">
+    <div className="flex h-full w-full gap-4">
       <Column
         title="Backlog"
         column="backlog"

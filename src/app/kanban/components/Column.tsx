@@ -35,7 +35,7 @@ function Column({ title, headingColor, cards, column, setCards }: ColumnProps) {
 
   return (
     <div>
-      <div className="mb-3 gap-6 flex items-center justify-between">
+      <div className="mb-3 gap-8 flex items-center justify-between">
         <h3 className={`font-medium ${headingColor}`}>{title}</h3>
         <span className="rounded text-sm text-neutral-400">
           {filteredCards.length}

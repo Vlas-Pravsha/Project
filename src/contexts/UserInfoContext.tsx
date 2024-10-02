@@ -62,9 +62,19 @@ function UserInfoProvider({ children }: { children: ReactNode }) {
 
       const { data, error } = await supabase.from(USER_INFO_DATABASE).insert([
         {
-          ...userInfo, // Нада це переробити
-          skills: userInfo.skills.map(skill => skill.value),
-          hobbies: userInfo.hobbies.map(hobby => hobby.value),
+          first_name: userInfo.first_name,
+          last_name: userInfo.last_name,
+          country: userInfo.country,
+          city: userInfo.city,
+          address: userInfo.address,
+          education: userInfo.education,
+          phone_number: userInfo.number,
+          birthday: userInfo.birthday,
+          organization: userInfo.organization || null,
+          role: userInfo.role || null,
+          department: userInfo.department || null,
+          code: userInfo.code || null,
+          about_me: userInfo.aboutMe || null,
           user_id: user.id,
         },
       ]).select('*')
@@ -113,12 +123,12 @@ function UserInfoProvider({ children }: { children: ReactNode }) {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }
 
-function useUserContext() {
+function useUserInfoContext() {
   const context = useContext(UserContext)
   if (!context) {
-    throw new Error('useUserContext must be used within a UserProvider')
+    throw new Error('useUserInfoContext must be used within a UserProvider')
   }
   return context
 }
 
-export { UserInfoProvider, useUserContext }
+export { UserInfoProvider, useUserInfoContext }

@@ -2,6 +2,7 @@
 
 import { Button, Input, Label, Textarea } from '@/components/ui'
 import { inputsArray } from '@/constants/general'
+import { useUserInfoContext } from '@/contexts/UserInfoContext'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -26,8 +27,7 @@ const schema = z.object({
 export type GeneralFormData = z.infer<typeof schema>
 
 function GeneralInfo() {
-  const [_, setData] = React.useState<GeneralFormData>()
-
+  const { saveUserInfo } = useUserInfoContext()
   const {
     register,
     handleSubmit,
@@ -37,10 +37,8 @@ function GeneralInfo() {
     resolver: zodResolver(schema),
   })
 
-  const onSubmit = (data: GeneralFormData) => {
-    // eslint-disable-next-line no-console
-    console.log(data)
-    setData(data)
+  const onSubmit = (data: any) => {
+    saveUserInfo(data)
   }
 
   const handleResetForm = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
