@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Input, Label, Modal, Textarea, Upload } from '@/components/ui'
+import { Button, Form, Input, Modal, Textarea, Upload } from '@/components/ui'
 import { useKanbanCard } from '@/contexts'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Plus } from 'lucide-react'
@@ -71,31 +71,57 @@ function KanbanForm({ card, modalProps, id }: FormModalProps) {
             height="20"
           />
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+
+        <Form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="flex gap-4">
-            <Label title="Task Name" className="w-9/12" errorText={errors.title?.message} hasError={errors.title}>
-              <Input placeholder="Apple iMac 27" {...register('title')} hasError={errors.title} />
-            </Label>
-            <Label title="Deadlines" className="w-3/12" errorText={errors.deadlines?.message} hasError={errors.deadlines}>
-              <Input placeholder="7 days left" {...register('deadlines', { valueAsNumber: true })} hasError={errors.deadlines} />
-            </Label>
+            <Form.Field className="w-9/12">
+              <Form.Label>Task Name</Form.Label>
+              <Form.Control>
+                <Input placeholder="Apple iMac 27" {...register('title')} hasError={errors.title} />
+              </Form.Control>
+              {errors.title && <Form.ErrorMessage>{errors.title.message}</Form.ErrorMessage>}
+            </Form.Field>
+
+            <Form.Field className="w-3/12">
+              <Form.Label>Deadlines</Form.Label>
+              <Form.Control>
+                <Input
+                  placeholder="7 days left"
+                  {...register('deadlines', { valueAsNumber: true })}
+                  hasError={errors.deadlines}
+                />
+              </Form.Control>
+              {errors.deadlines && <Form.ErrorMessage>{errors.deadlines.message}</Form.ErrorMessage>}
+            </Form.Field>
           </div>
-          <Label title="Task Description" errorText={errors.description?.message} hasError={errors.description}>
-            <Textarea
-              {...register('description')}
-              hasError={errors.description}
-              placeholder="e.g. 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, Ram 16 GB DDR4 2300Mhz"
-              rows={5}
-            />
-          </Label>
-          <Upload {...register('image')}>Drop files to upload</Upload>
+
+          <Form.Field>
+            <Form.Label>Task Description</Form.Label>
+            <Form.Control>
+              <Textarea
+                {...register('description')}
+                hasError={errors.description}
+                placeholder="e.g. 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, Ram 16 GB DDR4 2300Mhz"
+                rows={5}
+              />
+            </Form.Control>
+            {errors.description && <Form.ErrorMessage>{errors.description.message}</Form.ErrorMessage>}
+          </Form.Field>
+
+          <Form.Field>
+            <Form.Label>Upload Files</Form.Label>
+            <Form.Control>
+              <Upload {...register('image')}>Drop files to upload</Upload>
+            </Form.Control>
+          </Form.Field>
+
           <Modal.Footer className="flex pt-6 border-t border-opacity-medium">
             <Button type="submit" variant="primary" iconBefore={!card && <Plus className="w-4 h-4" color="white" />}>
               {card ? 'Update card' : 'Add card'}
             </Button>
             <Button variant="secondary" onClick={event => handleCloseModal(event)}>Close</Button>
           </Modal.Footer>
-        </form>
+        </Form>
       </Modal.Content>
     </Modal>
   )

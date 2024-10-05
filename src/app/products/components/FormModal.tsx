@@ -1,4 +1,4 @@
-import { Button, Input, Label, Modal, Textarea } from '@/components/ui'
+import { Button, Form, Input, Modal, Textarea } from '@/components/ui'
 import { useProducts } from '@/contexts/'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Image from 'next/image'
@@ -68,38 +68,81 @@ function FormModal({ modalProps, product, id }: FormModalProps) {
             height="20"
           />
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-6">
+
+        <Form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-6">
           <div className="grid grid-cols-2 gap-6">
-            <Label title="Product Name" errorText={errors.name?.message} hasError={errors.name}>
-              <Input placeholder="Apple iMac 27" {...register('name')} hasError={errors.name} />
-            </Label>
-            <Label title="Category" errorText={errors.category?.message} hasError={errors.category}>
-              <Input placeholder="Electronics" {...register('category')} hasError={errors.category} />
-            </Label>
+            <Form.Field>
+              <Form.Label>Product Name</Form.Label>
+              <Form.Control>
+                <Input placeholder="Apple iMac 27" {...register('name')} hasError={errors.name} />
+              </Form.Control>
+              {errors.name && <Form.ErrorMessage>{errors.name.message}</Form.ErrorMessage>}
+            </Form.Field>
+
+            <Form.Field>
+              <Form.Label>Category</Form.Label>
+              <Form.Control>
+                <Input placeholder="Electronics" {...register('category')} hasError={errors.category} />
+              </Form.Control>
+              {errors.category && <Form.ErrorMessage>{errors.category.message}</Form.ErrorMessage>}
+            </Form.Field>
           </div>
+
           <div className="grid grid-cols-2 gap-4">
-            <Label title="Technology" errorText={errors.technology?.message} hasError={errors.technology}>
-              <Input placeholder="Apple" {...register('technology')} hasError={errors.technology} />
-            </Label>
-            <Label title="Price" errorText={errors.price?.message} hasError={errors.price}>
-              <Input placeholder="2300" type="text" {...register('price', { valueAsNumber: true })} hasError={errors.price} />
-            </Label>
+            <Form.Field>
+              <Form.Label>Technology</Form.Label>
+              <Form.Control>
+                <Input placeholder="Apple" {...register('technology')} hasError={errors.technology} />
+              </Form.Control>
+              {errors.technology && <Form.ErrorMessage>{errors.technology.message}</Form.ErrorMessage>}
+            </Form.Field>
+
+            <Form.Field>
+              <Form.Label>Price</Form.Label>
+              <Form.Control>
+                <Input
+                  placeholder="2300"
+                  type="text"
+                  {...register('price', { valueAsNumber: true })}
+                  hasError={errors.price}
+                />
+              </Form.Control>
+              {errors.price && <Form.ErrorMessage>{errors.price.message}</Form.ErrorMessage>}
+            </Form.Field>
           </div>
-          <Label title="Discount" errorText={errors.discount?.message} hasError={errors.discount}>
-            <Input placeholder="15%" type="text" {...register('discount')} hasError={errors.discount} />
-          </Label>
-          <Label title="Product Description" errorText={errors.description?.message} hasError={errors.description}>
-            <Textarea
-              {...register('description')}
-              hasError={errors.description}
-              placeholder="e.g. 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, Ram 16 GB DDR4 2300Mhz"
-              rows={5}
-            />
-          </Label>
+
+          <Form.Field>
+            <Form.Label>Discount</Form.Label>
+            <Form.Control>
+              <Input
+                placeholder="15%"
+                type="text"
+                {...register('discount')}
+                hasError={errors.discount}
+              />
+            </Form.Control>
+            {errors.discount && <Form.ErrorMessage>{errors.discount.message}</Form.ErrorMessage>}
+          </Form.Field>
+
+          <Form.Field>
+            <Form.Label>Product Description</Form.Label>
+            <Form.Control>
+              <Textarea
+                {...register('description')}
+                hasError={errors.description}
+                placeholder="e.g. 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, Ram 16 GB DDR4 2300Mhz"
+                rows={5}
+              />
+            </Form.Control>
+            {errors.description && <Form.ErrorMessage>{errors.description.message}</Form.ErrorMessage>}
+          </Form.Field>
+
           <Modal.Footer className="flex justify-between pt-6 border-t border-opacity-medium">
-            <Button type="submit" variant="primary">{product ? 'Update product' : 'Add product'}</Button>
+            <Button type="submit" variant="primary">
+              {product ? 'Update product' : 'Add product'}
+            </Button>
           </Modal.Footer>
-        </form>
+        </Form>
       </Modal.Content>
     </Modal>
   )

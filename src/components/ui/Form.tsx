@@ -61,19 +61,19 @@ const FormDescription = React.forwardRef<
 ))
 FormDescription.displayName = 'FormDescription'
 
-const FormMessage = React.forwardRef<
+const FormErrorMessage = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn('text-sm font-medium text-destructive', className)}
+    className={cn('text-danger text-xs ml-1.5', className)}
     {...props}
   >
     {children}
   </p>
 ))
-FormMessage.displayName = 'FormMessage'
+FormErrorMessage.displayName = 'ErrorMessage'
 
 const FormComponent = React.forwardRef<
   HTMLFormElement,
@@ -91,5 +91,5 @@ export const Form = Object.assign(FormComponent, {
   Label: FormLabel,
   Control: FormControl,
   Description: FormDescription,
-  Message: FormMessage,
+  ErrorMessage: FormErrorMessage,
 })

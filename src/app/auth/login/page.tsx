@@ -1,16 +1,15 @@
 'use client'
 
-import { Button, Input, Label } from '@/components/ui'
+import { Button, Form, Input } from '@/components/ui'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-
 import { toast, ToastContainer } from 'react-toastify'
 import * as z from 'zod'
 import type { SubmitHandler } from 'react-hook-form'
-
 import { login } from '../actions'
+
 import 'react-toastify/dist/ReactToastify.css'
 
 const schema = z.object({
@@ -45,21 +44,41 @@ export default function LoginPage() {
   return (
     <div className="flex items-center justify-between min-h-screen">
       <div className="custom-gradient w-full flex min-h-screen justify-center items-center flex-col">
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg p-10 rounded-lg shadow-2xl">
+        <Form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full max-w-lg p-10 rounded-lg shadow-2xl"
+        >
           <h2 className="text-2xl font-bold mb-4 text-center">Sign In</h2>
           <div className="space-y-4">
-            <Label errorText={errors.email?.message} hasError={errors.email}>
-              <Input type="text" placeholder="email@example.com" {...register('email')} hasError={errors.email} />
-            </Label>
-            <Label errorText={errors.password?.message} hasError={errors.password}>
-              <Input
-                type="password"
-                placeholder="your very secret password"
-                {...register('password')}
-                hasError={errors.password}
-              />
-            </Label>
+            <Form.Field>
+              <Form.Control>
+                <Input
+                  type="text"
+                  placeholder="email@example.com"
+                  {...register('email')}
+                  hasError={errors.email}
+                />
+              </Form.Control>
+              {errors.email && (
+                <Form.ErrorMessage>{errors.email.message}</Form.ErrorMessage>
+              )}
+            </Form.Field>
+
+            <Form.Field>
+              <Form.Control>
+                <Input
+                  type="password"
+                  placeholder="your very secret password"
+                  {...register('password')}
+                  hasError={errors.password}
+                />
+              </Form.Control>
+              {errors.password && (
+                <Form.ErrorMessage>{errors.password.message}</Form.ErrorMessage>
+              )}
+            </Form.Field>
           </div>
+
           <Button
             variant="primary"
             size="lg"
@@ -69,7 +88,7 @@ export default function LoginPage() {
           >
             {loading ? 'Loading...' : 'Login'}
           </Button>
-        </form>
+        </Form>
         <ToastContainer position="bottom-right" autoClose={5000} theme="colored" />
       </div>
     </div>

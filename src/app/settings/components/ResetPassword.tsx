@@ -1,7 +1,7 @@
 'use client'
 
 import { updateUserPassword } from '@/app/auth/actions'
-import { Button, Input, Label } from '@/components/ui'
+import { Button, Form, Input } from '@/components/ui'
 import { usePasswordVisibility, useUser } from '@/hooks/'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeOff } from 'lucide-react'
@@ -61,50 +61,73 @@ function ResetPassword() {
   return (
     <div className="bg-gray-darkest border border-opacity-medium rounded-lg w-full p-6">
       <h2 className="text-2xl font-bold mb-6">Personal data</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <Label title="Your e-mail">
-          <Input placeholder="email" type="text" disabled defaultValue={user?.email} />
-        </Label>
+      <Form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <Form.Field>
+          <Form.Label>Your e-mail</Form.Label>
+          <Form.Control>
+            <Input
+              placeholder="email"
+              type="text"
+              disabled
+              defaultValue={user?.email}
+            />
+          </Form.Control>
+        </Form.Field>
+
         <div>
           <h3 className="text-xl font-semibold mb-4">Password</h3>
           <div className="space-y-4">
-            <Label errorText={errors.newPassword?.message} hasError={errors.newPassword} title="New password">
-              <div className="relative">
-                <Input
-                  hasError={errors.newPassword}
-                  placeholder="Current password"
-                  type={newPassword.inputType}
-                  {...register('newPassword')}
-                />
-                <button
-                  type="button"
-                  onClick={newPassword.togglePasswordVisibility}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
-                >
-                  {newPassword.passwordShown ? <Eye size={20} /> : <EyeOff size={20} />}
-                </button>
-              </div>
-            </Label>
-            <Label errorText={errors.confirmPassword?.message} hasError={errors.confirmPassword} title="Confrim new password">
-              <div className="relative">
-                <Input
-                  hasError={errors.confirmPassword}
-                  placeholder="New password"
-                  type={confirmPassword.inputType}
-                  id="confirmPassword"
-                  {...register('confirmPassword')}
-                />
-                <button
-                  type="button"
-                  onClick={confirmPassword.togglePasswordVisibility}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
-                >
-                  {confirmPassword.passwordShown ? <Eye size={20} /> : <EyeOff size={20} />}
-                </button>
-              </div>
-            </Label>
+            <Form.Field>
+              <Form.Label>New password</Form.Label>
+              <Form.Control>
+                <div className="relative">
+                  <Input
+                    hasError={errors.newPassword}
+                    placeholder="Current password"
+                    type={newPassword.inputType}
+                    {...register('newPassword')}
+                  />
+                  <button
+                    type="button"
+                    onClick={newPassword.togglePasswordVisibility}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
+                  >
+                    {newPassword.passwordShown ? <Eye size={20} /> : <EyeOff size={20} />}
+                  </button>
+                </div>
+              </Form.Control>
+              {errors.newPassword && (
+                <Form.ErrorMessage>{errors.newPassword.message}</Form.ErrorMessage>
+              )}
+            </Form.Field>
+
+            <Form.Field>
+              <Form.Label>Confirm new password</Form.Label>
+              <Form.Control>
+                <div className="relative">
+                  <Input
+                    hasError={errors.confirmPassword}
+                    placeholder="New password"
+                    type={confirmPassword.inputType}
+                    id="confirmPassword"
+                    {...register('confirmPassword')}
+                  />
+                  <button
+                    type="button"
+                    onClick={confirmPassword.togglePasswordVisibility}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-iconsColor cursor-pointer"
+                  >
+                    {confirmPassword.passwordShown ? <Eye size={20} /> : <EyeOff size={20} />}
+                  </button>
+                </div>
+              </Form.Control>
+              {errors.confirmPassword && (
+                <Form.ErrorMessage>{errors.confirmPassword.message}</Form.ErrorMessage>
+              )}
+            </Form.Field>
           </div>
         </div>
+
         <div className="flex space-x-4">
           <Button type="submit" variant="primary">
             Update Password
@@ -116,7 +139,7 @@ function ResetPassword() {
             Clear
           </Button>
         </div>
-      </form>
+      </Form>
       <ToastContainer position="top-right" autoClose={5000} theme="colored" />
     </div>
   )
